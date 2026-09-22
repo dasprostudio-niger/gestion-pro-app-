@@ -39,7 +39,7 @@ jobs:
     - name: Install Capacitor
       run: |
         npm init -y
-        npm install @capacitor/core @capacitor/cli @capacitor/android
+        npm install @capacitor/core @capacitor/cli @capacitor/android @capacitor/camera
     
     - name: Initialize Capacitor
       run: |
@@ -50,11 +50,12 @@ jobs:
         npx cap add android
         npx cap sync android
     
-    - name: Setup Android SDK location
+    - name: Add camera permissions to AndroidManifest
       run: |
-        echo "ANDROID_HOME=$ANDROID_SDK_ROOT" >> $GITHUB_ENV
-        echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT" >> $GITHUB_ENV
-        ls -la $ANDROID_SDK_ROOT
+        MANIFEST="android/app/src/main/AndroidManifest.xml"
+        sed -i 's|</manifest>|<uses-permission android:name="android.permission.CAMERA" />\n    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />\n    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />\n    <uses-feature android:name="android.hardware.camera" android:required="false" />\n</manifest>|' "$MANIFEST"
+        echo "=== AndroidManifest.xml après modification ==="
+        cat "$MANIFEST"
     
     - name: Build APK
       run: |
