@@ -26,7 +26,7 @@ jobs:
     
     - name: Prepare www folder
       run: |
-        mkdir -p www
+        mkdir -p www/common
         cp index.html www/
         cp manifest.json www/
         cp service-worker.js www/
@@ -35,6 +35,7 @@ jobs:
         cp html5-qrcode.min.js www/
         cp html2canvas.min.js www/
         cp launchericon-*.png www/ 2>/dev/null || true
+        cp logo.png www/common/ 2>/dev/null || true
     
     - name: Install Capacitor
       run: |
