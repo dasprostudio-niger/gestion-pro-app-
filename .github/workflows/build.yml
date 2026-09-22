@@ -16,16 +16,13 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20'
+        node-version: '22'
     
     - name: Setup Java JDK
       uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
-        java-version: '17'
-    
-    - name: Setup Android SDK
-      uses: android-actions/setup-android@v3
+        java-version: '21'
     
     - name: Prepare www folder
       run: |
@@ -52,6 +49,12 @@ jobs:
       run: |
         npx cap add android
         npx cap sync android
+    
+    - name: Setup Android SDK location
+      run: |
+        echo "ANDROID_HOME=$ANDROID_SDK_ROOT" >> $GITHUB_ENV
+        echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT" >> $GITHUB_ENV
+        ls -la $ANDROID_SDK_ROOT
     
     - name: Build APK
       run: |
