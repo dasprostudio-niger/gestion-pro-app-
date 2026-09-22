@@ -7,9 +7,8 @@ const urlsToCache = [
   './html5-qrcode.min.js',
   './html2canvas.min.js',
   './manifest.json',
-  './common/logo.png',
-  './android/launchericon-192x192.png',
-  './android/launchericon-512x512.png'
+  './launchericon-192x192.png',
+  './launchericon-512x512.png'
 ];
 self.addEventListener('install', event => {
   event.waitUntil(
