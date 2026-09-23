@@ -42,7 +42,7 @@ jobs:
     
     - name: Initialize Capacitor
       run: |
-        npx cap init "Gestion Pro" "com.dasprostudio.gestionpro" --web-dir=www
+        npx cap init "Gestion Pro" "com.dasprostudio.gestionproapp" --web-dir=www
     
     - name: Add Android platform
       run: |
@@ -63,7 +63,6 @@ jobs:
     - name: Align and sign APK
       run: |
         BT=$(ls $ANDROID_SDK_ROOT/build-tools/ | tail -1)
-        echo "Using build-tools: $BT"
         ZIPALIGN="$ANDROID_SDK_ROOT/build-tools/$BT/zipalign"
         APKSIGNER="$ANDROID_SDK_ROOT/build-tools/$BT/apksigner"
         
