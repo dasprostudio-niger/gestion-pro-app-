@@ -889,7 +889,7 @@ if ('serviceWorker' in navigator) {
 }
 
 // ============ INITIALISATION ============
-document.addEventListener('DOMContentLoaded',function(){try{const dejaVu=sessionStorage.getItem('splashVu')==='true';if(dejaVu){document.getElementById('splash').classList.add('hide');document.getElementById('app').style.opacity='1';}else{sessionStorage.setItem('splashVu','true');setTimeout(()=>{document.getElementById('splash').classList.add('hide');document.getElementById('app').style.opacity='1';},1800);}
+document.addEventListener('DOMContentLoaded',function(){try{const dejaVu=sessionStorage.getItem('splashVu')==='true';if(dejaVu){document.getElementById('splash').classList.add('hide');document.getElementById('app').style.opacity='1';}else{sessionStorage.setItem('splashVu','true');setTimeout(()=>{document.getElementById('splash').classList.add('hide');document.getElementById('app').style.opacity='1';},1800);}initPreferences();initDarkMode();initPrefs();afficherProduits();mettreAJourStats();afficherStatsDetail();afficherPanier();afficherResumeJour();afficherAlerteStock();document.querySelectorAll('#screenVentes [data-level]').forEach(b=>b.classList.remove('active'));document.querySelector('#screenVentes [data-level="piece"]').classList.add('active');let lastTouchEnd=0;document.addEventListener('touchend',function(event){const now=(new Date()).getTime();if(now-lastTouchEnd<=300)event.preventDefault();lastTouchEnd=now;},false);}catch(e){console.error('❌ Erreur:',e);document.getElementById('splash').classList.add('hide');document.getElementById('app').style.opacity='1';}});
 </script>
 <script src="premium.js"></script>
 </body>
