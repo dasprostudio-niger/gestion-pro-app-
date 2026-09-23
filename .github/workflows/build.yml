@@ -54,11 +54,11 @@ jobs:
         MANIFEST="android/app/src/main/AndroidManifest.xml"
         sed -i 's|</manifest>|<uses-permission android:name="android.permission.CAMERA" />\n    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />\n    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />\n    <uses-feature android:name="android.hardware.camera" android:required="false" />\n</manifest>|' "$MANIFEST"
     
-    - name: Build APK debug
+    - name: Build APK release
       run: |
         cd android
         chmod +x gradlew
-        ./gradlew assembleDebug
+        ./gradlew assembleRelease
     
     - name: Align and sign APK
       run: |
@@ -67,9 +67,9 @@ jobs:
         APKSIGNER="$ANDROID_SDK_ROOT/build-tools/$BT/apksigner"
         
         mkdir -p signed
-        cd android/app/build/outputs/apk/debug
+        cd android/app/build/outputs/apk/release
         
-        $ZIPALIGN -v 4 app-debug.apk $GITHUB_WORKSPACE/signed/app-aligned.apk
+        $ZIPALIGN -v 4 app-release-unsigned.apk $GITHUB_WORKSPACE/signed/app-aligned.apk
         
         cd $GITHUB_WORKSPACE/signed
         zip -d app-aligned.apk "META-INF/*.RSA" "META-INF/*.SF" "META-INF/*.MF" || true
