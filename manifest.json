@@ -10,6 +10,8 @@
   "theme_color": "#2563eb",
   "lang": "fr",
   "dir": "ltr",
+  "version": "5.1.0",
+  "version_code": 3,
   "categories": ["business", "finance", "productivity"],
   "icons": [
     { "src": "launchericon-48x48.png", "sizes": "48x48", "type": "image/png", "purpose": "any" },
