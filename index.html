@@ -172,7 +172,8 @@ body.dark .badge.blue{background:#1e3a8a;color:#bfdbfe}
 .receipt .article-block .article-detail strong{color:var(--text)}
 .receipt .article-block .article-subtotal{font-weight:700;color:#2563eb;padding-top:4px;margin-top:4px;border-top:1px dashed var(--border);display:flex;justify-content:space-between}
 .receipt .summary-box{background:rgba(37,99,235,.08);border-radius:10px;padding:12px;margin-top:12px}
-.receipt .summary-box .line{font-weight:600}
+.receipt .summary-box .line{font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.receipt .summary-box .line.total{font-size:16px;font-weight:800;color:#2563eb}
 .receipt .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
 .receipt .info-item{background:var(--bg);padding:8px;border-radius:8px;font-size:12px}
 .receipt .info-item .lbl{color:var(--text-light);font-size:11px}
@@ -751,7 +752,8 @@ scan_qr_to_receive:"📱 Scannez pour recevoir votre document",unit_label:"Unit�
 unit_price_label:"Prix unitaire",subtotal:"Sous-total",cart:"🛒 Panier",cart_empty:"Panier vide",
 add_to_cart:"🛒 Ajouter au panier",clear_cart:"🗑️ Vider",validate_order:"✅ Valider la commande",
 orders_history:"📜 Historique des commandes",order_form:"📝 Bon de commande",
-delivery_note:"📦 Bon de livraison",order_type:"Type",order_number:"N° Commande",items:"Articles",
+delivery_note:"📦 Bon de livraison",order_type:"Type",order_number:"N° Commande",
+client:"Client",date:"Date",total_amount:"Montant total",items:"Articles",
 toast_order_validated:"✅ Commande N°{number} validée",document_type:"📄 Type de document",
 scan_product_qr:"📷 Scanner un produit (QR / Code-barres)",
 click_to_see_details:"👆 Cliquez sur une commande pour voir le détail complet",
@@ -886,7 +888,8 @@ scan_qr_to_receive:"📱 Scan to receive your document",unit_label:"Unit",qty:"Q
 unit_price_label:"Unit price",subtotal:"Subtotal",cart:"🛒 Cart",cart_empty:"Cart is empty",
 add_to_cart:"🛒 Add to cart",clear_cart:"🗑️ Clear",validate_order:"✅ Validate order",
 orders_history:"📜 Order history",order_form:"📝 Purchase order",delivery_note:"📦 Delivery note",
-order_type:"Type",order_number:"Order #",items:"Items",
+order_type:"Type",order_number:"Order #",
+client:"Customer",date:"Date",total_amount:"Total amount",items:"Items",
 toast_order_validated:"✅ Order #{number} validated",document_type:"📄 Document type",
 scan_product_qr:"📷 Scan a product (QR / Barcode)",
 click_to_see_details:"👆 Click on an order to see full details",scan_document_title:"📷 Scan a document",
@@ -1012,7 +1015,9 @@ thank_you:"Gracias",scan_qr_to_receive:"📱 Escanee",unit_label:"Unidad",qty:"C
 unit_price_label:"Precio",subtotal:"Subtotal",cart:"🛒 Carrito",cart_empty:"Vacío",
 add_to_cart:"🛒 Añadir",clear_cart:"🗑️ Vaciar",validate_order:"✅ Validar",
 orders_history:"📜 Historial",order_form:"📝 Pedido",delivery_note:"📦 Albarán",order_type:"Tipo",
-order_number:"N° Pedido",items:"Artículos",toast_order_validated:"✅ Pedido N°{number}",
+order_number:"N° Pedido",
+client:"Cliente",date:"Fecha",total_amount:"Monto total",
+items:"Artículos",toast_order_validated:"✅ Pedido N°{number}",
 document_type:"📄 Tipo",scan_product_qr:"📷 Escanear producto",
 click_to_see_details:"👆 Toque un pedido",scan_document_title:"📷 Escanear documento",
 scan_document:"📷 Escanear QR",scan_document_hint:"Escanee el QR de un recibo.",
@@ -1141,7 +1146,9 @@ invoice:"RECHNUNG",thank_you:"Danke",scan_qr_to_receive:"📱 Scannen",unit_labe
 qty:"Menge",unit_price_label:"Preis",subtotal:"Zwischensumme",cart:"🛒 Warenkorb",
 cart_empty:"Leer",add_to_cart:"🛒 Hinzufügen",clear_cart:"🗑️ Leeren",validate_order:"✅ Bestätigen",
 orders_history:"📜 Verlauf",order_form:"📝 Bestellschein",delivery_note:"📦 Lieferschein",
-order_type:"Typ",order_number:"Bestell-Nr.",items:"Artikel",
+order_type:"Typ",order_number:"Bestell-Nr.",
+client:"Kunde",date:"Datum",total_amount:"Gesamtbetrag",
+items:"Artikel",
 toast_order_validated:"✅ Bestellung Nr.{number}",document_type:"📄 Dokumenttyp",
 scan_product_qr:"📷 Produkt scannen",click_to_see_details:"👆 Tippen Sie",
 scan_document_title:"📷 Dokument scannen",scan_document:"📷 QR scannen",
@@ -1271,7 +1278,9 @@ delivery:"BOLLA",invoice:"FATTURA",thank_you:"Grazie",scan_qr_to_receive:"📱 S
 unit_label:"Unità",qty:"Quantità",unit_price_label:"Prezzo",subtotal:"Subtotale",
 cart:"🛒 Carrello",cart_empty:"Vuoto",add_to_cart:"🛒 Aggiungi",clear_cart:"🗑️ Svuota",
 validate_order:"✅ Conferma",orders_history:"📜 Storico",order_form:"📝 Ordine",
-delivery_note:"📦 Bolla",order_type:"Tipo",order_number:"N° Ordine",items:"Articoli",
+delivery_note:"📦 Bolla",order_type:"Tipo",order_number:"N° Ordine",
+client:"Cliente",date:"Data",total_amount:"Importo totale",
+items:"Articoli",
 toast_order_validated:"✅ Ordine N°{number}",document_type:"📄 Tipo",
 scan_product_qr:"📷 Scansiona prodotto",click_to_see_details:"👆 Tocca un ordine",
 scan_document_title:"📷 Scansiona documento",scan_document:"📷 Scansiona QR",
@@ -1401,7 +1410,9 @@ thank_you:"Obrigado",scan_qr_to_receive:"📱 Digitalize",unit_label:"Unidade",q
 unit_price_label:"Preço",subtotal:"Subtotal",cart:"🛒 Carrinho",cart_empty:"Vazio",
 add_to_cart:"🛒 Adicionar",clear_cart:"🗑️ Limpar",validate_order:"✅ Validar",
 orders_history:"📜 Histórico",order_form:"📝 Pedido",delivery_note:"📦 Guia",order_type:"Tipo",
-order_number:"N° Pedido",items:"Itens",toast_order_validated:"✅ Pedido N°{number}",
+order_number:"N° Pedido",
+client:"Cliente",date:"Data",total_amount:"Valor total",
+items:"Itens",toast_order_validated:"✅ Pedido N°{number}",
 document_type:"📄 Tipo",scan_product_qr:"📷 Digitalizar produto",
 click_to_see_details:"👆 Toque num pedido",scan_document_title:"📷 Digitalizar documento",
 scan_document:"📷 Digitalizar QR",scan_document_hint:"Digitalize o QR de um recibo.",
@@ -1533,7 +1544,9 @@ invoice:"СЧЁТ",thank_you:"Спасибо",scan_qr_to_receive:"📱 Отск�
 qty:"Количество",unit_price_label:"Цена",subtotal:"Промежуточный",cart:"🛒 Корзина",
 cart_empty:"Пусто",add_to_cart:"🛒 Добавить",clear_cart:"🗑️ Очистить",
 validate_order:"✅ Подтвердить",orders_history:"📜 История",order_form:"📝 Заказ",
-delivery_note:"📦 Накладная",order_type:"Тип",order_number:"№ заказа",items:"Товары",
+delivery_note:"📦 Накладная",order_type:"Тип",order_number:"№ заказа",
+client:"Клиент",date:"Дата",total_amount:"Итоговая сумма",
+items:"Товары",
 toast_order_validated:"✅ Заказ №{number}",document_type:"📄 Тип",
 scan_product_qr:"📷 Сканировать товар",click_to_see_details:"👆 Нажмите на заказ",
 scan_document_title:"📷 Сканировать документ",scan_document:"📷 Сканировать QR",
@@ -1660,6 +1673,7 @@ thank_you:"感谢",scan_qr_to_receive:"📱 扫描",unit_label:"单位",qty:"数
 unit_price_label:"单价",subtotal:"小计",cart:"🛒 购物车",cart_empty:"空",
 add_to_cart:"🛒 加入",clear_cart:"🗑️ 清空",validate_order:"✅ 确认",orders_history:"📜 历史",
 order_form:"📝 采购订单",delivery_note:"📦 交货单",order_type:"类型",order_number:"订单号",
+client:"客户",date:"日期",total_amount:"总金额",
 items:"商品",toast_order_validated:"✅ 订单 #{number}",document_type:"📄 类型",
 scan_product_qr:"📷 扫描产品",click_to_see_details:"👆 点击订单",
 scan_document_title:"📷 扫描文档",scan_document:"📷 扫描二维码",
@@ -1781,6 +1795,7 @@ invoice:"فاتورة",thank_you:"شكرا",scan_qr_to_receive:"📱 امسح",u
 unit_price_label:"السعر",subtotal:"المجموع",cart:"🛒 السلة",cart_empty:"فارغة",
 add_to_cart:"🛒 أضف",clear_cart:"🗑️ تفريغ",validate_order:"✅ تأكيد",orders_history:"📜 التاريخ",
 order_form:"📝 أمر شراء",delivery_note:"📦 تسليم",order_type:"النوع",order_number:"رقم الطلب",
+client:"العميل",date:"التاريخ",total_amount:"المبلغ الإجمالي",
 items:"المنتجات",toast_order_validated:"✅ الطلب رقم {number}",document_type:"📄 النوع",
 scan_product_qr:"📷 مسح منتج",click_to_see_details:"👆 انقر على طلب",
 scan_document_title:"📷 مسح مستند",scan_document:"📷 مسح QR",scan_document_hint:"امسح QR لإيصال.",
@@ -1906,7 +1921,9 @@ invoice:"चालान",thank_you:"धन्यवाद",scan_qr_to_receive:"
 qty:"मात्रा",unit_price_label:"मूल्य",subtotal:"उप-योग",cart:"🛒 कार्ट",cart_empty:"खाली",
 add_to_cart:"🛒 जोड़ें",clear_cart:"🗑️ खाली",validate_order:"✅ पुष्टि",
 orders_history:"📜 इतिहास",order_form:"📝 ऑर्डर",delivery_note:"📦 डिलीवरी",order_type:"प्रकार",
-order_number:"संख्या",items:"वस्तुएँ",toast_order_validated:"✅ ऑर्डर #{number}",
+order_number:"संख्या",
+client:"ग्राहक",date:"तारीख",total_amount:"कुल राशि",
+items:"वस्तुएँ",toast_order_validated:"✅ ऑर्डर #{number}",
 document_type:"📄 प्रकार",scan_product_qr:"📷 उत्पाद स्कैन",click_to_see_details:"👆 टैप करें",
 scan_document_title:"📷 दस्तावेज़ स्कैन",scan_document:"📷 QR स्कैन",
 scan_document_hint:"रसीद का QR स्कैन करें।",document_not_found:"नहीं मिला",
@@ -2031,7 +2048,9 @@ thank_you:"ありがとう",scan_qr_to_receive:"📱 スキャン",unit_label:"�
 unit_price_label:"単価",subtotal:"小計",cart:"🛒 カート",cart_empty:"空",
 add_to_cart:"🛒 追加",clear_cart:"🗑️ 空に",validate_order:"✅ 確定",
 orders_history:"📜 履歴",order_form:"📝 注文書",delivery_note:"📦 納品書",order_type:"タイプ",
-order_number:"番号",items:"商品",toast_order_validated:"✅ 注文 #{number}",
+order_number:"番号",
+client:"顧客",date:"日付",total_amount:"合計金額",
+items:"商品",toast_order_validated:"✅ 注文 #{number}",
 document_type:"📄 タイプ",scan_product_qr:"📷 商品スキャン",click_to_see_details:"👆 注文をタップ",
 scan_document_title:"📷 文書スキャン",scan_document:"📷 QRスキャン",
 scan_document_hint:"領収書のQRをスキャン。",document_not_found:"見つかりません",
@@ -2106,10 +2125,24 @@ guide_step7_text:"📧 dasprostudio.niger@gmail.com — 📱 +227 94 92 92 10"
 }
 };
 
-let langueActuelle='fr',deviseActuelle='FCFA',tauxConversion=655.957;
+
+let langueActuelle='fr',deviseActuelle='FCFA',tauxConversion=1;
 const deviseSymbols={'FCFA':'FCFA','EUR':'€','USD':'$','GBP':'£','CAD':'CA$','CHF':'₣','RUB':'₽','CNY':'¥','SAR':'﷼','INR':'₹','JPY':'¥'};
 const langueDeviseParDefaut={'fr':'FCFA','en':'USD','es':'EUR','de':'EUR','it':'EUR','pt':'EUR','ru':'RUB','zh':'CNY','ar':'SAR','hi':'INR','ja':'JPY'};
-const deviseTauxParDefaut={'FCFA':655.957,'EUR':1,'USD':1.09,'GBP':0.92,'CAD':1.48,'CHF':0.96,'RUB':98.50,'CNY':7.85,'SAR':4.08,'INR':91.50,'JPY':162.50};
+// ✅ CORRECTION : taux exprimés en FCFA pour 1 unité de chaque devise (base = FCFA)
+const deviseTauxParDefaut={
+  'FCFA':1,
+  'EUR':655.957,
+  'USD':600,
+  'GBP':760,
+  'CAD':440,
+  'CHF':680,
+  'RUB':6.5,
+  'CNY':83,
+  'SAR':160,
+  'INR':7.2,
+  'JPY':3.9
+};
 let niveauVente='piece',produitVenteSelectionne=null,produitStockSelectionne=null,panier=[],commandeFiltreType='all',commandeSelectionneeIndex=-1,commandeSelectionneeRef=null;
 let periodeGraphique='all';
 let niveauDepense='carton',produitDepenseSelectionne=null;
@@ -2120,10 +2153,22 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
 function showToastTraduit(key,params){showToast(translate(key,params));}
 function showAlert(key){alert(translate(key));}
 function showConfirm(key,cb){if(confirm(translate(key)))cb();}
-function formatMontantAvecDevise(m){let v=m;if(deviseActuelle!=='FCFA'&&tauxConversion>0)v=m/tauxConversion;return formatNombre(v)+' '+(deviseSymbols[deviseActuelle]||deviseActuelle);}
+
+// ✅ CORRECTION : conversion unique à l'affichage
+function formatMontantAvecDevise(m){
+  // m est TOUJOURS en FCFA (valeur brute interne)
+  const montantFCFA=Number(m)||0;
+  if(deviseActuelle==='FCFA'||!tauxConversion||tauxConversion<=0){
+    return formatNombre(montantFCFA)+' FCFA';
+  }
+  const converti=montantFCFA/tauxConversion;
+  return formatNombre(Math.round(converti*100)/100)+' '+(deviseSymbols[deviseActuelle]||deviseActuelle);
+}
+
 function formatMontant(input){let v=input.value.replace(/[^0-9]/g,'');if(v===''){input.value='';return;}input.value=parseInt(v).toLocaleString('fr-FR').replace(/\s/g,'.');}
 function getValeurNumerique(input){if(!input||!input.value)return 0;return parseFloat(input.value.replace(/\./g,''))||0;}
-function formatNombre(n){if(n===undefined||n===null||isNaN(n))return '0';return n.toLocaleString('fr-FR').replace(/\s/g,'.');}
+function formatNombre(n){if(n===undefined||n===null||isNaN(n))return '0';const arrondi=Math.round(n*100)/100;if(Number.isInteger(arrondi))return arrondi.toLocaleString('fr-FR').replace(/\s/g,'.');return arrondi.toLocaleString('fr-FR',{minimumFractionDigits:0,maximumFractionDigits:2}).replace(/\s/g,'.');}
+
 function getProduits(){try{return JSON.parse(localStorage.getItem('gestionPro_produits'))||[];}catch(e){return[];}}
 function setProduits(p){localStorage.setItem('gestionPro_produits',JSON.stringify(p));}
 function getHistorique(){try{return JSON.parse(localStorage.getItem('gestionPro_historique'))||[];}catch(e){return[];}}
@@ -2137,7 +2182,8 @@ function setClients(c){localStorage.setItem('gestionPro_clients',JSON.stringify(
 function getFournisseurs(){try{return JSON.parse(localStorage.getItem('gestionPro_fournisseurs'))||[];}catch(e){return[];}}
 function setFournisseurs(f){localStorage.setItem('gestionPro_fournisseurs',JSON.stringify(f));}
 function ajouterHistorique(action,detail){const h=getHistorique();const now=new Date();const dateStr=now.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});const heureStr=now.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});h.push({id:Date.now(),action,detail,date:dateStr,heure:heureStr,timestamp:now.getTime()});setHistorique(h);}
-function openScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));const target=document.getElementById(id);if(target)target.classList.add('active');document.querySelectorAll('.bottom-nav button').forEach(b=>b.classList.remove('active'));const btn=document.querySelector('.bottom-nav button[data-screen="'+id+'"]');if(btn)btn.classList.add('active');if(id==='screenAccueil'){mettreAJourStats();afficherStatsDetail();afficherResumeJour();afficherAlerteStock();}if(id==='screenProduits'){afficherProduits();reinitialiserPhotoProduit();}if(id==='screenClients')afficherClients();if(id==='screenFournisseurs')afficherFournisseurs();if(id==='screenHistorique')afficherHistorique();if(id==='screenBenefices'){document.getElementById('resultatBenefice').style.display='none';mettreAJourTotauxBenefice();afficherDepensesDetail();}if(id==='screenFacturation')afficherCommandes();if(id==='screenVentes'){['venteProduit','clientNom','venteQte','ventePrix'].forEach(i=>document.getElementById(i).value='');document.getElementById('venteInfoAuto').style.display='none';document.getElementById('suggestionsContainerVente').classList.remove('show');const sc=document.getElementById('suggestionsClientVente');if(sc)sc.classList.remove('show');produitVenteSelectionne=null;niveauVente='piece';document.querySelectorAll('#screenVentes [data-level]').forEach(b=>b.classList.remove('active'));document.querySelector('#screenVentes [data-level="piece"]').classList.add('active');document.getElementById('stockDisponibleValeur').value='0';afficherPanier();traduireInterface(langueActuelle);}if(id==='screenStock'){['stockProduit','ajoutCarton','ajoutBoite','ajoutPiece'].forEach(i=>document.getElementById(i).value='');document.getElementById('stockInfoContainer').style.display='none';document.getElementById('suggestionsContainerStock').classList.remove('show');produitStockSelectionne=null;}if(id==='screenDepenses'){['depenseProduit','depenseLibelle','depenseMontant','depensePrixUnitaire'].forEach(i=>document.getElementById(i).value='');document.getElementById('depenseQte').value='1';document.getElementById('depenseStockPanel').style.display='none';document.getElementById('suggestionsContainerDepense').classList.remove('show');produitDepenseSelectionne=null;niveauDepense='carton';}if(id==='screenAnalyse'){const b=document.querySelector('#screenAnalyse .btn.active');if(b)analyserPeriode(b.dataset.periode);else analyserPeriode('today');}if(id==='screenGraphiques')afficherGraphiques();if(id==='screenSettings'){const radio=document.querySelector('input[name="lang"][value="'+langueActuelle+'"]');if(radio)radio.checked=true;document.getElementById('deviseSelect').value=deviseActuelle;document.getElementById('tauxConversion').value=tauxConversion;}window.scrollTo({top:0,behavior:'smooth'});}
+
+function openScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));const target=document.getElementById(id);if(target)target.classList.add('active');document.querySelectorAll('.bottom-nav button').forEach(b=>b.classList.remove('active'));const btn=document.querySelector('.bottom-nav button[data-screen="'+id+'"]');if(btn)btn.classList.add('active');if(id==='screenAccueil'){mettreAJourStats();afficherStatsDetail();afficherResumeJour();afficherAlerteStock();}if(id==='screenProduits'){afficherProduits();reinitialiserPhotoProduit();}if(id==='screenClients')afficherClients();if(id==='screenFournisseurs')afficherFournisseurs();if(id==='screenHistorique')afficherHistorique();if(id==='screenBenefices'){document.getElementById('resultatBenefice').style.display='none';mettreAJourTotauxBenefice();afficherDepensesDetail();}if(id==='screenFacturation')afficherCommandes();if(id==='screenVentes'){['venteProduit','clientNom','venteQte','ventePrix'].forEach(i=>document.getElementById(i).value='');document.getElementById('venteInfoAuto').style.display='none';document.getElementById('suggestionsContainerVente').classList.remove('show');const sc=document.getElementById('suggestionsClientVente');if(sc)sc.classList.remove('show');produitVenteSelectionne=null;niveauVente='piece';document.querySelectorAll('#screenVentes [data-level]').forEach(b=>b.classList.remove('active'));document.querySelector('#screenVentes [data-level="piece"]').classList.add('active');document.getElementById('stockDisponibleValeur').value='0';afficherPanier();traduireInterface(langueActuelle);}if(id==='screenStock'){['stockProduit','ajoutCarton','ajoutBoite','ajoutPiece'].forEach(i=>document.getElementById(i).value='');document.getElementById('stockInfoContainer').style.display='none';document.getElementById('suggestionsContainerStock').classList.remove('show');produitStockSelectionne=null;}if(id==='screenDepenses'){['depenseProduit','depenseLibelle','depenseMontant','depensePrixUnitaire'].forEach(i=>{const el=document.getElementById(i);el.value='';delete el.dataset.rawFCFA;});document.getElementById('depenseQte').value='1';document.getElementById('depenseStockPanel').style.display='none';document.getElementById('suggestionsContainerDepense').classList.remove('show');produitDepenseSelectionne=null;niveauDepense='carton';}if(id==='screenAnalyse'){const b=document.querySelector('#screenAnalyse .btn.active');if(b)analyserPeriode(b.dataset.periode);else analyserPeriode('today');}if(id==='screenGraphiques')afficherGraphiques();if(id==='screenSettings'){const radio=document.querySelector('input[name="lang"][value="'+langueActuelle+'"]');if(radio)radio.checked=true;document.getElementById('deviseSelect').value=deviseActuelle;document.getElementById('tauxConversion').value=tauxConversion;mettreAJourLabelTaux();}window.scrollTo({top:0,behavior:'smooth'});}
 
 function chargerPhotoProduit(){const input=document.getElementById('productImageInput');const file=input.files[0];if(!file)return;if(file.size>10*1024*1024){showToast('⚠️ Image trop lourde (max 10 Mo)');input.value='';return;}const reader=new FileReader();reader.onload=function(e){const img=new Image();img.onload=function(){const canvas=document.createElement('canvas');let w=img.width,h=img.height;const maxDim=800;if(w>maxDim||h>maxDim){if(w>h){h=(h/w)*maxDim;w=maxDim;}else{w=(w/h)*maxDim;h=maxDim;}}canvas.width=w;canvas.height=h;const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,w,h);photoProduitTemp=canvas.toDataURL('image/jpeg',0.7);document.getElementById('productImagePreview').src=photoProduitTemp;showToastTraduit('toast_photo_added');};img.src=e.target.result;};reader.readAsDataURL(file);}
 function reinitialiserPhotoProduit(){photoProduitTemp=null;const p=document.getElementById('productImagePreview');if(p)p.src='launchericon-192x192.png';const i=document.getElementById('productImageInput');if(i)i.value='';}
@@ -2178,10 +2224,50 @@ function changerNiveauVente(niveau,btn){niveauVente=niveau;document.querySelecto
 function rechercherProduits(){const input=document.getElementById('venteProduit');const container=document.getElementById('suggestionsContainerVente');const texte=input.value.trim().toLowerCase();if(texte===''){container.classList.remove('show');container.innerHTML='';return;}const produits=getProduits().filter(p=>p.nom.toLowerCase().includes(texte)||(p.codeBarres&&p.codeBarres.toLowerCase().includes(texte)));if(produits.length===0){container.classList.remove('show');return;}let html='';produits.forEach(p=>{html+='<div class="item" onclick="selectionnerProduitVente('+p.id+')"><div class="name">'+p.nom+'</div><div class="sub">📦'+(p.stockCarton||0)+' · 📫'+(p.stockBoite||0)+' · 🔹'+(p.stockPiece||0)+(p.codeBarres?' · 🔖 '+p.codeBarres:'')+'</div></div>';});container.innerHTML=html;container.classList.add('show');}
 function selectionnerProduitVente(id){const produits=getProduits();const p=produits.find(x=>x.id===id);if(!p)return;produitVenteSelectionne=p;document.getElementById('venteProduit').value=p.nom;document.getElementById('suggestionsContainerVente').classList.remove('show');document.getElementById('venteInfoAuto').style.display='block';miseAJourPrixVente();afficherStockDisponible();}
 function afficherStockDisponible(){if(!produitVenteSelectionne)return;let q=0;if(niveauVente==='carton')q=produitVenteSelectionne.stockCarton||0;else if(niveauVente==='boite')q=produitVenteSelectionne.stockBoite||0;else q=produitVenteSelectionne.stockPiece||0;document.getElementById('stockDisponibleValeur').value=formatNombre(q);}
-function miseAJourPrixVente(){if(!produitVenteSelectionne)return;let prix=0;if(niveauVente==='carton')prix=produitVenteSelectionne.prixVenteCarton||0;else if(niveauVente==='boite')prix=produitVenteSelectionne.prixVenteBoite||0;else prix=produitVenteSelectionne.prixVentePiece||0;document.getElementById('ventePrix').value=formatMontantAvecDevise(prix);}
-function ajouterAuPanier(){if(!produitVenteSelectionne){showAlert('select_product_first');return;}const qte=parseInt(document.getElementById('venteQte').value);const prix=getValeurNumerique(document.getElementById('ventePrix'));if(isNaN(qte)||qte<=0||isNaN(prix)||prix<=0){showAlert('quantity_price_required');return;}let produits=getProduits();const index=produits.findIndex(pp=>pp.id===produitVenteSelectionne.id);if(index===-1){showAlert('select_product_first');return;}const prod=produits[index];if(niveauVente==='carton'&&(prod.stockCarton||0)<qte){alert(translate('stock_insufficient'));return;}if(niveauVente==='boite'&&(prod.stockBoite||0)<qte){alert(translate('stock_insufficient'));return;}if(niveauVente==='piece'&&(prod.stockPiece||0)<qte){alert(translate('stock_insufficient'));return;}panier.push({produitId:produitVenteSelectionne.id,nom:produitVenteSelectionne.nom,niveau:niveauVente,niveauLabel:translate(niveauVente),quantite:qte,prixUnitaire:prix,total:qte*prix});afficherPanier();showToastTraduit('toast_product_added');['venteProduit','venteQte','ventePrix'].forEach(i=>document.getElementById(i).value='');document.getElementById('venteInfoAuto').style.display='none';document.getElementById('stockDisponibleValeur').value='0';produitVenteSelectionne=null;}
+
+// ✅ CORRECTION : prix affiché avec dataset.rawFCFA (valeur brute FCFA)
+function miseAJourPrixVente(){
+  if(!produitVenteSelectionne)return;
+  let prixFCFA=0;
+  if(niveauVente==='carton')prixFCFA=produitVenteSelectionne.prixVenteCarton||0;
+  else if(niveauVente==='boite')prixFCFA=produitVenteSelectionne.prixVenteBoite||0;
+  else prixFCFA=produitVenteSelectionne.prixVentePiece||0;
+  const input=document.getElementById('ventePrix');
+  input.value=formatMontantAvecDevise(prixFCFA);
+  input.dataset.rawFCFA=prixFCFA;
+  // Hint : montre l'équivalent FCFA si devise ≠ FCFA
+  let hint=document.getElementById('ventePrixHint');
+  if(!hint){hint=document.createElement('div');hint.id='ventePrixHint';hint.className='text-sm text-muted';hint.style.marginTop='4px';input.parentElement.appendChild(hint);}
+  if(deviseActuelle!=='FCFA'){hint.textContent='≈ '+formatNombre(prixFCFA)+' FCFA';}else{hint.textContent='';}
+}
+
+// ✅ CORRECTION : le panier utilise la valeur FCFA brute
+function ajouterAuPanier(){
+  if(!produitVenteSelectionne){showAlert('select_product_first');return;}
+  const qte=parseInt(document.getElementById('venteQte').value);
+  const input=document.getElementById('ventePrix');
+  const prixFCFA=parseFloat(input.dataset.rawFCFA)||0;
+  if(isNaN(qte)||qte<=0||prixFCFA<=0){showAlert('quantity_price_required');return;}
+  let produits=getProduits();
+  const index=produits.findIndex(pp=>pp.id===produitVenteSelectionne.id);
+  if(index===-1){showAlert('select_product_first');return;}
+  const prod=produits[index];
+  if(niveauVente==='carton'&&(prod.stockCarton||0)<qte){alert(translate('stock_insufficient'));return;}
+  if(niveauVente==='boite'&&(prod.stockBoite||0)<qte){alert(translate('stock_insufficient'));return;}
+  if(niveauVente==='piece'&&(prod.stockPiece||0)<qte){alert(translate('stock_insufficient'));return;}
+  panier.push({produitId:produitVenteSelectionne.id,nom:produitVenteSelectionne.nom,niveau:niveauVente,niveauLabel:translate(niveauVente),quantite:qte,prixUnitaire:prixFCFA,total:qte*prixFCFA});
+  afficherPanier();
+  showToastTraduit('toast_product_added');
+  ['venteProduit','venteQte','ventePrix'].forEach(i=>document.getElementById(i).value='');
+  document.getElementById('venteInfoAuto').style.display='none';
+  document.getElementById('stockDisponibleValeur').value='0';
+  const hint=document.getElementById('ventePrixHint');if(hint)hint.textContent='';
+  produitVenteSelectionne=null;
+}
+
 function afficherPanier(){const container=document.getElementById('cartContainer');const totalEl=document.getElementById('cartTotal');const totalAmount=document.getElementById('cartTotalAmount');if(panier.length===0){container.innerHTML='<div class="empty-state">'+translate('cart_empty')+'</div>';totalEl.style.display='none';return;}let html='',total=0;panier.forEach(item=>{total+=item.total;html+='<div class="cart-item"><span>'+item.nom+' ('+item.niveauLabel+') × '+item.quantite+'</span><span>'+formatMontantAvecDevise(item.total)+'</span></div>';});container.innerHTML=html;totalEl.style.display='block';totalAmount.textContent=formatMontantAvecDevise(total);}
 function viderPanier(){if(panier.length===0)return;panier=[];afficherPanier();}
+
 function validerCommande(){if(panier.length===0){showAlert('cart_empty');return;}const clientNom=document.getElementById('clientNom').value.trim()||'Client';const numCommande=getFactureCounter();setFactureCounter(numCommande+1);const now=new Date();const dateStr=now.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});const heureStr=now.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});const docType=document.getElementById('docTypeSelect').value;let total=0;panier.forEach(i=>total+=i.total);const commande={id:Date.now(),numero:numCommande,client:clientNom,date:dateStr,heure:heureStr,articles:panier.map(i=>({...i})),total,type:docType,timestamp:now.getTime()};const commandes=getCommandes();commandes.push(commande);setCommandes(commandes);ajouterHistorique('🧾 Commande validée','Client: '+clientNom+' | N°: '+numCommande+' | Total: '+formatNombre(total)+' F');let clients=getClients();const idxClient=clients.findIndex(c=>c.nom.toLowerCase()===clientNom.toLowerCase());if(idxClient!==-1){clients[idxClient].totalAchats=(clients[idxClient].totalAchats||0)+total;clients[idxClient].nbCommandes=(clients[idxClient].nbCommandes||0)+1;setClients(clients);}let produits=getProduits();panier.forEach(item=>{const idx=produits.findIndex(p=>p.id===item.produitId);if(idx!==-1){if(item.niveau==='carton')produits[idx].stockCarton=(produits[idx].stockCarton||0)-item.quantite;else if(item.niveau==='boite')produits[idx].stockBoite=(produits[idx].stockBoite||0)-item.quantite;else produits[idx].stockPiece=(produits[idx].stockPiece||0)-item.quantite;}});setProduits(produits);panier=[];afficherPanier();document.getElementById('clientNom').value='';showToastTraduit('toast_order_validated',{number:numCommande});openScreen('screenFacturation');setTimeout(()=>{commandeFiltreType='all';document.querySelectorAll('#screenFacturation .btn[data-type]').forEach(b=>b.classList.remove('active'));document.querySelector('#screenFacturation .btn[data-type="all"]').classList.add('active');afficherCommandes();afficherCommande(0);},100);}
 
 // ============ FACTURATION ============
@@ -2204,14 +2290,106 @@ function rechercherProduitsDepense(){const input=document.getElementById('depens
 function selectionnerProduitDepense(id){const produits=getProduits();const p=produits.find(x=>x.id===id);if(!p)return;produitDepenseSelectionne=p;document.getElementById('depenseProduit').value=p.nom;document.getElementById('depenseLibelle').value='Achat '+p.nom;document.getElementById('depenseStockPanel').style.display='block';document.getElementById('depenseQte').value='1';document.getElementById('suggestionsContainerDepense').classList.remove('show');niveauDepense='carton';document.querySelectorAll('#depenseStockPanel [data-dep-level]').forEach(b=>b.classList.remove('active'));const btn=document.querySelector('#depenseStockPanel [data-dep-level="carton"]');if(btn)btn.classList.add('active');afficherStockInfoDepense(p);mettreAJourPrixUnitaireDepense();}
 function afficherStockInfoDepense(p){const el=document.getElementById('depenseStockInfo');el.innerHTML='<span class="stock-badge carton">📦 '+(p.stockCarton||0)+'</span><span class="stock-badge boite">📫 '+(p.stockBoite||0)+'</span><span class="stock-badge piece">🔹 '+(p.stockPiece||0)+'</span>';}
 function changerNiveauDepense(niveau,btn){niveauDepense=niveau;document.querySelectorAll('#depenseStockPanel [data-dep-level]').forEach(b=>b.classList.remove('active'));btn.classList.add('active');mettreAJourPrixUnitaireDepense();}
-function mettreAJourPrixUnitaireDepense(){if(!produitDepenseSelectionne)return;let prix=0;if(niveauDepense==='carton')prix=produitDepenseSelectionne.prixAchatCarton||0;else if(niveauDepense==='boite')prix=produitDepenseSelectionne.prixAchatBoite||0;else prix=produitDepenseSelectionne.prixAchatPiece||0;document.getElementById('depensePrixUnitaire').value=formatNombre(prix);calculerMontantDepense();}
-function calculerMontantDepense(){const qte=parseInt(document.getElementById('depenseQte').value)||0;const prix=getValeurNumerique(document.getElementById('depensePrixUnitaire'));const total=qte*prix;if(total>0)document.getElementById('depenseMontant').value=formatNombre(total);}
-function enregistrerDepense(){const libelle=document.getElementById('depenseLibelle').value.trim();const montant=getValeurNumerique(document.getElementById('depenseMontant'));if(!libelle||isNaN(montant)||montant<=0){showAlert('fill_all_fields_correctly');return;}if(produitDepenseSelectionne){const qte=parseInt(document.getElementById('depenseQte').value)||0;if(qte>0){let produits=getProduits();const idx=produits.findIndex(p=>p.id===produitDepenseSelectionne.id);if(idx!==-1){if(niveauDepense==='carton')produits[idx].stockCarton=(produits[idx].stockCarton||0)+qte;else if(niveauDepense==='boite')produits[idx].stockBoite=(produits[idx].stockBoite||0)+qte;else produits[idx].stockPiece=(produits[idx].stockPiece||0)+qte;setProduits(produits);ajouterHistorique('📦 Stock augmenté (dépense)',produits[idx].nom+' | '+translate(niveauDepense)+': +'+qte);}}}ajouterHistorique('📉 Dépense enregistrée',libelle+' | Montant: '+formatNombre(montant)+' F');showToastTraduit('toast_expense_recorded');['depenseProduit','depenseLibelle','depenseMontant','depensePrixUnitaire'].forEach(i=>document.getElementById(i).value='');document.getElementById('depenseQte').value='1';document.getElementById('depenseStockPanel').style.display='none';document.getElementById('suggestionsContainerDepense').classList.remove('show');produitDepenseSelectionne=null;niveauDepense='carton';document.activeElement.blur();afficherProduits();mettreAJourStats();afficherStatsDetail();afficherAlerteStock();}
+
+// ✅ CORRECTION : prix d'achat affiché mais stocké en FCFA brut
+function mettreAJourPrixUnitaireDepense(){
+  if(!produitDepenseSelectionne)return;
+  let prixFCFA=0;
+  if(niveauDepense==='carton')prixFCFA=produitDepenseSelectionne.prixAchatCarton||0;
+  else if(niveauDepense==='boite')prixFCFA=produitDepenseSelectionne.prixAchatBoite||0;
+  else prixFCFA=produitDepenseSelectionne.prixAchatPiece||0;
+  const input=document.getElementById('depensePrixUnitaire');
+  input.value=formatMontantAvecDevise(prixFCFA);
+  input.dataset.rawFCFA=prixFCFA;
+  calculerMontantDepense();
+}
+
+// ✅ CORRECTION : calcul du montant en FCFA brut
+function calculerMontantDepense(){
+  const qte=parseInt(document.getElementById('depenseQte').value)||0;
+  const input=document.getElementById('depensePrixUnitaire');
+  const prixFCFA=parseFloat(input.dataset.rawFCFA)||0;
+  const total=qte*prixFCFA;
+  if(total>0){
+    const mInput=document.getElementById('depenseMontant');
+    mInput.value=formatMontantAvecDevise(total);
+    mInput.dataset.rawFCFA=total;
+  }
+}
+
+// ✅ CORRECTION : enregistrement avec montant FCFA brut
+function enregistrerDepense(){
+  const libelle=document.getElementById('depenseLibelle').value.trim();
+  const mInput=document.getElementById('depenseMontant');
+  const montantFCFA=parseFloat(mInput.dataset.rawFCFA)||getValeurNumerique(mInput);
+  if(!libelle||isNaN(montantFCFA)||montantFCFA<=0){showAlert('fill_all_fields_correctly');return;}
+  if(produitDepenseSelectionne){
+    const qte=parseInt(document.getElementById('depenseQte').value)||0;
+    if(qte>0){
+      let produits=getProduits();
+      const idx=produits.findIndex(p=>p.id===produitDepenseSelectionne.id);
+      if(idx!==-1){
+        if(niveauDepense==='carton')produits[idx].stockCarton=(produits[idx].stockCarton||0)+qte;
+        else if(niveauDepense==='boite')produits[idx].stockBoite=(produits[idx].stockBoite||0)+qte;
+        else produits[idx].stockPiece=(produits[idx].stockPiece||0)+qte;
+        setProduits(produits);
+        ajouterHistorique('📦 Stock augmenté (dépense)',produits[idx].nom+' | '+translate(niveauDepense)+': +'+qte);
+      }
+    }
+  }
+  ajouterHistorique('📉 Dépense enregistrée',libelle+' | Montant: '+formatNombre(montantFCFA)+' F');
+  showToastTraduit('toast_expense_recorded');
+  ['depenseProduit','depenseLibelle','depenseMontant','depensePrixUnitaire'].forEach(i=>{const el=document.getElementById(i);el.value='';delete el.dataset.rawFCFA;});
+  document.getElementById('depenseQte').value='1';
+  document.getElementById('depenseStockPanel').style.display='none';
+  document.getElementById('suggestionsContainerDepense').classList.remove('show');
+  produitDepenseSelectionne=null;niveauDepense='carton';
+  document.activeElement.blur();
+  afficherProduits();mettreAJourStats();afficherStatsDetail();afficherAlerteStock();
+}
 
 // ============ BENEFICES ============
-function mettreAJourTotauxBenefice(){const historique=getHistorique();let ca=0,dep=0;historique.forEach(h=>{if(h.action.includes('🧾 Commande validée')){const m=h.detail.match(/Total:\s*([\d.]+)/);if(m)ca+=parseFloat(m[1].replace(/\./g,''));}if(h.action.includes('📉 Dépense enregistrée')){const m=h.detail.match(/Montant:\s*([\d.]+)\s*F/);if(m)dep+=parseFloat(m[1].replace(/\./g,''));}});document.getElementById('ca').value=formatMontantAvecDevise(ca);document.getElementById('depensesTotal').value=formatMontantAvecDevise(dep);afficherDepensesDetail();showToastTraduit('toast_totals_updated');}
+// ✅ CORRECTION : totaux affichés mais stockés en FCFA brut
+function mettreAJourTotauxBenefice(){
+  const historique=getHistorique();
+  let ca=0,dep=0;
+  historique.forEach(h=>{
+    if(h.action.includes('🧾 Commande validée')){
+      const m=h.detail.match(/Total:\s*([\d.]+)/);
+      if(m)ca+=parseFloat(m[1].replace(/\./g,''));
+    }
+    if(h.action.includes('📉 Dépense enregistrée')){
+      const m=h.detail.match(/Montant:\s*([\d.]+)\s*F/);
+      if(m)dep+=parseFloat(m[1].replace(/\./g,''));
+    }
+  });
+  const caInput=document.getElementById('ca');
+  const depInput=document.getElementById('depensesTotal');
+  caInput.value=formatMontantAvecDevise(ca);
+  depInput.value=formatMontantAvecDevise(dep);
+  caInput.dataset.rawFCFA=ca;
+  depInput.dataset.rawFCFA=dep;
+  afficherDepensesDetail();
+  showToastTraduit('toast_totals_updated');
+}
+
 function afficherDepensesDetail(){const historique=getHistorique();const container=document.getElementById('depensesDetailContainer');const depenses=historique.filter(h=>h.action.includes('📉 Dépense enregistrée'));depenses.sort((a,b)=>b.timestamp-a.timestamp);let total=0;if(depenses.length===0){container.innerHTML='<div class="empty-state">'+translate('no_expenses')+'</div>';document.getElementById('depensesTotalRecap').textContent=formatMontantAvecDevise(0);return;}let html='';depenses.forEach(d=>{const m=d.detail.match(/Montant:\s*([\d.]+)\s*F/);let montant=0,libelle=d.detail;if(m){montant=parseFloat(m[1].replace(/\./g,''));libelle=d.detail.replace(/\s*\|\s*Montant:\s*[\d.]+\s*F/,'');total+=montant;}html+='<div class="depense-item"><span>'+libelle+'</span><span class="montant">'+formatMontantAvecDevise(montant)+'</span></div>';});container.innerHTML=html;document.getElementById('depensesTotalRecap').textContent=formatMontantAvecDevise(total);}
-function calculerBenefice(){const ca=getValeurNumerique(document.getElementById('ca'));const dep=getValeurNumerique(document.getElementById('depensesTotal'));if(isNaN(ca)||isNaN(dep)){showAlert('invalid_amount');return;}const benefice=ca-dep;document.getElementById('resultatBenefice').style.display='block';document.getElementById('resultatBeneficeContent').innerHTML='<div style="font-size:16px;color:var(--text)">CA : '+formatMontantAvecDevise(ca)+'</div><div style="font-size:16px;color:var(--text)">Dépenses : '+formatMontantAvecDevise(dep)+'</div><div style="font-size:22px;font-weight:700;color:'+(benefice>=0?'#10b981':'#ef4444')+';margin-top:8px">'+(benefice>=0?'✅ Bénéfice':'❌ Perte')+' : '+formatMontantAvecDevise(benefice)+'</div>';ajouterHistorique('📊 Calcul de bénéfice','CA: '+formatNombre(ca)+' F | Dépenses: '+formatNombre(dep)+' F | Résultat: '+formatNombre(benefice)+' F');}
+
+// ✅ CORRECTION : calcul basé sur les valeurs FCFA brutes
+function calculerBenefice(){
+  const caInput=document.getElementById('ca');
+  const depInput=document.getElementById('depensesTotal');
+  const ca=parseFloat(caInput.dataset.rawFCFA)||getValeurNumerique(caInput);
+  const dep=parseFloat(depInput.dataset.rawFCFA)||getValeurNumerique(depInput);
+  if(isNaN(ca)||isNaN(dep)){showAlert('invalid_amount');return;}
+  const benefice=ca-dep;
+  document.getElementById('resultatBenefice').style.display='block';
+  document.getElementById('resultatBeneficeContent').innerHTML=
+    '<div style="font-size:16px;color:var(--text)">CA : '+formatMontantAvecDevise(ca)+'</div>'+
+    '<div style="font-size:16px;color:var(--text)">Dépenses : '+formatMontantAvecDevise(dep)+'</div>'+
+    '<div style="font-size:22px;font-weight:700;color:'+(benefice>=0?'#10b981':'#ef4444')+';margin-top:8px">'+(benefice>=0?'✅ Bénéfice':'❌ Perte')+' : '+formatMontantAvecDevise(benefice)+'</div>';
+  ajouterHistorique('📊 Calcul de bénéfice','CA: '+formatNombre(ca)+' F | Dépenses: '+formatNombre(dep)+' F | Résultat: '+formatNombre(benefice)+' F');
+}
 
 // ============ HISTORIQUE ============
 function afficherHistorique(){const container=document.getElementById('historiqueContainer');const historique=getHistorique();if(historique.length===0){container.innerHTML='<div class="empty-state">'+translate('no_history')+'</div>';return;}historique.sort((a,b)=>b.timestamp-a.timestamp);let html='';historique.forEach(h=>{html+='<div class="hist-item"><div class="date">'+h.date+' — '+h.heure+'</div><div class="action">'+h.action+'</div><div class="detail">'+h.detail+'</div></div>';});container.innerHTML=html;}
@@ -2280,11 +2458,73 @@ function afficherResumeJour(){const container=document.getElementById('resumeJou
 function afficherAlerteStock(){const container=document.getElementById('alerteStockContainer');if(!container)return;const actif=localStorage.getItem('gestionPro_alerte')!=='false';if(!actif){container.innerHTML='';return;}const produits=getProduits();const bas=produits.filter(p=>(p.stockPiece||0)<=3||((p.stockBoite||0)===0&&(p.stockCarton||0)>0&&(p.stockPiece||0)===0));if(bas.length===0){container.innerHTML='';return;}let liste='';bas.slice(0,5).forEach(p=>{liste+='<div>• '+p.nom+' : 📦 '+(p.stockCarton||0)+' · 📫 '+(p.stockBoite||0)+' · 🔹 '+(p.stockPiece||0)+'</div>';});if(bas.length>5)liste+='<div style="margin-top:4px;font-weight:600">+ '+(bas.length-5)+' autres...</div>';container.innerHTML='<div class="alerte-stock"><div class="icone">⚠️</div><div class="contenu"><div class="titre">'+translate('alert_stock_title')+' ('+bas.length+')</div><div class="liste">'+liste+'</div></div></div>';}
 
 // ============ TRADUCTION & PREFERENCES ============
-function traduireInterface(lang){const t=translations[lang]||translations.fr;document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.textContent=t[k];});document.querySelectorAll('[data-placeholder-i18n]').forEach(el=>{const k=el.getAttribute('data-placeholder-i18n');if(t[k]!==undefined)el.placeholder=t[k];});const select=document.getElementById('docTypeSelect');if(select)select.querySelectorAll('option').forEach(opt=>{const k=opt.getAttribute('data-i18n');if(k&&t[k])opt.textContent=t[k];});const deviseSelect=document.getElementById('deviseSelect');if(deviseSelect)deviseSelect.querySelectorAll('option').forEach(opt=>{const k=opt.getAttribute('data-i18n');if(k&&t[k])opt.textContent=t[k];});afficherDevise();if(typeof window.injecterBanniere==='function')window.injecterBanniere();}
-function changerLangue(lang){langueActuelle=lang;localStorage.setItem('gestionPro_langue',lang);const deviseParDefaut=langueDeviseParDefaut[lang]||'EUR';const tauxParDefaut=deviseTauxParDefaut[deviseParDefaut]||1;deviseActuelle=deviseParDefaut;tauxConversion=tauxParDefaut;const ds=document.getElementById('deviseSelect');if(ds)ds.value=deviseActuelle;const tc=document.getElementById('tauxConversion');if(tc)tc.value=tauxParDefaut;localStorage.setItem('gestionPro_devise',deviseActuelle);localStorage.setItem('gestionPro_taux',tauxParDefaut.toString());traduireInterface(lang);afficherDevise();mettreAJourStats();afficherStatsDetail();afficherProduits();afficherClients();afficherFournisseurs();afficherResumeJour();afficherAlerteStock();if(commandeSelectionneeIndex>=0)afficherCommande(commandeSelectionneeIndex);showToastTraduit('toast_language_changed');if(typeof window.injecterBanniere==='function')setTimeout(window.injecterBanniere,150);}
-function changerDevise(){deviseActuelle=document.getElementById('deviseSelect').value;tauxConversion=parseFloat(document.getElementById('tauxConversion').value)||1;localStorage.setItem('gestionPro_devise',deviseActuelle);localStorage.setItem('gestionPro_taux',tauxConversion.toString());afficherDevise();mettreAJourStats();afficherStatsDetail();afficherProduits();afficherResumeJour();if(commandeSelectionneeIndex>=0)afficherCommande(commandeSelectionneeIndex);showToastTraduit('toast_currency_updated');}
+// ✅ NOUVEAU : label du taux dynamique
+function mettreAJourLabelTaux(){
+  const label=document.querySelector('label[data-i18n="exchange_rate"]');
+  if(label){
+    const sym=deviseSymbols[deviseActuelle]||deviseActuelle;
+    const base='Taux de conversion';
+    if(deviseActuelle==='FCFA'){label.textContent=base+' (devise de référence)';}
+    else{label.textContent=base+' (1 '+sym+' = ? FCFA)';}
+  }
+}
+
+function traduireInterface(lang){const t=translations[lang]||translations.fr;document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.textContent=t[k];});document.querySelectorAll('[data-placeholder-i18n]').forEach(el=>{const k=el.getAttribute('data-placeholder-i18n');if(t[k]!==undefined)el.placeholder=t[k];});const select=document.getElementById('docTypeSelect');if(select)select.querySelectorAll('option').forEach(opt=>{const k=opt.getAttribute('data-i18n');if(k&&t[k])opt.textContent=t[k];});const deviseSelect=document.getElementById('deviseSelect');if(deviseSelect)deviseSelect.querySelectorAll('option').forEach(opt=>{const k=opt.getAttribute('data-i18n');if(k&&t[k])opt.textContent=t[k];});afficherDevise();mettreAJourLabelTaux();if(typeof window.injecterBanniere==='function')window.injecterBanniere();}
+
+function changerLangue(lang){
+  langueActuelle=lang;
+  localStorage.setItem('gestionPro_langue',lang);
+  const deviseParDefaut=langueDeviseParDefaut[lang]||'FCFA';
+  const tauxParDefaut=deviseTauxParDefaut[deviseParDefaut]||1;
+  deviseActuelle=deviseParDefaut;
+  tauxConversion=tauxParDefaut;
+  const ds=document.getElementById('deviseSelect');if(ds)ds.value=deviseActuelle;
+  const tc=document.getElementById('tauxConversion');if(tc)tc.value=tauxParDefaut;
+  localStorage.setItem('gestionPro_devise',deviseActuelle);
+  localStorage.setItem('gestionPro_taux',tauxParDefaut.toString());
+  traduireInterface(lang);
+  afficherDevise();
+  mettreAJourLabelTaux();
+  mettreAJourStats();afficherStatsDetail();afficherProduits();afficherClients();afficherFournisseurs();afficherResumeJour();afficherAlerteStock();
+  if(commandeSelectionneeIndex>=0)afficherCommande(commandeSelectionneeIndex);
+  showToastTraduit('toast_language_changed');
+  if(typeof window.injecterBanniere==='function')setTimeout(window.injecterBanniere,150);
+}
+
+function changerDevise(){
+  deviseActuelle=document.getElementById('deviseSelect').value;
+  let taux=parseFloat(document.getElementById('tauxConversion').value);
+  // ✅ CORRECTION : si l'utilisateur met 0 ou vide, on prend le taux par défaut
+  if(!taux||taux<=0)taux=deviseTauxParDefaut[deviseActuelle]||1;
+  if(deviseActuelle==='FCFA')taux=1;
+  tauxConversion=taux;
+  document.getElementById('tauxConversion').value=taux;
+  localStorage.setItem('gestionPro_devise',deviseActuelle);
+  localStorage.setItem('gestionPro_taux',taux.toString());
+  afficherDevise();
+  mettreAJourLabelTaux();
+  mettreAJourStats();afficherStatsDetail();afficherProduits();afficherResumeJour();
+  if(commandeSelectionneeIndex>=0)afficherCommande(commandeSelectionneeIndex);
+  showToastTraduit('toast_currency_updated');
+}
+
 function afficherDevise(){const s=deviseSymbols[deviseActuelle]||deviseActuelle;document.querySelectorAll('.currency-symbol').forEach(el=>el.textContent=s);}
-function initPreferences(){const lang=localStorage.getItem('gestionPro_langue')||'fr';const devise=localStorage.getItem('gestionPro_devise')||'FCFA';const taux=parseFloat(localStorage.getItem('gestionPro_taux'))||655.957;langueActuelle=lang;deviseActuelle=devise;tauxConversion=taux;const radio=document.querySelector('input[name="lang"][value="'+lang+'"]');if(radio)radio.checked=true;const ds=document.getElementById('deviseSelect');if(ds)ds.value=devise;const tc=document.getElementById('tauxConversion');if(tc)tc.value=taux;traduireInterface(lang);afficherDevise();}
+
+function initPreferences(){
+  const lang=localStorage.getItem('gestionPro_langue')||'fr';
+  const devise=localStorage.getItem('gestionPro_devise')||'FCFA';
+  let taux=parseFloat(localStorage.getItem('gestionPro_taux'));
+  // ✅ CORRECTION : si le taux stocké est invalide (0, NaN), on prend le taux par défaut
+  if(!taux||taux<=0||isNaN(taux))taux=deviseTauxParDefaut[devise]||1;
+  if(devise==='FCFA')taux=1;
+  langueActuelle=lang;deviseActuelle=devise;tauxConversion=taux;
+  const radio=document.querySelector('input[name="lang"][value="'+lang+'"]');if(radio)radio.checked=true;
+  const ds=document.getElementById('deviseSelect');if(ds)ds.value=devise;
+  const tc=document.getElementById('tauxConversion');if(tc)tc.value=taux;
+  traduireInterface(lang);
+  afficherDevise();
+  mettreAJourLabelTaux();
+}
 
 // ============ SERVICE WORKER ============
 if ('serviceWorker' in navigator) {
@@ -2295,16 +2535,87 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// ============ INITIALISATION ============
-document.addEventListener('DOMContentLoaded',function(){try{const dejaVu=sessionStorage.getItem('splashVu')==='true';if(dejaVu){document.getElementById('splash').classList.add('hide');document.getElementById('app').style.opacity='1';}else{sessionStorage.setItem('splashVu','true');setTimeout(()=>{document.getElementById('splash').classList.add('hide');document.getElementById('app').style.opacity='1';},1800);}initPreferences();initDarkMode();initPrefs();afficherProduits();mettreAJourStats();afficherStatsDetail();afficherPanier();afficherResumeJour();afficherAlerteStock();document.querySelectorAll('#screenVentes [data-level]').forEach(b=>b.classList.remove('active'));document.querySelector('#screenVentes [data-level="piece"]').classList.add('active');let lastTouchEnd=0;document.addEventListener('touchend',function(event){const now=(new Date()).getTime();if(now-lastTouchEnd<=300)event.preventDefault();lastTouchEnd=now;},false);}catch(e){console.error('❌ Erreur:',e);document.getElementById('splash').classList.add('hide');document.getElementById('app').style.opacity='1';}});
-
-// ============ FIX AFFICHAGE AU RETOUR ============
-document.addEventListener('visibilitychange', function() {
-  if (!document.hidden) {
+// ============ FIX ÉCRAN SOMBRE (RENFORCÉ) ============
+function forcerAffichage(){
+  try{
     const splash = document.getElementById('splash');
     const app = document.getElementById('app');
-    if (splash) splash.classList.add('hide');
-    if (app) app.style.opacity = '1';
+    if(splash){ splash.classList.add('hide'); splash.style.display='none'; splash.style.visibility='hidden'; splash.style.opacity='0'; splash.style.pointerEvents='none'; }
+    if(app){ app.style.opacity='1'; app.style.visibility='visible'; }
+    document.body.style.background = document.body.classList.contains('dark') ? '#0f172a' : '#f8fafc';
+    document.documentElement.style.background = document.body.classList.contains('dark') ? '#0f172a' : '#f8fafc';
+    if(app){ void app.offsetHeight; }
+  }catch(e){ console.error('forcerAffichage error', e); }
+}
+
+document.addEventListener('visibilitychange', function() {
+  if (!document.hidden) {
+    setTimeout(forcerAffichage, 50);
+    setTimeout(forcerAffichage, 250);
+  }
+});
+
+window.addEventListener('pageshow', function(e) {
+  setTimeout(forcerAffichage, 50);
+  setTimeout(forcerAffichage, 250);
+});
+
+window.addEventListener('focus', function() {
+  setTimeout(forcerAffichage, 50);
+  setTimeout(forcerAffichage, 250);
+});
+
+window.addEventListener('resume', function() {
+  setTimeout(forcerAffichage, 50);
+  setTimeout(forcerAffichage, 250);
+});
+
+if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.App) {
+  try {
+    window.Capacitor.Plugins.App.addListener('appStateChange', function(state){
+      if(state.isActive){ forcerAffichage(); }
+    });
+  } catch(e){ console.warn('Capacitor App plugin non disponible'); }
+}
+
+// ============ INITIALISATION ============
+document.addEventListener('DOMContentLoaded',function(){
+  try{
+    const dejaVu=sessionStorage.getItem('splashVu')==='true';
+    if(dejaVu){
+      const sp=document.getElementById('splash');
+      if(sp){sp.classList.add('hide');sp.style.display='none';}
+      document.getElementById('app').style.opacity='1';
+    }else{
+      sessionStorage.setItem('splashVu','true');
+      setTimeout(()=>{
+        const sp=document.getElementById('splash');
+        if(sp){sp.classList.add('hide');sp.style.display='none';}
+        document.getElementById('app').style.opacity='1';
+      },1800);
+    }
+    initPreferences();
+    initDarkMode();
+    initPrefs();
+    afficherProduits();
+    mettreAJourStats();
+    afficherStatsDetail();
+    afficherPanier();
+    afficherResumeJour();
+    afficherAlerteStock();
+    document.querySelectorAll('#screenVentes [data-level]').forEach(b=>b.classList.remove('active'));
+    document.querySelector('#screenVentes [data-level="piece"]').classList.add('active');
+    let lastTouchEnd=0;
+    document.addEventListener('touchend',function(event){
+      const now=(new Date()).getTime();
+      if(now-lastTouchEnd<=300)event.preventDefault();
+      lastTouchEnd=now;
+    },false);
+  }catch(e){
+    console.error('❌ Erreur:',e);
+    const sp=document.getElementById('splash');
+    if(sp){sp.classList.add('hide');sp.style.display='none';}
+    document.getElementById('app').style.opacity='1';
   }
 });
 </script>
