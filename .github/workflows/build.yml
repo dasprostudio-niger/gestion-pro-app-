@@ -62,18 +62,6 @@ jobs:
         MANIFEST="android/app/src/main/AndroidManifest.xml"
         sed -i 's|</manifest>|<uses-permission android:name="android.permission.CAMERA" />\n    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />\n    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />\n    <uses-feature android:name="android.hardware.camera" android:required="false" />\n</manifest>|' "$MANIFEST"
     
-    - name: Fix WebView recreation on app resume
-      run: |
-        MANIFEST="android/app/src/main/AndroidManifest.xml"
-        echo "=== Manifeste avant modification ==="
-        cat "$MANIFEST"
-        
-        sed -i 's|<activity|<activity android:configChanges="orientation\|screenSize\|keyboardHidden\|keyboard\|screenLayout\|smallestScreenSize\|uiMode\|density\|fontScale\|locale\|layoutDirection"|g' "$MANIFEST"
-        sed -i 's|<activity|<activity android:launchMode="singleTask"|' "$MANIFEST"
-        
-        echo "=== Manifeste après modification ==="
-        cat "$MANIFEST"
-    
     - name: Build APK release
       run: |
         cd android
