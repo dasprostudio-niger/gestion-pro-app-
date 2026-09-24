@@ -330,8 +330,8 @@ body.dark .alerte-stock .liste{color:#fecaca}
 <div class="product-image-upload">
 <img id="productImagePreview" class="product-image-preview" src="launchericon-192x192.png" onclick="document.getElementById('productImageInput').click()"/>
 <div style="flex:1">
-<div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px">📸 Photo du produit</div>
-<div style="font-size:11px;color:var(--text-light)">Cliquez sur l'image pour ajouter</div>
+<div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px" data-i18n="product_image">📸 Photo du produit</div>
+<div style="font-size:11px;color:var(--text-light)" data-i18n="product_image_hint">Cliquez sur l'image pour ajouter</div>
 <input type="file" id="productImageInput" accept="image/*" capture="environment" style="display:none" onchange="chargerPhotoProduit()"/>
 </div>
 </div>
