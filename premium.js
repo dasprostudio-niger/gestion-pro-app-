@@ -1,19 +1,51 @@
 /* ================================================================
-   PREMIUM.JS - Module Premium pour Gestion Pro
+   PREMIUM.JS - Module Premium pour Gestion Pro (v5.1 - Multilingue)
    Auteur : DAS PRO STUDIO
    ================================================================ */
 (function() {
   'use strict';
 
+  // ============ CONFIGURATION ============
   const CONFIG = {
     SECRET: 'DASPRO2026NATITIA',
     MAX_PRODUITS_GRATUIT: 3,
     MAX_VENTES_GRATUIT: 5,
-    PRIX: '10.000 FCFA',
     WHATSAPP: '22794929210',
     PREFIX: 'GP'
   };
 
+  // Prix affiché selon la langue (Option A : FCFA + équivalent local)
+  const PRIX_PAR_LANGUE = {
+    fr: '10.000 FCFA',
+    en: '10.000 FCFA (~$15)',
+    es: '10.000 FCFA (~15 €)',
+    de: '10.000 FCFA (~15 €)',
+    it: '10.000 FCFA (~15 €)',
+    pt: '10.000 FCFA (~15 €)',
+    ru: '10.000 FCFA (~1400 ₽)',
+    zh: '10.000 FCFA (~110 ¥)',
+    ar: '10.000 FCFA (~60 ﷼)',
+    hi: '10.000 FCFA (~1300 ₹)',
+    ja: '10.000 FCFA (~2300 ¥)'
+  };
+
+  // Prix réel facturé (toujours en FCFA pour le paiement)
+  const PRIX_REEEL = '10.000 FCFA';
+
+  function getPrix() {
+    const lang = (typeof window.langueActuelle !== 'undefined') ? window.langueActuelle : 'fr';
+    return PRIX_PAR_LANGUE[lang] || PRIX_PAR_LANGUE.fr;
+  }
+
+  // ============ TRADUCTION ============
+  function t(key, params) {
+    if (typeof window.translate === 'function') {
+      return window.translate(key, params);
+    }
+    return key;
+  }
+
+  // ============ ÉTAT PREMIUM ============
   function estPremium() {
     return localStorage.getItem('gestionPro_premium') === 'true';
   }
@@ -23,6 +55,7 @@
     localStorage.setItem('gestionPro_date_activation', new Date().toISOString());
   }
 
+  // ============ VÉRIFICATION DU CODE ============
   function calculerChecksum(part1) {
     const str = part1 + CONFIG.SECRET;
     let hash = 0;
@@ -45,6 +78,7 @@
     return part2 === calculerChecksum(part1);
   }
 
+  // ============ COMPTEURS ============
   function compterVentes() {
     try { return (JSON.parse(localStorage.getItem('gestionPro_commandes')) || []).length; }
     catch(e) { return 0; }
@@ -55,93 +89,93 @@
     catch(e) { return 0; }
   }
 
+  // ============ ÉCRAN PREMIUM ============
   function ouvrirEcranPremium() {
     let ecran = document.getElementById('screenPremium');
-    if (!ecran) {
-      ecran = document.createElement('div');
-      ecran.className = 'screen';
-      ecran.id = 'screenPremium';
-      ecran.innerHTML = `
-        <div class="screen-title">✨ Version Premium</div>
-        <div class="card" style="background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border:none">
-          <div style="font-size:22px;font-weight:800;margin-bottom:8px">🚀 Débloquez tout Gestion Pro</div>
-          <div style="font-size:14px;opacity:.95">Passez à la version Premium et profitez de toutes les fonctionnalités sans limite.</div>
+    if (ecran) ecran.remove();
+    ecran = document.createElement('div');
+    ecran.className = 'screen';
+    ecran.id = 'screenPremium';
+    ecran.innerHTML = `
+      <div class="screen-title">${t('premium_title')}</div>
+      <div class="card" style="background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border:none">
+        <div style="font-size:22px;font-weight:800;margin-bottom:8px">${t('premium_unlock_title')}</div>
+        <div style="font-size:14px;opacity:.95">${t('premium_unlock_desc')}</div>
+      </div>
+      <div class="card">
+        <div class="card-title">${t('premium_what_you_get')}</div>
+        <ul style="list-style:none;padding:0;font-size:14px;line-height:2;color:var(--text)">
+          <li>${t('premium_unlimited_products')} <span style="color:#94a3b8">(${t('premium_free_max',{n:CONFIG.MAX_PRODUITS_GRATUIT})})</span></li>
+          <li>${t('premium_unlimited_sales')} <span style="color:#94a3b8">(${t('premium_free_max',{n:CONFIG.MAX_VENTES_GRATUIT})})</span></li>
+          <li>${t('premium_all_features')}</li>
+          <li>${t('premium_free_updates')}</li>
+          <li>${t('premium_priority_support')}</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">${t('premium_price')}</div>
+        <div style="font-size:28px;font-weight:800;color:#10b981;text-align:center;margin:12px 0">${getPrix()}</div>
+        <div style="font-size:13px;color:var(--text-muted);text-align:center">${t('premium_one_time')}</div>
+      </div>
+      <div class="card">
+        <div class="card-title">${t('premium_how_to_buy')}</div>
+        <div style="font-size:14px;line-height:1.7;color:var(--text)">
+          ${t('premium_step_buy')}<br>
+          ${t('premium_step_pay')}<br>
+          ${t('premium_step_receive')}<br>
+          ${t('premium_step_enter')}
         </div>
-        <div class="card">
-          <div class="card-title">🎁 Ce que vous obtenez</div>
-          <ul style="list-style:none;padding:0;font-size:14px;line-height:2;color:var(--text)">
-            <li>✅ Produits illimités <span style="color:#94a3b8">(gratuit : ${CONFIG.MAX_PRODUITS_GRATUIT} max)</span></li>
-            <li>✅ Ventes illimitées <span style="color:#94a3b8">(gratuit : ${CONFIG.MAX_VENTES_GRATUIT} max)</span></li>
-            <li>✅ Toutes les fonctionnalités débloquées</li>
-            <li>✅ Mises à jour gratuites</li>
-            <li>✅ Support prioritaire</li>
-          </ul>
+        <button class="btn btn-success" onclick="acheterViaWhatsApp()" style="margin-top:12px">${t('premium_buy_whatsapp')}</button>
+      </div>
+      <div class="card">
+        <div class="card-title">${t('premium_activate_with_code')}</div>
+        <div class="form-group">
+          <input class="input-field" id="codeActivationInput" placeholder="GP-XXXXX-XXXXX" style="text-transform:uppercase;font-family:monospace;font-size:16px;text-align:center;letter-spacing:2px" autocomplete="off"/>
         </div>
-        <div class="card">
-          <div class="card-title">💰 Prix</div>
-          <div style="font-size:28px;font-weight:800;color:#10b981;text-align:center;margin:12px 0">${CONFIG.PRIX}</div>
-          <div style="font-size:13px;color:var(--text-muted);text-align:center">Paiement unique - À vie</div>
-        </div>
-        <div class="card">
-          <div class="card-title">📞 Comment acheter</div>
-          <div style="font-size:14px;line-height:1.7;color:var(--text)">
-            1. Cliquez sur <strong>"Acheter via WhatsApp"</strong><br>
-            2. Payez par <strong>MyNita</strong> ou <strong>Wave</strong><br>
-            3. Recevez votre <strong>code d'activation</strong><br>
-            4. Entrez-le ci-dessous pour débloquer
-          </div>
-          <button class="btn btn-success" onclick="acheterViaWhatsApp()" style="margin-top:12px">💬 Acheter via WhatsApp</button>
-        </div>
-        <div class="card">
-          <div class="card-title">🔑 Activer avec un code</div>
-          <div class="form-group">
-            <input class="input-field" id="codeActivationInput" placeholder="GP-XXXXX-XXXXX" style="text-transform:uppercase;font-family:monospace;font-size:16px;text-align:center;letter-spacing:2px" autocomplete="off"/>
-          </div>
-          <button class="btn btn-primary" onclick="validerCodeActivation()">✨ Activer Premium</button>
-          <div id="messageActivation" style="text-align:center;margin-top:12px;font-size:13px"></div>
-        </div>
-        <button class="btn btn-outline" onclick="openScreen('screenAccueil')" style="margin-top:8px">⬅️ Retour</button>
-      `;
-      document.querySelector('.app-container').insertBefore(ecran, document.querySelector('.bottom-nav'));
-    }
+        <button class="btn btn-primary" onclick="validerCodeActivation()">${t('premium_activate_btn')}</button>
+        <div id="messageActivation" style="text-align:center;margin-top:12px;font-size:13px"></div>
+      </div>
+      <button class="btn btn-outline" onclick="openScreen('screenAccueil')" style="margin-top:8px">${t('premium_back')}</button>
+    `;
+    document.querySelector('.app-container').insertBefore(ecran, document.querySelector('.bottom-nav'));
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     ecran.classList.add('active');
     window.scrollTo({top:0,behavior:'smooth'});
   }
 
+  // ============ ACHAT VIA WHATSAPP ============
   function acheterViaWhatsApp() {
-    const message = encodeURIComponent(
-      'Bonjour ! Je souhaite acheter la version Premium de Gestion Pro (' + CONFIG.PRIX + ').\n\n' +
-      'Mon nom : \nMon pays : \n\n' +
-      'Merci de m\'envoyer les instructions de paiement (MyNita ou Wave).'
-    );
+    const msgTemplate = t('premium_wa_msg', {price: PRIX_REEEL});
+    const message = encodeURIComponent(msgTemplate);
     window.open('https://wa.me/' + CONFIG.WHATSAPP + '?text=' + message, '_blank');
   }
 
+  // ============ VALIDATION DU CODE ============
   function validerCodeActivation() {
     const input = document.getElementById('codeActivationInput');
     const message = document.getElementById('messageActivation');
     const code = input.value.trim();
     if (!code) {
       message.style.color = '#ef4444';
-      message.textContent = '⚠️ Veuillez entrer un code';
+      message.textContent = t('premium_enter_code');
       return;
     }
     if (verifierCode(code)) {
       activerPremium();
       message.style.color = '#10b981';
-      message.textContent = '✅ Code valide ! Activation...';
+      message.textContent = t('premium_valid_code');
       setTimeout(() => {
-        alert('🎉 Félicitations ! Votre version Premium est activée.');
+        alert(t('premium_congrats'));
         openScreen('screenAccueil');
         setTimeout(() => { window.location.reload(); }, 300);
       }, 800);
     } else {
       message.style.color = '#ef4444';
-      message.textContent = '❌ Code invalide. Vérifiez et réessayez.';
+      message.textContent = t('premium_invalid_code');
     }
   }
 
+  // ============ INJECTION DE LA BANNIÈRE ============
   function injecterBanniere() {
     const ancien = document.getElementById('bannerPremium');
     if (ancien) ancien.remove();
@@ -152,20 +186,23 @@
     banner.id = 'bannerPremium';
     banner.style.cssText = 'background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:16px;padding:16px;margin-bottom:16px;cursor:pointer';
     banner.innerHTML = `
-      <div style="font-weight:800;font-size:16px;margin-bottom:6px">🚀 Version Gratuite</div>
+      <div style="font-weight:800;font-size:16px;margin-bottom:6px">🚀 ${t('premium_free_version')}</div>
       <div style="font-size:13px;opacity:.95;margin-bottom:10px">
-        Produits : ${compterProduits()}/${CONFIG.MAX_PRODUITS_GRATUIT} · Ventes : ${compterVentes()}/${CONFIG.MAX_VENTES_GRATUIT}
+        ${t('products_menu')} : ${compterProduits()}/${CONFIG.MAX_PRODUITS_GRATUIT} · ${t('sales')} : ${compterVentes()}/${CONFIG.MAX_VENTES_GRATUIT}
       </div>
-      <button style="background:#fff;color:#d97706;border:none;border-radius:10px;padding:10px 16px;font-weight:700;font-size:13px;cursor:pointer">✨ Activer Premium - ${CONFIG.PRIX}</button>
+      <button style="background:#fff;color:#d97706;border:none;border-radius:10px;padding:10px 16px;font-weight:700;font-size:13px;cursor:pointer">✨ ${t('premium_activate')} - ${getPrix()}</button>
     `;
     banner.onclick = ouvrirEcranPremium;
     container.insertBefore(banner, container.firstChild);
   }
 
+  // ============ INTERCEPTION DES FONCTIONS ============
   const _enregistrerProduit = window.enregistrerProduit;
   const _validerCommande = window.validerCommande;
   const _openScreen = window.openScreen;
+  const _changerLangue = window.changerLangue;
 
+  // Blocage produits
   window.enregistrerProduit = function() {
     if (!estPremium()) {
       const nom = document.getElementById('nomProduit').value.trim();
@@ -175,7 +212,7 @@
       if (cb) index = produits.findIndex(p => p.codeBarres === cb);
       if (index === -1 && nom) index = produits.findIndex(p => p.nom.toLowerCase() === nom.toLowerCase());
       if (index === -1 && produits.length >= CONFIG.MAX_PRODUITS_GRATUIT) {
-        alert('⚠️ Limite gratuite atteinte : ' + CONFIG.MAX_PRODUITS_GRATUIT + ' produits maximum.\n\nPassez à la version Premium pour ajouter des produits illimités.');
+        alert(t('premium_limit_products',{n:CONFIG.MAX_PRODUITS_GRATUIT}) + '\n\n' + t('premium_limit_products_2'));
         ouvrirEcranPremium();
         return;
       }
@@ -183,28 +220,42 @@
     return _enregistrerProduit.apply(this, arguments);
   };
 
+  // Blocage ventes
   window.validerCommande = function() {
     if (!estPremium() && compterVentes() >= CONFIG.MAX_VENTES_GRATUIT) {
-      alert('⚠️ Limite gratuite atteinte : ' + CONFIG.MAX_VENTES_GRATUIT + ' ventes maximum.\n\nPassez à la version Premium pour enregistrer des ventes illimitées.');
+      alert(t('premium_limit_sales',{n:CONFIG.MAX_VENTES_GRATUIT}) + '\n\n' + t('premium_limit_sales_2'));
       ouvrirEcranPremium();
       return;
     }
     return _validerCommande.apply(this, arguments);
   };
 
+  // Réinjection bannière à chaque retour accueil
   window.openScreen = function(id) {
     _openScreen.apply(this, arguments);
     if (id === 'screenAccueil') setTimeout(injecterBanniere, 100);
   };
 
+  // Réinjection bannière après changement de langue
+  window.changerLangue = function(lang) {
+    if (typeof _changerLangue === 'function') {
+      _changerLangue.apply(this, arguments);
+      setTimeout(injecterBanniere, 200);
+    }
+  };
+
+  // Exposition globale
   window.ouvrirEcranPremium = ouvrirEcranPremium;
   window.acheterViaWhatsApp = acheterViaWhatsApp;
   window.validerCodeActivation = validerCodeActivation;
   window.estPremium = estPremium;
+  window.injecterBanniere = injecterBanniere;
+  window.getPrix = getPrix;
 
+  // ============ INITIALISATION ============
   document.addEventListener('DOMContentLoaded', function() {
     setTimeout(injecterBanniere, 2200);
   });
 
-  console.log('✅ Premium chargé | Statut:', estPremium() ? 'PREMIUM' : 'GRATUIT');
+  console.log('✅ Premium v5.1 chargé | Statut:', estPremium() ? 'PREMIUM' : 'GRATUIT');
 })();
