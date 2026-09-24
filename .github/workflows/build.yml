@@ -65,39 +65,13 @@ jobs:
     - name: Fix WebView recreation on app resume
       run: |
         MANIFEST="android/app/src/main/AndroidManifest.xml"
-        echo "=== Avant modification ==="
+        echo "=== Manifeste avant modification ==="
         cat "$MANIFEST"
         
-        # Ajouter configChanges pour éviter la recréation de l'activité
-        python3 -c "
-import re
-manifest_path = 'android/app/src/main/AndroidManifest.xml'
-with open(manifest_path, 'r', encoding='utf-8') as f:
-    content = f.read()
-
-# Liste des changements de configuration à gérer
-config_changes = 'orientation|screenSize|keyboardHidden|keyboard|screenLayout|smallestScreenSize|uiMode|density|fontScale|locale|layoutDirection'
-
-# Remplacer toutes les balises <activity par <activity avec les configChanges
-content = re.sub(
-    r'<activity(?!\s+android:configChanges)',
-    '<activity android:configChanges=\"' + config_changes + '\"',
-    content
-)
-
-# Forcer launchMode singleTask pour garder l'app en mémoire
-content = re.sub(
-    r'<activity(?!.*android:launchMode)',
-    '<activity android:launchMode=\"singleTask\"',
-    content,
-    count=1
-)
-
-with open(manifest_path, 'w', encoding='utf-8') as f:
-    f.write(content)
-"
+        sed -i 's|<activity|<activity android:configChanges="orientation\|screenSize\|keyboardHidden\|keyboard\|screenLayout\|smallestScreenSize\|uiMode\|density\|fontScale\|locale\|layoutDirection"|g' "$MANIFEST"
+        sed -i 's|<activity|<activity android:launchMode="singleTask"|' "$MANIFEST"
         
-        echo "=== Après modification ==="
+        echo "=== Manifeste après modification ==="
         cat "$MANIFEST"
     
     - name: Build APK release
