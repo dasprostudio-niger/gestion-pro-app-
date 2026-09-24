@@ -9,6 +9,9 @@
 <meta name="description" content="Gestion Pro - Gérez votre stock, vos ventes et vos bénéfices facilement, même hors ligne.">
 <title>Gestion Pro</title>
 <link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="qrcode.min.js"></script>
 <script src="html5-qrcode.min.js"></script>
 <script src="html2canvas.min.js"></script>
@@ -16,23 +19,24 @@
 :root{--bg:#f8fafc;--bg-app:#f1f5f9;--card:#fff;--text:#0f172a;--text-muted:#64748b;--text-light:#94a3b8;--border:#e9edf2;--border-input:#e2e8f0;--input-bg:#fff;--input-disabled:#f1f5f9;--shadow:rgba(0,0,0,.05);--header-bg:#fff;--nav-bg:#fff;--hover:#f1f5f9;--preview-bg:#f1f5f9;--scan-bg:#f8fafc}
 body.dark{--bg:#0f172a;--bg-app:#1e293b;--card:#1e293b;--text:#f1f5f9;--text-muted:#94a3b8;--text-light:#64748b;--border:#334155;--border-input:#334155;--input-bg:#0f172a;--input-disabled:#0f172a;--shadow:rgba(0,0,0,.3);--header-bg:#1e293b;--nav-bg:#1e293b;--hover:#334155;--preview-bg:#334155;--scan-bg:#0f172a}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{overscroll-behavior:none;-webkit-user-select:none;user-select:none}
+html,body{overscroll-behavior:none;-webkit-user-select:none;user-select:none;background:#f8fafc}
+body.dark{background:#0f172a}
 input,textarea,select{-webkit-user-select:text;user-select:text}
-body{font-family:'Segoe UI',Roboto,system-ui,sans-serif;background:var(--bg-app);display:flex;justify-content:center;align-items:flex-start;min-height:100vh;margin:0;transition:background .3s,color .3s;color:var(--text)}
+body{font-family:'Plus Jakarta Sans','Segoe UI',Roboto,system-ui,sans-serif;background:var(--bg-app);display:flex;justify-content:center;align-items:flex-start;min-height:100vh;margin:0;transition:background .3s,color .3s;color:var(--text)}
 .app-container{width:100%;max-width:480px;background:var(--bg);min-height:100vh;box-shadow:0 0 40px var(--shadow);display:flex;flex-direction:column;position:relative;padding-bottom:calc(80px + env(safe-area-inset-bottom,0px))}
 .app-header{background:var(--header-bg);padding:14px 20px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;flex-wrap:wrap;padding-top:calc(14px + env(safe-area-inset-top,0px))}
 .app-header .logo-area{display:flex;align-items:center;gap:10px}
 .app-header .logo-area svg{width:38px;height:38px}
-.app-header .logo-area .brand{font-weight:800;font-size:18px;color:var(--text)}
-.app-header .logo-area .brand span{color:#2563eb}
+.app-header .logo-area .brand{font-family:'Outfit','Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-size:20px;color:var(--text);letter-spacing:-.5px}
+.app-header .logo-area .brand span{background:linear-gradient(135deg,#2563eb,#1e40af);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:900}
 .version-badge{font-size:10px;background:var(--border);color:var(--text-muted);padding:2px 10px;border-radius:20px;font-weight:600}
 #splash{position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:9999;transition:opacity .6s,visibility .6s}
 #splash.hide{opacity:0;visibility:hidden;pointer-events:none}
 #splash svg{width:120px;height:120px;margin-bottom:20px;animation:pulse 1.2s infinite;border-radius:28px;box-shadow:0 8px 24px rgba(37,99,235,.25)}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
-#splash .title{font-size:26px;font-weight:900;color:#0f172a}
-#splash .title span{color:#2563eb}
-#splash .sub{font-size:13px;color:#94a3b8;margin-top:6px;letter-spacing:1px}
+#splash .title{font-family:'Outfit','Plus Jakarta Sans',system-ui,sans-serif;font-size:32px;font-weight:900;color:#0f172a;letter-spacing:-1px;margin-top:8px}
+#splash .title span{background:linear-gradient(135deg,#2563eb,#1e40af);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:900}
+#splash .sub{font-size:13px;color:#94a3b8;margin-top:6px;letter-spacing:1px;font-weight:600}
 #splash .loader{width:160px;height:4px;background:#e9edf2;border-radius:4px;margin-top:24px;overflow:hidden}
 #splash .loader .bar{width:0%;height:100%;background:linear-gradient(90deg,#2563eb,#1e40af);border-radius:4px;animation:load 1.8s forwards}
 @keyframes load{0%{width:0%}100%{width:100%}}
@@ -75,7 +79,7 @@ body{font-family:'Segoe UI',Roboto,system-ui,sans-serif;background:var(--bg-app)
 .input-with-btn input{flex:1}
 .input-with-btn button{width:auto;padding:12px 14px;background:#2563eb;color:#fff;border:none;border-radius:12px;font-weight:600;cursor:pointer;transition:transform .15s}
 .input-with-btn button:active{transform:scale(.94)}
-.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 20px;border:none;border-radius:12px;font-weight:600;font-size:15px;cursor:pointer;gap:6px;width:100%;transition:transform .15s,opacity .2s}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 20px;border:none;border-radius:12px;font-weight:600;font-size:15px;cursor:pointer;gap:6px;width:100%;transition:transform .15s,opacity .2s;font-family:inherit}
 .btn:active{transform:scale(.96);opacity:.9}
 .btn-primary{background:#2563eb;color:#fff}
 .btn-success{background:#10b981;color:#fff}
@@ -336,10 +340,10 @@ body.dark .alerte-stock .liste{color:#fecaca}
 </div>
 </div>
 <div class="form-group"><label data-i18n="product_name_label">Nom du produit</label><input class="input-field" id="nomProduit" data-placeholder-i18n="product_name_placeholder" oninput="verifierProduitExistant()" enterkeyhint="next"/></div>
-<div class="form-group"><label data-i18n="product_barcode_label">Code-barres (EAN/UPC)</label><input class="input-field" id="codeBarresProduit" placeholder="Ex: 4009729008195" oninput="verifierProduitExistant()" enterkeyhint="next"/></div>
+<div class="form-group"><label data-i18n="product_barcode_label">Code-barres (EAN/UPC)</label><input class="input-field" id="codeBarresProduit" data-placeholder-i18n="barcode_placeholder" oninput="verifierProduitExistant()" enterkeyhint="next"/></div>
 <div class="form-row">
-<div class="form-group"><label data-i18n="contenu_carton">Boîtes par carton</label><input class="input-field" id="contenuCarton" type="number" placeholder="Ex: 50" enterkeyhint="next"/></div>
-<div class="form-group"><label data-i18n="contenu_boite">Pièces par boîte</label><input class="input-field" id="contenuBoite" type="number" placeholder="Ex: 10" enterkeyhint="next"/></div>
+<div class="form-group"><label data-i18n="contenu_carton">Boîtes par carton</label><input class="input-field" id="contenuCarton" type="number" data-placeholder-i18n="example_50" enterkeyhint="next"/></div>
+<div class="form-group"><label data-i18n="contenu_boite">Pièces par boîte</label><input class="input-field" id="contenuBoite" type="number" data-placeholder-i18n="example_10" enterkeyhint="next"/></div>
 </div>
 <div id="infoAuto" class="text-sm text-muted" style="display:none;margin-top:8px" data-i18n="product_exists">✅ Produit existant</div>
 <div class="card-title" style="margin-top:14px" data-i18n="prices">💰 Prix (achat / vente)</div>
@@ -370,7 +374,7 @@ body.dark .alerte-stock .liste{color:#fecaca}
 <span style="font-weight:600;color:var(--text)" data-i18n="product_list">📋 Liste des produits</span>
 <button class="btn btn-sm btn-danger" onclick="supprimerTousProduits()" data-i18n="delete_all">Tout supprimer</button>
 </div>
-<div class="form-group" style="margin-top:12px"><input class="input-field" id="rechercheProduit" placeholder="🔍 Rechercher un produit..." oninput="afficherProduits()" enterkeyhint="search"/></div>
+<div class="form-group" style="margin-top:12px"><input class="input-field" id="rechercheProduit" data-placeholder-i18n="search_product_placeholder" oninput="afficherProduits()" enterkeyhint="search"/></div>
 <div id="productListContainer" class="mt-2"></div>
 </div>
 
@@ -382,8 +386,8 @@ body.dark .alerte-stock .liste{color:#fecaca}
 <div class="form-group"><label data-i18n="client_name">Nom</label><input class="input-field" id="clientNomInput" data-placeholder-i18n="client_name_placeholder" enterkeyhint="next"/></div>
 <div class="form-group"><label data-i18n="client_phone">📱 Téléphone</label><input class="input-field" id="clientTelInput" type="tel" placeholder="+227..." enterkeyhint="next"/></div>
 </div>
-<div class="form-group"><label data-i18n="client_email">📧 Email (optionnel)</label><input class="input-field" id="clientEmailInput" type="email" placeholder="client@example.com" enterkeyhint="next"/></div>
-<div class="form-group"><label data-i18n="client_address">📍 Adresse (optionnel)</label><input class="input-field" id="clientAdresseInput" placeholder="Quartier, ville..." enterkeyhint="done"/></div>
+<div class="form-group"><label data-i18n="client_email">📧 Email (optionnel)</label><input class="input-field" id="clientEmailInput" type="email" data-placeholder-i18n="email_placeholder" enterkeyhint="next"/></div>
+<div class="form-group"><label data-i18n="client_address">📍 Adresse (optionnel)</label><input class="input-field" id="clientAdresseInput" data-placeholder-i18n="address_placeholder" enterkeyhint="done"/></div>
 <button class="btn btn-primary" onclick="enregistrerClient()" data-i18n="save_client">✅ Enregistrer le client</button>
 </div>
 <div class="flex-between">
@@ -391,7 +395,7 @@ body.dark .alerte-stock .liste{color:#fecaca}
 <span class="badge blue" id="clientsCount">0</span>
 </div>
 <div class="form-group" style="margin-top:12px">
-<input class="input-field" id="rechercheClient" placeholder="🔍 Rechercher un client..." oninput="afficherClients()" enterkeyhint="search"/>
+<input class="input-field" id="rechercheClient" data-placeholder-i18n="search_client_placeholder" oninput="afficherClients()" enterkeyhint="search"/>
 </div>
 <div id="clientsListContainer" class="mt-2"></div>
 <div id="clientHistoriqueContainer" style="display:none" class="mt-2"></div>
@@ -472,7 +476,7 @@ body.dark .alerte-stock .liste{color:#fecaca}
 </div>
 <button class="btn btn-sm btn-danger mt-2" onclick="reinitialiserTout()" data-i18n="reset_all">🔄 Réinitialiser tout</button>
 </div>
-<div class="text-center text-muted text-sm mt-2">© DAS PRO STUDIO — Aboubacar Mahaman Natitia<br>Version 5.0.0</div>
+<div class="text-center text-muted text-sm mt-2">© DAS PRO STUDIO — Aboubacar Mahaman Natitia<br><span data-i18n="app_version">Version</span> 5.0.0</div>
 </div>
 
 <div class="screen" id="screenFournisseurs">
@@ -480,11 +484,11 @@ body.dark .alerte-stock .liste{color:#fecaca}
 <div class="card">
 <div class="card-title" data-i18n="add_supplier">➕ Ajouter un fournisseur</div>
 <div class="form-row">
-<div class="form-group"><label data-i18n="supplier_name">Nom</label><input class="input-field" id="fournisseurNomInput" placeholder="Nom du fournisseur" enterkeyhint="next"/></div>
+<div class="form-group"><label data-i18n="supplier_name">Nom</label><input class="input-field" id="fournisseurNomInput" data-placeholder-i18n="supplier_name_placeholder" enterkeyhint="next"/></div>
 <div class="form-group"><label data-i18n="supplier_phone">📱 Téléphone</label><input class="input-field" id="fournisseurTelInput" type="tel" placeholder="+227..." enterkeyhint="next"/></div>
 </div>
-<div class="form-group"><label data-i18n="supplier_product">📦 Produit principal</label><input class="input-field" id="fournisseurProduitInput" placeholder="Ex: Agrafes, papeterie..." enterkeyhint="next"/></div>
-<div class="form-group"><label data-i18n="supplier_address">📍 Adresse (optionnel)</label><input class="input-field" id="fournisseurAdresseInput" placeholder="Quartier, ville..." enterkeyhint="done"/></div>
+<div class="form-group"><label data-i18n="supplier_product">📦 Produit principal</label><input class="input-field" id="fournisseurProduitInput" data-placeholder-i18n="supplier_product_placeholder" enterkeyhint="next"/></div>
+<div class="form-group"><label data-i18n="supplier_address">📍 Adresse (optionnel)</label><input class="input-field" id="fournisseurAdresseInput" data-placeholder-i18n="address_placeholder" enterkeyhint="done"/></div>
 <button class="btn btn-primary" onclick="enregistrerFournisseur()" data-i18n="save_supplier">✅ Enregistrer le fournisseur</button>
 </div>
 <div class="flex-between">
@@ -524,17 +528,17 @@ body.dark .alerte-stock .liste{color:#fecaca}
 <div class="form-group">
 <label data-i18n="select_currency">Choisir la devise</label>
 <select id="deviseSelect" onchange="changerDevise()" style="width:100%;padding:12px 14px;border:1.5px solid var(--border-input);border-radius:12px;font-size:16px;background:var(--input-bg);color:var(--text)">
-<option value="FCFA">FCFA (Franc CFA)</option>
-<option value="EUR">€ Euro</option>
-<option value="USD">$ Dollar US</option>
-<option value="GBP">£ Livre Sterling</option>
-<option value="CAD">$ Dollar Canadien</option>
-<option value="CHF">₣ Franc Suisse</option>
-<option value="RUB">₽ Rouble Russe</option>
-<option value="CNY">¥ Yuan Chinois</option>
-<option value="SAR">﷼ Riyal Saoudien</option>
-<option value="INR">₹ Roupie Indienne</option>
-<option value="JPY">¥ Yen Japonais</option>
+<option value="FCFA" data-i18n="currency_FCFA">FCFA (Franc CFA)</option>
+<option value="EUR" data-i18n="currency_EUR">€ Euro</option>
+<option value="USD" data-i18n="currency_USD">$ Dollar US</option>
+<option value="GBP" data-i18n="currency_GBP">£ Livre Sterling</option>
+<option value="CAD" data-i18n="currency_CAD">$ Dollar Canadien</option>
+<option value="CHF" data-i18n="currency_CHF">₣ Franc Suisse</option>
+<option value="RUB" data-i18n="currency_RUB">₽ Rouble Russe</option>
+<option value="CNY" data-i18n="currency_CNY">¥ Yuan Chinois</option>
+<option value="SAR" data-i18n="currency_SAR">﷼ Riyal Saoudien</option>
+<option value="INR" data-i18n="currency_INR">₹ Roupie Indienne</option>
+<option value="JPY" data-i18n="currency_JPY">¥ Yen Japonais</option>
 </select>
 </div>
 <div class="form-group"><label data-i18n="exchange_rate">Taux de conversion (1 EUR = ?)</label><input class="input-field" id="tauxConversion" type="number" step="0.001" onchange="changerDevise()" enterkeyhint="done"/></div>
@@ -777,6 +781,16 @@ orders_count:"Commandes",call:"Appeler",delete_client:"Supprimer ce client ?",
 delete_supplier:"Supprimer ce fournisseur ?",toast_client_added:"✅ Client ajouté",
 toast_client_deleted:"🗑️ Client supprimé",toast_supplier_added:"✅ Fournisseur ajouté",
 toast_supplier_deleted:"🗑️ Fournisseur supprimé",toast_photo_added:"📸 Photo ajoutée",
+search_product_placeholder:"🔍 Rechercher un produit...",
+search_client_placeholder:"🔍 Rechercher un client...",
+supplier_name_placeholder:"Nom du fournisseur",
+address_placeholder:"Quartier, ville...",
+supplier_product_placeholder:"Ex: Agrafes, papeterie...",
+barcode_placeholder:"Ex: 4009729008195",
+example_50:"Ex: 50",example_10:"Ex: 10",
+email_placeholder:"client@example.com",
+app_version:"Version",
+currency_FCFA:"FCFA (Franc CFA)",currency_EUR:"€ Euro",currency_USD:"$ Dollar US",currency_GBP:"£ Livre Sterling",currency_CAD:"$ Dollar Canadien",currency_CHF:"₣ Franc Suisse",currency_RUB:"₽ Rouble Russe",currency_CNY:"¥ Yuan Chinois",currency_SAR:"﷼ Riyal Saoudien",currency_INR:"₹ Roupie Indienne",currency_JPY:"¥ Yen Japonais",
 premium_free_version:"Version Gratuite",premium_activate:"Activer Premium",
 premium_title:"✨ Version Premium",premium_unlock_title:"🚀 Débloquez tout Gestion Pro",
 premium_unlock_desc:"Passez à la version Premium et profitez de toutes les fonctionnalités sans limite.",
@@ -798,7 +812,22 @@ premium_limit_products_2:"Passez à la version Premium pour ajouter des produits
 premium_limit_sales:"⚠️ Limite gratuite atteinte : {n} ventes maximum.",
 premium_limit_sales_2:"Passez à la version Premium pour enregistrer des ventes illimitées.",
 premium_back:"⬅️ Retour",
-premium_wa_msg:"Bonjour ! Je souhaite acheter la version Premium de Gestion Pro ({price}). Mon nom : Mon pays : Merci de m'envoyer les instructions de paiement (MyNita ou Wave)."
+premium_wa_msg:"Bonjour ! Je souhaite acheter la version Premium de Gestion Pro ({price}). Mon nom : Mon pays : Merci de m'envoyer les instructions de paiement (MyNita ou Wave).",
+guide_title:"📖 Guide Gestion Pro",
+guide_step1:"1. Ajouter un produit",
+guide_step1_text:"Onglet Produits → Remplissez le nom, le prix, le stock, puis Enregistrer.",
+guide_step2:"2. Enregistrer une vente",
+guide_step2_text:"Onglet Ventes → Sélectionnez le produit → Choisissez le niveau (Carton/Boîte/Pièce) → Validez la commande.",
+guide_step3:"3. Gérer le stock",
+guide_step3_text:"Onglet Plus → Stock → Sélectionnez un produit → Ouvrez un carton ou une boîte.",
+guide_step4:"4. Suivre les bénéfices",
+guide_step4_text:"Onglet Bénéfices → Cliquez sur Calculer le bénéfice.",
+guide_step5:"5. Gérer les clients",
+guide_step5_text:"Onglet Clients → Ajoutez un client avec son nom et téléphone.",
+guide_step6:"6. Version Premium",
+guide_step6_text:"Cliquez sur Activer Premium → Envoyez le message WhatsApp → Recevez votre code → Activez.",
+guide_step7:"7. Support",
+guide_step7_text:"📧 dasprostudio.niger@gmail.com — 📱 +227 94 92 92 10"
 },
 en:{
 home:"Home",sales:"Sales",products_menu:"Products",clients_menu:"Clients",profits:"Profits",more:"More",
@@ -885,6 +914,16 @@ total_purchases:"Total purchases",orders_count:"Orders",call:"Call",delete_clien
 delete_supplier:"Delete this supplier?",toast_client_added:"✅ Client added",
 toast_client_deleted:"🗑️ Client deleted",toast_supplier_added:"✅ Supplier added",
 toast_supplier_deleted:"🗑️ Supplier deleted",toast_photo_added:"📸 Photo added",
+search_product_placeholder:"🔍 Search a product...",
+search_client_placeholder:"🔍 Search a client...",
+supplier_name_placeholder:"Supplier name",
+address_placeholder:"District, city...",
+supplier_product_placeholder:"e.g. Staples, stationery...",
+barcode_placeholder:"e.g. 4009729008195",
+example_50:"e.g. 50",example_10:"e.g. 10",
+email_placeholder:"client@example.com",
+app_version:"Version",
+currency_FCFA:"FCFA (CFA Franc)",currency_EUR:"€ Euro",currency_USD:"$ US Dollar",currency_GBP:"£ British Pound",currency_CAD:"$ Canadian Dollar",currency_CHF:"₣ Swiss Franc",currency_RUB:"₽ Russian Ruble",currency_CNY:"¥ Chinese Yuan",currency_SAR:"﷼ Saudi Riyal",currency_INR:"₹ Indian Rupee",currency_JPY:"¥ Japanese Yen",
 premium_free_version:"Free Version",premium_activate:"Activate Premium",
 premium_title:"✨ Premium Version",premium_unlock_title:"🚀 Unlock all Gestion Pro",
 premium_unlock_desc:"Upgrade to Premium and enjoy all features without limits.",
@@ -905,7 +944,22 @@ premium_limit_products:"⚠️ Free limit reached: {n} products max.",
 premium_limit_products_2:"Upgrade to Premium to add unlimited products.",
 premium_limit_sales:"⚠️ Free limit reached: {n} sales max.",
 premium_limit_sales_2:"Upgrade to Premium to record unlimited sales.",premium_back:"⬅️ Back",
-premium_wa_msg:"Hello! I want to buy the Premium version of Gestion Pro ({price}). My name: My country: Please send me payment instructions (MyNita or Wave)."
+premium_wa_msg:"Hello! I want to buy the Premium version of Gestion Pro ({price}). My name: My country: Please send me payment instructions (MyNita or Wave).",
+guide_title:"📖 Gestion Pro Guide",
+guide_step1:"1. Add a product",
+guide_step1_text:"Products tab → Fill in name, price, stock, then Save.",
+guide_step2:"2. Record a sale",
+guide_step2_text:"Sales tab → Select product → Choose level (Carton/Box/Piece) → Validate order.",
+guide_step3:"3. Manage stock",
+guide_step3_text:"More tab → Stock → Select a product → Open a carton or box.",
+guide_step4:"4. Track profits",
+guide_step4_text:"Profits tab → Click Calculate profit.",
+guide_step5:"5. Manage clients",
+guide_step5_text:"Clients tab → Add a client with name and phone.",
+guide_step6:"6. Premium version",
+guide_step6_text:"Click Activate Premium → Send WhatsApp message → Receive your code → Activate.",
+guide_step7:"7. Support",
+guide_step7_text:"📧 dasprostudio.niger@gmail.com — 📱 +227 94 92 92 10"
 },
 es:{
 home:"Inicio",sales:"Ventas",products_menu:"Productos",clients_menu:"Clientes",profits:"Beneficios",
@@ -985,6 +1039,16 @@ orders_count:"Pedidos",call:"Llamar",delete_client:"¿Eliminar cliente?",
 delete_supplier:"¿Eliminar proveedor?",toast_client_added:"✅ Cliente añadido",
 toast_client_deleted:"🗑️ Cliente eliminado",toast_supplier_added:"✅ Proveedor añadido",
 toast_supplier_deleted:"🗑️ Proveedor eliminado",toast_photo_added:"📸 Foto añadida",
+search_product_placeholder:"🔍 Buscar un producto...",
+search_client_placeholder:"🔍 Buscar un cliente...",
+supplier_name_placeholder:"Nombre del proveedor",
+address_placeholder:"Barrio, ciudad...",
+supplier_product_placeholder:"Ej: Grapas, papelería...",
+barcode_placeholder:"Ej: 4009729008195",
+example_50:"Ej: 50",example_10:"Ej: 10",
+email_placeholder:"cliente@ejemplo.com",
+app_version:"Versión",
+currency_FCFA:"FCFA (Franco CFA)",currency_EUR:"€ Euro",currency_USD:"$ Dólar US",currency_GBP:"£ Libra Esterlina",currency_CAD:"$ Dólar Canadiense",currency_CHF:"₣ Franco Suizo",currency_RUB:"₽ Rublo Ruso",currency_CNY:"¥ Yuan Chino",currency_SAR:"﷼ Riyal Saudí",currency_INR:"₹ Rupia India",currency_JPY:"¥ Yen Japonés",
 premium_free_version:"Versión Gratuita",premium_activate:"Activar Premium",
 premium_title:"✨ Versión Premium",premium_unlock_title:"🚀 Desbloquea todo Gestion Pro",
 premium_unlock_desc:"Pasa a Premium y disfruta de todas las funciones sin límite.",
@@ -1005,7 +1069,22 @@ premium_limit_products:"⚠️ Límite gratis alcanzado: {n} productos máx.",
 premium_limit_products_2:"Pasa a Premium para añadir productos ilimitados.",
 premium_limit_sales:"⚠️ Límite gratis alcanzado: {n} ventas máx.",
 premium_limit_sales_2:"Pasa a Premium para registrar ventas ilimitadas.",premium_back:"⬅️ Volver",
-premium_wa_msg:"¡Hola! Quiero comprar la versión Premium de Gestion Pro ({price}). Mi nombre: Mi país: Por favor envíenme instrucciones de pago (MyNita o Wave)."
+premium_wa_msg:"¡Hola! Quiero comprar la versión Premium de Gestion Pro ({price}). Mi nombre: Mi país: Por favor envíenme instrucciones de pago (MyNita o Wave).",
+guide_title:"📖 Guía Gestion Pro",
+guide_step1:"1. Añadir un producto",
+guide_step1_text:"Pestaña Productos → Rellena nombre, precio, stock y Guarda.",
+guide_step2:"2. Registrar una venta",
+guide_step2_text:"Pestaña Ventas → Selecciona producto → Elige nivel (Cartón/Caja/Pieza) → Confirma el pedido.",
+guide_step3:"3. Gestionar stock",
+guide_step3_text:"Pestaña Más → Stock → Selecciona un producto → Abre un cartón o caja.",
+guide_step4:"4. Seguir beneficios",
+guide_step4_text:"Pestaña Beneficios → Haz clic en Calcular beneficio.",
+guide_step5:"5. Gestionar clientes",
+guide_step5_text:"Pestaña Clientes → Añade un cliente con nombre y teléfono.",
+guide_step6:"6. Versión Premium",
+guide_step6_text:"Haz clic en Activar Premium → Envía el mensaje WhatsApp → Recibe tu código → Activa.",
+guide_step7:"7. Soporte",
+guide_step7_text:"📧 dasprostudio.niger@gmail.com — 📱 +227 94 92 92 10"
 },
 de:{
 home:"Startseite",sales:"Verkäufe",products_menu:"Produkte",clients_menu:"Kunden",profits:"Gewinne",
@@ -1090,7 +1169,18 @@ total_purchases:"Gesamtkäufe",orders_count:"Bestellungen",call:"Anrufen",
 delete_client:"Kunde löschen?",delete_supplier:"Lieferant löschen?",
 toast_client_added:"✅ Kunde hinzugefügt",toast_client_deleted:"🗑️ Kunde gelöscht",
 toast_supplier_added:"✅ Lieferant hinzugefügt",toast_supplier_deleted:"🗑️ Lieferant gelöscht",
-toast_photo_added:"📸 Foto hinzugefügt",premium_free_version:"Kostenlose Version",
+toast_photo_added:"📸 Foto hinzugefügt",
+search_product_placeholder:"🔍 Produkt suchen...",
+search_client_placeholder:"🔍 Kunden suchen...",
+supplier_name_placeholder:"Lieferantenname",
+address_placeholder:"Viertel, Stadt...",
+supplier_product_placeholder:"z.B. Heftklammern, Schreibwaren...",
+barcode_placeholder:"z.B. 4009729008195",
+example_50:"z.B. 50",example_10:"z.B. 10",
+email_placeholder:"kunde@beispiel.de",
+app_version:"Version",
+currency_FCFA:"FCFA (CFA-Franc)",currency_EUR:"€ Euro",currency_USD:"$ US-Dollar",currency_GBP:"£ Pfund Sterling",currency_CAD:"$ Kanadischer Dollar",currency_CHF:"₣ Schweizer Franken",currency_RUB:"₽ Russischer Rubel",currency_CNY:"¥ Chinesischer Yuan",currency_SAR:"﷼ Saudi-Riyal",currency_INR:"₹ Indische Rupie",currency_JPY:"¥ Japanischer Yen",
+premium_free_version:"Kostenlose Version",
 premium_activate:"Premium aktivieren",premium_title:"✨ Premium-Version",
 premium_unlock_title:"🚀 Schalte alles in Gestion Pro frei",
 premium_unlock_desc:"Wechsle zu Premium und genieße alle Funktionen ohne Limit.",
@@ -1112,7 +1202,22 @@ premium_limit_products:"⚠️ Kostenloses Limit erreicht: {n} Produkte max.",
 premium_limit_products_2:"Wechsle zu Premium für unbegrenzte Produkte.",
 premium_limit_sales:"⚠️ Kostenloses Limit erreicht: {n} Verkäufe max.",
 premium_limit_sales_2:"Wechsle zu Premium für unbegrenzte Verkäufe.",premium_back:"⬅️ Zurück",
-premium_wa_msg:"Hallo! Ich möchte die Premium-Version von Gestion Pro kaufen ({price}). Mein Name: Mein Land: Bitte senden Sie mir Zahlungsanweisungen (MyNita oder Wave)."
+premium_wa_msg:"Hallo! Ich möchte die Premium-Version von Gestion Pro kaufen ({price}). Mein Name: Mein Land: Bitte senden Sie mir Zahlungsanweisungen (MyNita oder Wave).",
+guide_title:"📖 Gestion Pro Anleitung",
+guide_step1:"1. Produkt hinzufügen",
+guide_step1_text:"Produkte-Tab → Name, Preis, Bestand eingeben, dann Speichern.",
+guide_step2:"2. Verkauf erfassen",
+guide_step2_text:"Verkäufe-Tab → Produkt wählen → Stufe wählen (Karton/Schachtel/Stück) → Bestellung bestätigen.",
+guide_step3:"3. Bestand verwalten",
+guide_step3_text:"Mehr-Tab → Bestand → Produkt wählen → Karton oder Schachtel öffnen.",
+guide_step4:"4. Gewinne verfolgen",
+guide_step4_text:"Gewinne-Tab → Klicken Sie auf Gewinn berechnen.",
+guide_step5:"5. Kunden verwalten",
+guide_step5_text:"Kunden-Tab → Fügen Sie einen Kunden mit Name und Telefon hinzu.",
+guide_step6:"6. Premium-Version",
+guide_step6_text:"Klicken Sie auf Premium aktivieren → Senden Sie die WhatsApp-Nachricht → Erhalten Sie Ihren Code → Aktivieren.",
+guide_step7:"7. Support",
+guide_step7_text:"📧 dasprostudio.niger@gmail.com — 📱 +227 94 92 92 10"
 },
 it:{
 home:"Home",sales:"Vendite",products_menu:"Prodotti",clients_menu:"Clienti",profits:"Profitti",
@@ -1194,7 +1299,18 @@ total_purchases:"Acquisti totali",orders_count:"Ordini",call:"Chiama",
 delete_client:"Eliminare cliente?",delete_supplier:"Eliminare fornitore?",
 toast_client_added:"✅ Cliente aggiunto",toast_client_deleted:"🗑️ Cliente eliminato",
 toast_supplier_added:"✅ Fornitore aggiunto",toast_supplier_deleted:"🗑️ Fornitore eliminato",
-toast_photo_added:"📸 Foto aggiunta",premium_free_version:"Versione Gratuita",
+toast_photo_added:"📸 Foto aggiunta",
+search_product_placeholder:"🔍 Cerca un prodotto...",
+search_client_placeholder:"🔍 Cerca un cliente...",
+supplier_name_placeholder:"Nome del fornitore",
+address_placeholder:"Quartiere, città...",
+supplier_product_placeholder:"Es: Punti, cancelleria...",
+barcode_placeholder:"Es: 4009729008195",
+example_50:"Es: 50",example_10:"Es: 10",
+email_placeholder:"cliente@esempio.com",
+app_version:"Versione",
+currency_FCFA:"FCFA (Franco CFA)",currency_EUR:"€ Euro",currency_USD:"$ Dollaro USA",currency_GBP:"£ Sterlina Britannica",currency_CAD:"$ Dollaro Canadese",currency_CHF:"₣ Franco Svizzero",currency_RUB:"₽ Rublo Russo",currency_CNY:"¥ Yuan Cinese",currency_SAR:"﷼ Riyal Saudita",currency_INR:"₹ Rupia Indiana",currency_JPY:"¥ Yen Giapponese",
+premium_free_version:"Versione Gratuita",
 premium_activate:"Attiva Premium",premium_title:"✨ Versione Premium",
 premium_unlock_title:"🚀 Sblocca tutto Gestion Pro",
 premium_unlock_desc:"Passa a Premium e approfitta di tutte le funzioni senza limiti.",
@@ -1215,7 +1331,22 @@ premium_limit_products:"⚠️ Limite gratuito raggiunto: {n} prodotti max.",
 premium_limit_products_2:"Passa a Premium per aggiungere prodotti illimitati.",
 premium_limit_sales:"⚠️ Limite gratuito raggiunto: {n} vendite max.",
 premium_limit_sales_2:"Passa a Premium per registrare vendite illimitate.",premium_back:"⬅️ Indietro",
-premium_wa_msg:"Ciao! Vorrei acquistare la versione Premium di Gestion Pro ({price}). Il mio nome: Il mio paese: Vi prego di inviarmi le istruzioni di pagamento (MyNita o Wave)."
+premium_wa_msg:"Ciao! Vorrei acquistare la versione Premium di Gestion Pro ({price}). Il mio nome: Il mio paese: Vi prego di inviarmi le istruzioni di pagamento (MyNita o Wave).",
+guide_title:"📖 Guida Gestion Pro",
+guide_step1:"1. Aggiungere un prodotto",
+guide_step1_text:"Scheda Prodotti → Compila nome, prezzo, stock, poi Salva.",
+guide_step2:"2. Registrare una vendita",
+guide_step2_text:"Scheda Vendite → Seleziona prodotto → Scegli livello (Cartone/Scatola/Pezzo) → Conferma ordine.",
+guide_step3:"3. Gestire lo stock",
+guide_step3_text:"Scheda Altro → Stock → Seleziona un prodotto → Apri un cartone o una scatola.",
+guide_step4:"4. Seguire i profitti",
+guide_step4_text:"Scheda Profitti → Clicca su Calcola profitto.",
+guide_step5:"5. Gestire i clienti",
+guide_step5_text:"Scheda Clienti → Aggiungi un cliente con nome e telefono.",
+guide_step6:"6. Versione Premium",
+guide_step6_text:"Clicca Attiva Premium → Invia il messaggio WhatsApp → Ricevi il tuo codice → Attiva.",
+guide_step7:"7. Supporto",
+guide_step7_text:"📧 dasprostudio.niger@gmail.com — 📱 +227 94 92 92 10"
 },
 pt:{
 home:"Início",sales:"Vendas",products_menu:"Produtos",clients_menu:"Clientes",profits:"Lucros",
@@ -1298,7 +1429,18 @@ total_purchases:"Total compras",orders_count:"Pedidos",call:"Ligar",
 delete_client:"Excluir cliente?",delete_supplier:"Excluir fornecedor?",
 toast_client_added:"✅ Cliente adicionado",toast_client_deleted:"🗑️ Cliente excluído",
 toast_supplier_added:"✅ Fornecedor adicionado",toast_supplier_deleted:"🗑️ Fornecedor excluído",
-toast_photo_added:"📸 Foto adicionada",premium_free_version:"Versão Gratuita",
+toast_photo_added:"📸 Foto adicionada",
+search_product_placeholder:"🔍 Procurar um produto...",
+search_client_placeholder:"🔍 Procurar um cliente...",
+supplier_name_placeholder:"Nome do fornecedor",
+address_placeholder:"Bairro, cidade...",
+supplier_product_placeholder:"Ex: Grampos, papelaria...",
+barcode_placeholder:"Ex: 4009729008195",
+example_50:"Ex: 50",example_10:"Ex: 10",
+email_placeholder:"cliente@exemplo.com",
+app_version:"Versão",
+currency_FCFA:"FCFA (Franco CFA)",currency_EUR:"€ Euro",currency_USD:"$ Dólar Americano",currency_GBP:"£ Libra Esterlina",currency_CAD:"$ Dólar Canadense",currency_CHF:"₣ Franco Suíço",currency_RUB:"₽ Rublo Russo",currency_CNY:"¥ Yuan Chinês",currency_SAR:"﷼ Riyal Saudita",currency_INR:"₹ Rupia Indiana",currency_JPY:"¥ Iene Japonês",
+premium_free_version:"Versão Gratuita",
 premium_activate:"Ativar Premium",premium_title:"✨ Versão Premium",
 premium_unlock_title:"🚀 Desbloqueie todo o Gestion Pro",
 premium_unlock_desc:"Passe para Premium e aproveite todos os recursos sem limite.",
@@ -1319,7 +1461,22 @@ premium_limit_products:"⚠️ Limite grátis atingido: {n} produtos máx.",
 premium_limit_products_2:"Passe para Premium para adicionar produtos ilimitados.",
 premium_limit_sales:"⚠️ Limite grátis atingido: {n} vendas máx.",
 premium_limit_sales_2:"Passe para Premium para registrar vendas ilimitadas.",premium_back:"⬅️ Voltar",
-premium_wa_msg:"Olá! Quero comprar a versão Premium do Gestion Pro ({price}). Meu nome: Meu país: Por favor me enviem instruções de pagamento (MyNita ou Wave)."
+premium_wa_msg:"Olá! Quero comprar a versão Premium do Gestion Pro ({price}). Meu nome: Meu país: Por favor me enviem instruções de pagamento (MyNita ou Wave).",
+guide_title:"📖 Guia Gestion Pro",
+guide_step1:"1. Adicionar um produto",
+guide_step1_text:"Aba Produtos → Preencha nome, preço, estoque, depois Salvar.",
+guide_step2:"2. Registrar uma venda",
+guide_step2_text:"Aba Vendas → Selecione produto → Escolha nível (Caixa grande/Caixa/Peça) → Valide o pedido.",
+guide_step3:"3. Gerenciar estoque",
+guide_step3_text:"Aba Mais → Estoque → Selecione um produto → Abra uma caixa grande ou caixa.",
+guide_step4:"4. Acompanhar lucros",
+guide_step4_text:"Aba Lucros → Clique em Calcular lucro.",
+guide_step5:"5. Gerenciar clientes",
+guide_step5_text:"Aba Clientes → Adicione um cliente com nome e telefone.",
+guide_step6:"6. Versão Premium",
+guide_step6_text:"Clique em Ativar Premium → Envie a mensagem WhatsApp → Receba seu código → Ative.",
+guide_step7:"7. Suporte",
+guide_step7_text:"📧 dasprostudio.niger@gmail.com — 📱 +227 94 92 92 10"
 },
 ru:{
 home:"Главная",sales:"Продажи",products_menu:"Товары",clients_menu:"Клиенты",profits:"Прибыль",
@@ -1405,7 +1562,18 @@ total_purchases:"Всего покупок",orders_count:"Заказы",call:"П
 delete_client:"Удалить клиента?",delete_supplier:"Удалить поставщика?",
 toast_client_added:"✅ Клиент добавлен",toast_client_deleted:"🗑️ Клиент удалён",
 toast_supplier_added:"✅ Поставщик добавлен",toast_supplier_deleted:"🗑️ Поставщик удалён",
-toast_photo_added:"📸 Фото добавлено",premium_free_version:"Бесплатная версия",
+toast_photo_added:"📸 Фото добавлено",
+search_product_placeholder:"🔍 Поиск товара...",
+search_client_placeholder:"🔍 Поиск клиента...",
+supplier_name_placeholder:"Название поставщика",
+address_placeholder:"Район, город...",
+supplier_product_placeholder:"Напр: Скобы, канцтовары...",
+barcode_placeholder:"Напр: 4009729008195",
+example_50:"Напр: 50",example_10:"Напр: 10",
+email_placeholder:"клиент@пример.рф",
+app_version:"Версия",
+currency_FCFA:"FCFA (Франк КФА)",currency_EUR:"€ Евро",currency_USD:"$ Доллар США",currency_GBP:"£ Фунт стерлингов",currency_CAD:"$ Канадский доллар",currency_CHF:"₣ Швейцарский франк",currency_RUB:"₽ Российский рубль",currency_CNY:"¥ Китайский юань",currency_SAR:"﷼ Саудовский риял",currency_INR:"₹ Индийская рупия",currency_JPY:"¥ Японская йена",
+premium_free_version:"Бесплатная версия",
 premium_activate:"Активировать Premium",premium_title:"✨ Premium версия",
 premium_unlock_title:"🚀 Разблокируйте весь Gestion Pro",
 premium_unlock_desc:"Перейдите на Premium и пользуйтесь всеми функциями без ограничений.",
@@ -1426,7 +1594,22 @@ premium_limit_products:"⚠️ Достигнут бесплатный лими�
 premium_limit_products_2:"Перейдите на Premium для неограниченных товаров.",
 premium_limit_sales:"⚠️ Достигнут бесплатный лимит: макс. {n} продаж.",
 premium_limit_sales_2:"Перейдите на Premium для неограниченных продаж.",premium_back:"⬅️ Назад",
-premium_wa_msg:"Здравствуйте! Я хочу купить Premium версию Gestion Pro ({price}). Моё имя: Моя страна: Пожалуйста, пришлите инструкции по оплате (MyNita или Wave)."
+premium_wa_msg:"Здравствуйте! Я хочу купить Premium версию Gestion Pro ({price}). Моё имя: Моя страна: Пожалуйста, пришлите инструкции по оплате (MyNita или Wave).",
+guide_title:"📖 Руководство Gestion Pro",
+guide_step1:"1. Добавить товар",
+guide_step1_text:"Вкладка Товары → Заполните название, цену, запас, затем Сохранить.",
+guide_step2:"2. Записать продажу",
+guide_step2_text:"Вкладка Продажи → Выберите товар → Выберите уровень (Коробка/Коробочка/Штука) → Подтвердите заказ.",
+guide_step3:"3. Управление запасом",
+guide_step3_text:"Вкладка Ещё → Запас → Выберите товар → Откройте коробку или коробочку.",
+guide_step4:"4. Отслеживание прибыли",
+guide_step4_text:"Вкладка Прибыль → Нажмите Рассчитать прибыль.",
+guide_step5:"5. Управление клиентами",
+guide_step5_text:"Вкладка Клиенты → Добавьте клиента с именем и телефоном.",
+guide_step6:"6. Premium версия",
+guide_step6_text:"Нажмите Активировать Premium → Отправьте сообщение WhatsApp → Получите код → Активируйте.",
+guide_step7:"7. Поддержка",
+guide_step7_text:"📧 dasprostudio.niger@gmail.com — 📱 +227 94 92 92 10"
 },
 zh:{
 home:"首页",sales:"销售",products_menu:"产品",clients_menu:"客户",profits:"利润",more:"更多",
@@ -1500,7 +1683,18 @@ no_results:"没有结果",history_of:"历史",total_purchases:"总购买",orders
 call:"拨打",delete_client:"删除客户？",delete_supplier:"删除供应商？",
 toast_client_added:"✅ 客户已添加",toast_client_deleted:"🗑️ 客户已删除",
 toast_supplier_added:"✅ 供应商已添加",toast_supplier_deleted:"🗑️ 供应商已删除",
-toast_photo_added:"📸 照片已添加",premium_free_version:"免费版",
+toast_photo_added:"📸 照片已添加",
+search_product_placeholder:"🔍 搜索产品...",
+search_client_placeholder:"🔍 搜索客户...",
+supplier_name_placeholder:"供应商名称",
+address_placeholder:"区，城市...",
+supplier_product_placeholder:"例如：订书钉，文具...",
+barcode_placeholder:"例如：4009729008195",
+example_50:"例如：50",example_10:"例如：10",
+email_placeholder:"客户@示例.com",
+app_version:"版本",
+currency_FCFA:"FCFA（非洲法郎）",currency_EUR:"€ 欧元",currency_USD:"$ 美元",currency_GBP:"£ 英镑",currency_CAD:"$ 加元",currency_CHF:"₣ 瑞士法郎",currency_RUB:"₽ 俄罗斯卢布",currency_CNY:"¥ 人民币",currency_SAR:"﷼ 沙特里亚尔",currency_INR:"₹ 印度卢比",currency_JPY:"¥ 日元",
+premium_free_version:"免费版",
 premium_activate:"激活高级版",premium_title:"✨ 高级版",
 premium_unlock_title:"🚀 解锁所有 Gestion Pro 功能",
 premium_unlock_desc:"升级到高级版，无限制享受所有功能。",premium_what_you_get:"🎁 您将获得",
@@ -1518,7 +1712,22 @@ premium_limit_products:"⚠️ 已达到免费上限：最多 {n} 个产品。",
 premium_limit_products_2:"升级到高级版以添加无限产品。",
 premium_limit_sales:"⚠️ 已达到免费上限：最多 {n} 笔销售。",
 premium_limit_sales_2:"升级到高级版以记录无限销售。",premium_back:"⬅️ 返回",
-premium_wa_msg:"您好！我想购买 Gestion Pro 的高级版（{price}）。我的名字：我的国家：请向我发送付款说明（MyNita 或 Wave）。"
+premium_wa_msg:"您好！我想购买 Gestion Pro 的高级版（{price}）。我的名字：我的国家：请向我发送付款说明（MyNita 或 Wave）。",
+guide_title:"📖 Gestion Pro 使用指南",
+guide_step1:"1. 添加产品",
+guide_step1_text:"产品标签页 → 填写名称、价格、库存，然后保存。",
+guide_step2:"2. 记录销售",
+guide_step2_text:"销售标签页 → 选择产品 → 选择级别（箱/盒/个）→ 确认订单。",
+guide_step3:"3. 管理库存",
+guide_step3_text:"更多标签页 → 库存 → 选择产品 → 打开箱或盒。",
+guide_step4:"4. 跟踪利润",
+guide_step4_text:"利润标签页 → 点击计算利润。",
+guide_step5:"5. 管理客户",
+guide_step5_text:"客户标签页 → 添加客户姓名和电话。",
+guide_step6:"6. 高级版",
+guide_step6_text:"点击激活高级版 → 发送 WhatsApp 消息 → 接收您的代码 → 激活。",
+guide_step7:"7. 支持",
+guide_step7_text:"📧 dasprostudio.niger@gmail.com — 📱 +227 94 92 92 10"
 },
 ar:{
 home:"الرئيسية",sales:"المبيعات",products_menu:"المنتجات",clients_menu:"العملاء",profits:"الأرباح",
@@ -1597,7 +1806,18 @@ total_purchases:"إجمالي المشتريات",orders_count:"الطلبات",
 delete_client:"حذف العميل؟",delete_supplier:"حذف المورد؟",
 toast_client_added:"✅ تم إضافة العميل",toast_client_deleted:"🗑️ تم حذف العميل",
 toast_supplier_added:"✅ تم إضافة المورد",toast_supplier_deleted:"🗑️ تم حذف المورد",
-toast_photo_added:"📸 تم إضافة الصورة",premium_free_version:"النسخة المجانية",
+toast_photo_added:"📸 تم إضافة الصورة",
+search_product_placeholder:"🔍 ابحث عن منتج...",
+search_client_placeholder:"🔍 ابحث عن عميل...",
+supplier_name_placeholder:"اسم المورد",
+address_placeholder:"الحي، المدينة...",
+supplier_product_placeholder:"مثال: دبابيس، قرطاسية...",
+barcode_placeholder:"مثال: 4009729008195",
+example_50:"مثال: 50",example_10:"مثال: 10",
+email_placeholder:"عميل@مثال.com",
+app_version:"الإصدار",
+currency_FCFA:"FCFA (فرنك CFA)",currency_EUR:"€ يورو",currency_USD:"$ دولار أمريكي",currency_GBP:"£ جنيه إسترليني",currency_CAD:"$ دولار كندي",currency_CHF:"₣ فرنك سويسري",currency_RUB:"₽ روبل روسي",currency_CNY:"¥ يوان صيني",currency_SAR:"﷼ ريال سعودي",currency_INR:"₹ روبية هندية",currency_JPY:"¥ ين ياباني",
+premium_free_version:"النسخة المجانية",
 premium_activate:"تنشيط النسخة المميزة",premium_title:"✨ النسخة المميزة",
 premium_unlock_title:"🚀 افتح كل ميزات Gestion Pro",
 premium_unlock_desc:"قم بالترقية إلى المميزة واستمتع بجميع الميزات بلا حدود.",
@@ -1617,7 +1837,22 @@ premium_limit_products:"⚠️ تم الوصول للحد المجاني: {n} م
 premium_limit_products_2:"قم بالترقية إلى المميزة لإضافة منتجات غير محدودة.",
 premium_limit_sales:"⚠️ تم الوصول للحد المجاني: {n} مبيعات كحد أقصى.",
 premium_limit_sales_2:"قم بالترقية إلى المميزة لتسجيل مبيعات غير محدودة.",premium_back:"⬅️ رجوع",
-premium_wa_msg:"مرحباً! أريد شراء النسخة المميزة من Gestion Pro ({price}). اسمي: بلدي: الرجاء إرسال تعليمات الدفع (MyNita أو Wave)."
+premium_wa_msg:"مرحباً! أريد شراء النسخة المميزة من Gestion Pro ({price}). اسمي: بلدي: الرجاء إرسال تعليمات الدفع (MyNita أو Wave).",
+guide_title:"📖 دليل Gestion Pro",
+guide_step1:"1. إضافة منتج",
+guide_step1_text:"تبويب المنتجات → املأ الاسم والسعر والمخزون، ثم حفظ.",
+guide_step2:"2. تسجيل عملية بيع",
+guide_step2_text:"تبويب المبيعات → اختر المنتج → اختر المستوى (كرتون/علبة/قطعة) → أكد الطلب.",
+guide_step3:"3. إدارة المخزون",
+guide_step3_text:"تبويب المزيد → المخزون → اختر منتجاً → افتح كرتوناً أو علبة.",
+guide_step4:"4. متابعة الأرباح",
+guide_step4_text:"تبويب الأرباح → انقر على حساب الربح.",
+guide_step5:"5. إدارة العملاء",
+guide_step5_text:"تبويب العملاء → أضف عميلاً مع الاسم والهاتف.",
+guide_step6:"6. النسخة المميزة",
+guide_step6_text:"انقر على تنشيط النسخة المميزة → أرسل رسالة واتساب → استلم رمزك → نشّط.",
+guide_step7:"7. الدعم",
+guide_step7_text:"📧 dasprostudio.niger@gmail.com — 📱 +227 94 92 92 10"
 },
 hi:{
 home:"होम",sales:"बिक्री",products_menu:"उत्पाद",clients_menu:"ग्राहक",profits:"लाभ",more:"और",
@@ -1697,6 +1932,16 @@ total_purchases:"कुल खरीद",orders_count:"ऑर्डर",call:"�
 delete_supplier:"आपूर्तिकर्ता हटाएँ?",toast_client_added:"✅ ग्राहक जोड़ा",
 toast_client_deleted:"🗑️ ग्राहक हटाया",toast_supplier_added:"✅ आपूर्तिकर्ता जोड़ा",
 toast_supplier_deleted:"🗑️ आपूर्तिकर्ता हटाया",toast_photo_added:"📸 फ़ोटो जोड़ी",
+search_product_placeholder:"🔍 उत्पाद खोजें...",
+search_client_placeholder:"🔍 ग्राहक खोजें...",
+supplier_name_placeholder:"आपूर्तिकर्ता का नाम",
+address_placeholder:"क्षेत्र, शहर...",
+supplier_product_placeholder:"जैसे: स्टेपल्स, स्टेशनरी...",
+barcode_placeholder:"जैसे: 4009729008195",
+example_50:"जैसे: 50",example_10:"जैसे: 10",
+email_placeholder:"ग्राहक@उदाहरण.com",
+app_version:"संस्करण",
+currency_FCFA:"FCFA (सीएफए फ्रैंक)",currency_EUR:"€ यूरो",currency_USD:"$ अमेरिकी डॉलर",currency_GBP:"£ ब्रिटिश पाउंड",currency_CAD:"$ कनाडाई डॉलर",currency_CHF:"₣ स्विस फ्रैंक",currency_RUB:"₽ रूसी रूबल",currency_CNY:"¥ चीनी युआन",currency_SAR:"﷼ सऊदी रियाल",currency_INR:"₹ भारतीय रुपया",currency_JPY:"¥ जापानी येन",
 premium_free_version:"निःशुल्क संस्करण",premium_activate:"प्रीमियम सक्रिय करें",
 premium_title:"✨ प्रीमियम संस्करण",premium_unlock_title:"🚀 सभी Gestion Pro अनलॉक करें",
 premium_unlock_desc:"प्रीमियम में अपग्रेड करें और बिना सीमा के सभी सुविधाओं का आनंद लें।",
@@ -1719,7 +1964,22 @@ premium_limit_products_2:"असीमित उत्पाद जोड़न�
 premium_limit_sales:"⚠️ निःशुल्क सीमा पूरी: {n} बिक्री अधिकतम।",
 premium_limit_sales_2:"असीमित बिक्री दर्ज करने के लिए प्रीमियम में अपग्रेड करें।",
 premium_back:"⬅️ वापस",
-premium_wa_msg:"नमस्ते! मैं Gestion Pro का प्रीमियम संस्करण खरीदना चाहता हूँ ({price})। मेरा नाम: मेरा देश: कृपया मुझे भुगतान निर्देश भेजें (MyNita या Wave)।"
+premium_wa_msg:"नमस्ते! मैं Gestion Pro का प्रीमियम संस्करण खरीदना चाहता हूँ ({price})। मेरा नाम: मेरा देश: कृपया मुझे भुगतान निर्देश भेजें (MyNita या Wave)।",
+guide_title:"📖 Gestion Pro गाइड",
+guide_step1:"1. उत्पाद जोड़ें",
+guide_step1_text:"उत्पाद टैब → नाम, मूल्य, स्टॉक भरें, फिर सहेजें।",
+guide_step2:"2. बिक्री दर्ज करें",
+guide_step2_text:"बिक्री टैब → उत्पाद चुनें → स्तर चुनें (कार्टन/डिब्बा/टुकड़ा) → ऑर्डर की पुष्टि करें।",
+guide_step3:"3. स्टॉक प्रबंधित करें",
+guide_step3_text:"और टैब → स्टॉक → उत्पाद चुनें → कार्टन या डिब्बा खोलें।",
+guide_step4:"4. लाभ ट्रैक करें",
+guide_step4_text:"लाभ टैब → लाभ की गणना करें पर क्लिक करें।",
+guide_step5:"5. ग्राहक प्रबंधित करें",
+guide_step5_text:"ग्राहक टैब → नाम और फ़ोन के साथ ग्राहक जोड़ें।",
+guide_step6:"6. प्रीमियम संस्करण",
+guide_step6_text:"प्रीमियम सक्रिय करें पर क्लिक करें → WhatsApp संदेश भेजें → अपना कोड प्राप्त करें → सक्रिय करें।",
+guide_step7:"7. सहायता",
+guide_step7_text:"📧 dasprostudio.niger@gmail.com — 📱 +227 94 92 92 10"
 },
 ja:{
 home:"ホーム",sales:"販売",products_menu:"商品",clients_menu:"顧客",profits:"利益",more:"その他",
@@ -1796,6 +2056,16 @@ total_purchases:"総購入",orders_count:"注文",call:"電話",delete_client:"�
 delete_supplier:"サプライヤーを削除？",toast_client_added:"✅ 顧客追加",
 toast_client_deleted:"🗑️ 顧客削除",toast_supplier_added:"✅ サプライヤー追加",
 toast_supplier_deleted:"🗑️ サプライヤー削除",toast_photo_added:"📸 写真追加",
+search_product_placeholder:"🔍 商品を検索...",
+search_client_placeholder:"🔍 顧客を検索...",
+supplier_name_placeholder:"サプライヤー名",
+address_placeholder:"地区、都市...",
+supplier_product_placeholder:"例: ステープル、文房具...",
+barcode_placeholder:"例: 4009729008195",
+example_50:"例: 50",example_10:"例: 10",
+email_placeholder:"顧客@example.com",
+app_version:"バージョン",
+currency_FCFA:"FCFA（CFAフラン）",currency_EUR:"€ ユーロ",currency_USD:"$ 米ドル",currency_GBP:"£ 英ポンド",currency_CAD:"$ カナダドル",currency_CHF:"₣ スイスフラン",currency_RUB:"₽ ロシアルーブル",currency_CNY:"¥ 中国人民元",currency_SAR:"﷼ サウジリヤル",currency_INR:"₹ インドルピー",currency_JPY:"¥ 日本円",
 premium_free_version:"無料版",premium_activate:"プレミアムを有効化",
 premium_title:"✨ プレミアム版",premium_unlock_title:"🚀 Gestion Pro をすべて解放",
 premium_unlock_desc:"プレミアムにアップグレードして、すべての機能を無制限にお使いください。",
@@ -1817,7 +2087,22 @@ premium_limit_products_2:"無制限の商品を追加するにはプレミアム
 premium_limit_sales:"⚠️ 無料制限に達しました: 最大 {n} 販売。",
 premium_limit_sales_2:"無制限の販売を記録するにはプレミアムにアップグレードしてください。",
 premium_back:"⬅️ 戻る",
-premium_wa_msg:"こんにちは！Gestion Pro のプレミアム版を購入したいです（{price}）。名前: 国: 支払い方法の手順をお送りください（MyNita または Wave）。"
+premium_wa_msg:"こんにちは！Gestion Pro のプレミアム版を購入したいです（{price}）。名前: 国: 支払い方法の手順をお送りください（MyNita または Wave）。",
+guide_title:"📖 Gestion Pro ガイド",
+guide_step1:"1. 商品を追加",
+guide_step1_text:"商品タブ → 名前、価格、在庫を入力し、保存。",
+guide_step2:"2. 販売を記録",
+guide_step2_text:"販売タブ → 商品を選択 → レベルを選択（カートン/箱/個）→ 注文を確定。",
+guide_step3:"3. 在庫を管理",
+guide_step3_text:"その他タブ → 在庫 → 商品を選択 → カートンまたは箱を開ける。",
+guide_step4:"4. 利益を追跡",
+guide_step4_text:"利益タブ → 利益を計算をクリック。",
+guide_step5:"5. 顧客を管理",
+guide_step5_text:"顧客タブ → 名前と電話で顧客を追加。",
+guide_step6:"6. プレミアム版",
+guide_step6_text:"プレミアムを有効化をクリック → WhatsAppメッセージを送信 → コードを受領 → 有効化。",
+guide_step7:"7. サポート",
+guide_step7_text:"📧 dasprostudio.niger@gmail.com — 📱 +227 94 92 92 10"
 }
 };
 
@@ -1906,6 +2191,7 @@ function afficherCommande(index){const commandes=getCommandes();let filtrees=com
 function genererQRDocument(){if(!commandeSelectionneeRef)return;const c=commandeSelectionneeRef;const container=document.getElementById('qrFactureContainer');const qrDiv=document.getElementById('qrFacture');if(!container||!qrDiv)return;function clean(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^\x20-\x7E\n]/g,'').replace(/\s+/g,' ').trim();}const sym=clean(deviseSymbols[deviseActuelle]||deviseActuelle);const typeClean=clean((translations[langueActuelle]||translations.fr)[c.type]||c.type).toUpperCase();const total=formatNombre(c.total);let articlesTxt='';c.articles.forEach(a=>{articlesTxt+=clean(a.nom)+' x'+a.quantite+'\n';});const v1=typeClean+' No'+c.numero+'\n'+articlesTxt+'TOTAL: '+total+' '+sym+'\nGestion Pro';const v3=typeClean+' No'+c.numero+'\nTOTAL: '+total+' '+sym+'\nGestion Pro';const v4=typeClean+' '+c.numero+' - '+total+' '+sym;let texte=v1;if(texte.length>250)texte=v3;if(texte.length>250)texte=v4;qrDiv.innerHTML='';try{new QRCode(qrDiv,{text:texte,width:200,height:200,colorDark:"#0f172a",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.L});container.style.display='flex';}catch(e){console.error('QR error',e);}}
 function exporterRecuImage(){if(!commandeSelectionneeRef)return;const el=document.getElementById('receiptContent');if(!el)return;html2canvas(el,{scale:2,backgroundColor:'#ffffff'}).then(canvas=>{const link=document.createElement('a');link.download='Recu_'+commandeSelectionneeRef.numero+'.png';link.href=canvas.toDataURL('image/png');link.click();showToastTraduit('toast_image_saved');}).catch(err=>{console.error(err);});}
 function partagerRecuWhatsApp(){if(!commandeSelectionneeRef)return;const c=commandeSelectionneeRef;const typeLabel=translate(c.type)||c.type;let msg='🧾 *'+typeLabel+' N°'+c.numero+'*\n\n';msg+='👤 '+translate('client')+' : '+c.client+'\n';msg+='📅 '+translate('date')+' : '+c.date+' '+c.heure+'\n\n';msg+='📋 *'+translate('items')+' :*\n';c.articles.forEach((item,idx)=>{msg+='\n'+(idx+1)+'. '+item.nom+'\n   • '+translate('unit_label')+' : '+item.niveauLabel+'\n   • '+translate('qty')+' : '+item.quantite+'\n   • '+translate('unit_price_label')+' : '+formatMontantAvecDevise(item.prixUnitaire)+'\n   • '+translate('subtotal')+' : '+formatMontantAvecDevise(item.total)+'\n';});msg+='\n━━━━━━━━━━━━━━\n💰 *'+translate('total_amount')+' : '+formatMontantAvecDevise(c.total)+'*\n━━━━━━━━━━━━━━\n\n_Gestion Pro - DAS PRO STUDIO_';const encoded=encodeURIComponent(msg);window.open('https://wa.me/?text='+encoded,'_blank');}
+
 // ============ STOCK ============
 function rechercherProduitsStock(){const input=document.getElementById('stockProduit');const container=document.getElementById('suggestionsContainerStock');const texte=input.value.trim().toLowerCase();if(texte===''){container.classList.remove('show');container.innerHTML='';return;}const produits=getProduits().filter(p=>p.nom.toLowerCase().includes(texte)||(p.codeBarres&&p.codeBarres.toLowerCase().includes(texte)));if(produits.length===0){container.classList.remove('show');return;}let html='';produits.forEach(p=>{html+='<div class="item" onclick="selectionnerProduitStock('+p.id+')"><div class="name">'+p.nom+'</div><div class="sub">📦'+(p.stockCarton||0)+' · 📫'+(p.stockBoite||0)+' · 🔹'+(p.stockPiece||0)+'</div></div>';});container.innerHTML=html;container.classList.add('show');}
 function selectionnerProduitStock(id){const produits=getProduits();const p=produits.find(x=>x.id===id);if(!p)return;produitStockSelectionne=p;document.getElementById('stockProduit').value=p.nom;document.getElementById('stockInfoContainer').style.display='block';document.getElementById('suggestionsContainerStock').classList.remove('show');document.getElementById('stockActuelCarton').textContent=formatNombre(p.stockCarton||0);document.getElementById('stockActuelBoite').textContent=formatNombre(p.stockBoite||0);document.getElementById('stockActuelPiece').textContent=formatNombre(p.stockPiece||0);}
@@ -1965,8 +2251,8 @@ function arreterScannerDocument(){scannerDoc.arreter();}
 function exporterCSV(){const produits=getProduits();if(produits.length===0){showAlert('no_products');return;}let csv='Nom,Code-barres,Contenu carton,Contenu boite,PA carton,PV carton,PA boite,PV boite,PA piece,PV piece,Stock carton,Stock boite,Stock piece\n';produits.forEach(p=>{csv+='"'+p.nom+'","'+(p.codeBarres||'')+'",'+(p.contenuCarton||0)+','+(p.contenuBoite||0)+','+(p.prixAchatCarton||0)+','+(p.prixVenteCarton||0)+','+(p.prixAchatBoite||0)+','+(p.prixVenteBoite||0)+','+(p.prixAchatPiece||0)+','+(p.prixVentePiece||0)+','+(p.stockCarton||0)+','+(p.stockBoite||0)+','+(p.stockPiece||0)+'\n';});const blob=new Blob([csv],{type:'text/csv'});const link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download='GestionPro_donnees.csv';link.click();showToastTraduit('toast_csv_exported');}
 function exporterPDF(){const produits=getProduits();if(produits.length===0){showAlert('no_products');return;}const now=new Date();const dateStr=now.toLocaleDateString('fr-FR');const heureStr=now.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});let html='<html><head><meta charset="UTF-8"><title>Rapport Gestion Pro</title><style>body{font-family:Arial,sans-serif;padding:30px;color:#0f172a}h1{color:#2563eb;text-align:center;border-bottom:3px solid #2563eb;padding-bottom:10px}h2{color:#2563eb;margin-top:25px;font-size:16px}.info{text-align:center;color:#64748b;font-size:12px;margin-bottom:20px}table{width:100%;border-collapse:collapse;margin-top:15px;font-size:12px}th{background:#2563eb;color:#fff;padding:8px;text-align:left}td{padding:8px;border-bottom:1px solid #e2e8f0}tr:nth-child(even){background:#f8fafc}.total{margin-top:20px;padding:15px;background:#dbeafe;border-radius:8px;font-weight:bold;text-align:right}.footer{margin-top:40px;text-align:center;font-size:11px;color:#94a3b8;border-top:1px solid #e2e8f0;padding-top:15px}</style></head><body>';html+='<h1>📊 Rapport Gestion Pro</h1>';html+='<div class="info">Généré le '+dateStr+' à '+heureStr+' • DAS PRO STUDIO</div>';html+='<h2>📦 Liste des produits ('+produits.length+')</h2>';html+='<table><thead><tr><th>Nom</th><th>Code</th><th>Stock (C/B/P)</th><th>Prix Vente</th><th>Valeur</th></tr></thead><tbody>';let totalVal=0;produits.forEach(p=>{const sc=p.stockCarton||0,sb=p.stockBoite||0,sp=p.stockPiece||0;const val=sc*(p.prixVenteCarton||0)+sb*(p.prixVenteBoite||0)+sp*(p.prixVentePiece||0);totalVal+=val;html+='<tr><td>'+p.nom+'</td><td>'+(p.codeBarres||'-')+'</td><td>'+sc+' / '+sb+' / '+sp+'</td><td>'+formatMontantAvecDevise(p.prixVentePiece||0)+'</td><td>'+formatMontantAvecDevise(val)+'</td></tr>';});html+='</tbody></table>';html+='<div class="total">💰 Valeur totale du stock : '+formatMontantAvecDevise(totalVal)+'</div>';html+='<div class="footer">© 2026 DAS PRO STUDIO — Aboubacar Mahaman Natitia<br>Gestion Pro v5.0.0</div>';html+='</body></html>';const win=window.open('','_blank');win.document.write(html);win.document.close();setTimeout(()=>{win.print();},500);showToastTraduit('toast_pdf_exported');}
 
-// ============ TUTORIEL ============
-function afficherTutoriel(){const overlay=document.createElement('div');overlay.className='qr-modal-overlay active';overlay.onclick=function(e){if(e.target===this)document.body.removeChild(this);};overlay.innerHTML='<div class="qr-modal" style="max-width:95%;width:500px;text-align:left;max-height:85vh;overflow-y:auto"><div class="qr-title" style="text-align:center">📖 Guide Gestion Pro</div><div style="font-size:13px;line-height:1.6;color:var(--text);margin-top:12px"><strong>1. Ajouter un produit</strong><br>Onglet Produits → Remplissez le nom, le prix, le stock, puis Enregistrer.<br><br><strong>2. Enregistrer une vente</strong><br>Onglet Ventes → Sélectionnez le produit → Choisissez le niveau (Carton/Boîte/Pièce) → Validez la commande.<br><br><strong>3. Gérer le stock</strong><br>Onglet Plus → Stock → Sélectionnez un produit → Ouvrez un carton ou une boîte.<br><br><strong>4. Suivre les bénéfices</strong><br>Onglet Bénéfices → Cliquez sur Calculer le bénéfice.<br><br><strong>5. Gérer les clients</strong><br>Onglet Clients → Ajoutez un client avec son nom et téléphone. Son historique d\'achats sera automatique.<br><br><strong>6. Version Premium</strong><br>Cliquez sur Activer Premium → Envoyez le message WhatsApp → Recevez votre code → Activez.<br><br><strong>7. Support</strong><br>📧 dasprostudio.niger@gmail.com<br>📱 +227 94 92 92 10</div><button class="btn btn-primary btn-close" onclick="document.body.removeChild(this.closest(\'.qr-modal-overlay\'))">'+translate('close')+'</button></div>';document.body.appendChild(overlay);}
+// ============ TUTORIEL MULTILINGUE ============
+function afficherTutoriel(){const overlay=document.createElement('div');overlay.className='qr-modal-overlay active';overlay.onclick=function(e){if(e.target===this)document.body.removeChild(this);};overlay.innerHTML='<div class="qr-modal" style="max-width:95%;width:500px;text-align:left;max-height:85vh;overflow-y:auto"><div class="qr-title" style="text-align:center">'+translate('guide_title')+'</div><div style="font-size:13px;line-height:1.6;color:var(--text);margin-top:12px"><strong>'+translate('guide_step1')+'</strong><br>'+translate('guide_step1_text')+'<br><br><strong>'+translate('guide_step2')+'</strong><br>'+translate('guide_step2_text')+'<br><br><strong>'+translate('guide_step3')+'</strong><br>'+translate('guide_step3_text')+'<br><br><strong>'+translate('guide_step4')+'</strong><br>'+translate('guide_step4_text')+'<br><br><strong>'+translate('guide_step5')+'</strong><br>'+translate('guide_step5_text')+'<br><br><strong>'+translate('guide_step6')+'</strong><br>'+translate('guide_step6_text')+'<br><br><strong>'+translate('guide_step7')+'</strong><br>'+translate('guide_step7_text')+'</div><button class="btn btn-primary btn-close" onclick="document.body.removeChild(this.closest(\'.qr-modal-overlay\'))">'+translate('close')+'</button></div>';document.body.appendChild(overlay);}
 
 // ============ SAUVEGARDE ============
 function sauvegarderCloud(){const data={produits:getProduits(),historique:getHistorique(),commandes:getCommandes(),clients:getClients(),fournisseurs:getFournisseurs(),date:new Date().toISOString()};const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download='GestionPro_sauvegarde_'+new Date().toISOString().slice(0,10)+'.json';link.click();showToastTraduit('toast_backup_downloaded');}
@@ -1994,7 +2280,7 @@ function afficherResumeJour(){const container=document.getElementById('resumeJou
 function afficherAlerteStock(){const container=document.getElementById('alerteStockContainer');if(!container)return;const actif=localStorage.getItem('gestionPro_alerte')!=='false';if(!actif){container.innerHTML='';return;}const produits=getProduits();const bas=produits.filter(p=>(p.stockPiece||0)<=3||((p.stockBoite||0)===0&&(p.stockCarton||0)>0&&(p.stockPiece||0)===0));if(bas.length===0){container.innerHTML='';return;}let liste='';bas.slice(0,5).forEach(p=>{liste+='<div>• '+p.nom+' : 📦 '+(p.stockCarton||0)+' · 📫 '+(p.stockBoite||0)+' · 🔹 '+(p.stockPiece||0)+'</div>';});if(bas.length>5)liste+='<div style="margin-top:4px;font-weight:600">+ '+(bas.length-5)+' autres...</div>';container.innerHTML='<div class="alerte-stock"><div class="icone">⚠️</div><div class="contenu"><div class="titre">'+translate('alert_stock_title')+' ('+bas.length+')</div><div class="liste">'+liste+'</div></div></div>';}
 
 // ============ TRADUCTION & PREFERENCES ============
-function traduireInterface(lang){const t=translations[lang]||translations.fr;document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.textContent=t[k];});document.querySelectorAll('[data-placeholder-i18n]').forEach(el=>{const k=el.getAttribute('data-placeholder-i18n');if(t[k]!==undefined)el.placeholder=t[k];});const select=document.getElementById('docTypeSelect');if(select)select.querySelectorAll('option').forEach(opt=>{const k=opt.getAttribute('data-i18n');if(k&&t[k])opt.textContent=t[k];});afficherDevise();}
+function traduireInterface(lang){const t=translations[lang]||translations.fr;document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.textContent=t[k];});document.querySelectorAll('[data-placeholder-i18n]').forEach(el=>{const k=el.getAttribute('data-placeholder-i18n');if(t[k]!==undefined)el.placeholder=t[k];});const select=document.getElementById('docTypeSelect');if(select)select.querySelectorAll('option').forEach(opt=>{const k=opt.getAttribute('data-i18n');if(k&&t[k])opt.textContent=t[k];});const deviseSelect=document.getElementById('deviseSelect');if(deviseSelect)deviseSelect.querySelectorAll('option').forEach(opt=>{const k=opt.getAttribute('data-i18n');if(k&&t[k])opt.textContent=t[k];});afficherDevise();if(typeof window.injecterBanniere==='function')window.injecterBanniere();}
 function changerLangue(lang){langueActuelle=lang;localStorage.setItem('gestionPro_langue',lang);const deviseParDefaut=langueDeviseParDefaut[lang]||'EUR';const tauxParDefaut=deviseTauxParDefaut[deviseParDefaut]||1;deviseActuelle=deviseParDefaut;tauxConversion=tauxParDefaut;const ds=document.getElementById('deviseSelect');if(ds)ds.value=deviseActuelle;const tc=document.getElementById('tauxConversion');if(tc)tc.value=tauxParDefaut;localStorage.setItem('gestionPro_devise',deviseActuelle);localStorage.setItem('gestionPro_taux',tauxParDefaut.toString());traduireInterface(lang);afficherDevise();mettreAJourStats();afficherStatsDetail();afficherProduits();afficherClients();afficherFournisseurs();afficherResumeJour();afficherAlerteStock();if(commandeSelectionneeIndex>=0)afficherCommande(commandeSelectionneeIndex);showToastTraduit('toast_language_changed');if(typeof window.injecterBanniere==='function')setTimeout(window.injecterBanniere,150);}
 function changerDevise(){deviseActuelle=document.getElementById('deviseSelect').value;tauxConversion=parseFloat(document.getElementById('tauxConversion').value)||1;localStorage.setItem('gestionPro_devise',deviseActuelle);localStorage.setItem('gestionPro_taux',tauxConversion.toString());afficherDevise();mettreAJourStats();afficherStatsDetail();afficherProduits();afficherResumeJour();if(commandeSelectionneeIndex>=0)afficherCommande(commandeSelectionneeIndex);showToastTraduit('toast_currency_updated');}
 function afficherDevise(){const s=deviseSymbols[deviseActuelle]||deviseActuelle;document.querySelectorAll('.currency-symbol').forEach(el=>el.textContent=s);}
@@ -2011,6 +2297,7 @@ if ('serviceWorker' in navigator) {
 
 // ============ INITIALISATION ============
 document.addEventListener('DOMContentLoaded',function(){try{const dejaVu=sessionStorage.getItem('splashVu')==='true';if(dejaVu){document.getElementById('splash').classList.add('hide');document.getElementById('app').style.opacity='1';}else{sessionStorage.setItem('splashVu','true');setTimeout(()=>{document.getElementById('splash').classList.add('hide');document.getElementById('app').style.opacity='1';},1800);}initPreferences();initDarkMode();initPrefs();afficherProduits();mettreAJourStats();afficherStatsDetail();afficherPanier();afficherResumeJour();afficherAlerteStock();document.querySelectorAll('#screenVentes [data-level]').forEach(b=>b.classList.remove('active'));document.querySelector('#screenVentes [data-level="piece"]').classList.add('active');let lastTouchEnd=0;document.addEventListener('touchend',function(event){const now=(new Date()).getTime();if(now-lastTouchEnd<=300)event.preventDefault();lastTouchEnd=now;},false);}catch(e){console.error('❌ Erreur:',e);document.getElementById('splash').classList.add('hide');document.getElementById('app').style.opacity='1';}});
+
 // ============ FIX AFFICHAGE AU RETOUR ============
 document.addEventListener('visibilitychange', function() {
   if (!document.hidden) {
