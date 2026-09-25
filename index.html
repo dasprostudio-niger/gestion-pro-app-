@@ -477,7 +477,7 @@ body.dark .alerte-stock .liste{color:#fecaca}
 </div>
 <button class="btn btn-sm btn-danger mt-2" onclick="reinitialiserTout()" data-i18n="reset_all">🔄 Réinitialiser tout</button>
 </div>
-<div class="text-center text-muted text-sm mt-2">© DAS PRO STUDIO — Aboubacar Mahaman Natitia<br><span data-i18n="app_version">Version</span> 5.0.0</div>
+<div class="text-center text-muted text-sm mt-2">© DAS PRO STUDIO — Aboubacar Mahaman Natitia<br><span data-i18n="app_version">Version</span> 5.1.0</div>
 </div>
 
 <div class="screen" id="screenFournisseurs">
@@ -542,7 +542,7 @@ body.dark .alerte-stock .liste{color:#fecaca}
 <option value="JPY" data-i18n="currency_JPY">¥ Yen Japonais</option>
 </select>
 </div>
-<div class="form-group"><label data-i18n="exchange_rate">Taux de conversion (1 EUR = ?)</label><input class="input-field" id="tauxConversion" type="number" step="0.001" onchange="changerDevise()" enterkeyhint="done"/></div>
+<div class="form-group"><label data-i18n="exchange_rate" id="exchangeRateLabel">Taux de conversion</label><input class="input-field" id="tauxConversion" type="number" step="0.001" onchange="changerDevise()" enterkeyhint="done"/></div>
 </div>
 <div class="settings-section">
 <div class="section-title">🔔 <span data-i18n="notifications">Notifications</span></div>
@@ -713,7 +713,10 @@ analysis_menu:"Analyse",charts_menu:"Graphiques",settings_menu:"Paramètres",exp
 export_pdf:"PDF",tutorial:"Aide",backup:"☁️ Sauvegarde",download_backup:"💾 Télécharger",
 restore_backup:"📂 Restaurer",reset_all:"🔄 Réinitialiser tout",settings_title:"⚙️ Paramètres",
 language:"🌍 Langue",currency:"💱 Devise",select_currency:"Choisir la devise",
-exchange_rate:"Taux de conversion (1 EUR = ?)",stock_title:"📦 Stock",transfer_stock:"🔄 Transférer le stock",
+exchange_rate:"Taux de conversion",
+exchange_rate_dynamic:"Taux de conversion (1 {sym} = ? FCFA)",
+exchange_rate_ref:"Taux de conversion (devise de référence)",
+stock_title:"📦 Stock",transfer_stock:"🔄 Transférer le stock",
 open_carton:"📦 Ouvrir 1 carton",open_boite:"📫 Ouvrir 1 boîte",add_stock:"Ajouter du stock",
 add_to_stock:"➕ Ajouter au stock",expenses_title:"📉 Dépenses",restock_product:"📦 Réapprovisionner le stock",
 label:"Libellé",label_placeholder:"Ex: Achat fournitures",amount:"Montant total",amount_placeholder:"0",
@@ -790,8 +793,23 @@ address_placeholder:"Quartier, ville...",
 supplier_product_placeholder:"Ex: Agrafes, papeterie...",
 barcode_placeholder:"Ex: 4009729008195",
 example_50:"Ex: 50",example_10:"Ex: 10",
-email_placeholder:"client@example.com",
+email_placeholder:"client@exemple.fr",
 app_version:"Version",
+hist_order_validated:"🧾 Commande validée",
+hist_product_added:"➕ Produit ajouté",
+hist_product_updated:"✏️ Produit mis à jour",
+hist_product_deleted:"🗑️ Produit supprimé",
+hist_all_products_deleted:"🗑️ Tous les produits supprimés",
+hist_stock_increased:"📦 Stock augmenté",
+hist_stock_increased_expense:"📦 Stock augmenté (dépense)",
+hist_expense_recorded:"📉 Dépense enregistrée",
+hist_carton_opened:"📦 Carton ouvert",
+hist_boite_opened:"📫 Boîte ouverte",
+hist_client_added:"👤 Client ajouté",
+hist_client_deleted:"🗑️ Client supprimé",
+hist_supplier_added:"🏭 Fournisseur ajouté",
+hist_supplier_deleted:"🗑️ Fournisseur supprimé",
+hist_profit_calculated:"📊 Calcul de bénéfice",
 currency_FCFA:"FCFA (Franc CFA)",currency_EUR:"€ Euro",currency_USD:"$ Dollar US",currency_GBP:"£ Livre Sterling",currency_CAD:"$ Dollar Canadien",currency_CHF:"₣ Franc Suisse",currency_RUB:"₽ Rouble Russe",currency_CNY:"¥ Yuan Chinois",currency_SAR:"﷼ Riyal Saoudien",currency_INR:"₹ Roupie Indienne",currency_JPY:"¥ Yen Japonais",
 premium_free_version:"Version Gratuite",premium_activate:"Activer Premium",
 premium_title:"✨ Version Premium",premium_unlock_title:"🚀 Débloquez tout Gestion Pro",
@@ -832,7 +850,7 @@ guide_step7:"7. Support",
 guide_step7_text:"📧 dasprostudio.niger@gmail.com — 📱 +227 94 92 92 10"
 },
 en:{
-home:"Home",sales:"Sales",products_menu:"Products",clients_menu:"Clients",profits:"Profits",more:"More",
+home:"Home",sales:"Sales",products_menu:"Products",clients_menu:"Customers",profits:"Profits",more:"More",
 products:"📦 Products",stock:"📊 Total Stock",value:"💰 Value",detail_by_product:"📋 Product Details",
 sales_title:"💰 Sales",product_search_label:"🔍 Product",product_search_placeholder:"Product name...",
 product_found:"✅ Product found",customer_name:"👤 Customer name",customer_name_placeholder:"Customer name...",
@@ -851,7 +869,11 @@ expenses_menu:"Expenses",history_menu:"History",analysis_menu:"Analysis",charts_
 settings_menu:"Settings",export_csv:"CSV",export_pdf:"PDF",tutorial:"Help",backup:"☁️ Backup",
 download_backup:"💾 Download",restore_backup:"📂 Restore",reset_all:"🔄 Reset All",
 settings_title:"⚙️ Settings",language:"🌍 Language",currency:"💱 Currency",
-select_currency:"Select Currency",exchange_rate:"Exchange Rate (1 EUR = ?)",stock_title:"📦 Stock",
+select_currency:"Select Currency",
+exchange_rate:"Exchange Rate",
+exchange_rate_dynamic:"Exchange Rate (1 {sym} = ? FCFA)",
+exchange_rate_ref:"Exchange Rate (reference currency)",
+stock_title:"📦 Stock",
 transfer_stock:"🔄 Transfer Stock",open_carton:"📦 Open 1 carton",open_boite:"📫 Open 1 box",
 add_stock:"Add stock",add_to_stock:"➕ Add to Stock",expenses_title:"📉 Expenses",
 restock_product:"📦 Restock inventory",label:"Label",label_placeholder:"e.g. Supplies purchase",
@@ -902,30 +924,45 @@ alert_low_stock:"⚠️ Low stock alert",alert_low_stock_desc:"Show a warning",
 show_resume:"📅 Daily summary",show_resume_desc:"Show on home",about:"About",developer:"Developer",
 contact:"Contact",resume_today:"Today's summary",resume_sales:"Sales",resume_expenses:"Expenses",
 resume_profit:"Profit",alert_stock_title:"⚠️ Low stock",alert_stock_desc:"Products to restock",
-clients_title:"👥 Clients",add_client:"➕ Add a client",client_name:"Name",
-client_name_placeholder:"Client name...",client_phone:"📱 Phone",client_email:"📧 Email (optional)",
-client_address:"📍 Address (optional)",save_client:"✅ Save client",clients_list:"📋 Client list",
+clients_title:"👥 Customers",add_client:"➕ Add a customer",client_name:"Name",
+client_name_placeholder:"Customer name...",client_phone:"📱 Phone",client_email:"📧 Email (optional)",
+client_address:"📍 Address (optional)",save_client:"✅ Save customer",clients_list:"📋 Customer list",
 suppliers_menu:"Suppliers",suppliers_title:"🏭 Suppliers",add_supplier:"➕ Add a supplier",
 supplier_name:"Name",supplier_phone:"📱 Phone",supplier_product:"📦 Main product",
 supplier_address:"📍 Address (optional)",save_supplier:"✅ Save supplier",
 suppliers_list:"📋 Supplier list",supplier_exists:"⚠️ Supplier already exists",
-client_exists:"⚠️ Client already exists",enable_notifs:"🔔 Push notifications",
+client_exists:"⚠️ Customer already exists",enable_notifs:"🔔 Push notifications",
 enable_notifs_desc:"Receive alerts",product_image:"📸 Product photo",
-product_image_hint:"Click the image to add",no_clients:"No clients registered",
+product_image_hint:"Click the image to add",no_clients:"No customers registered",
 no_suppliers:"No suppliers registered",no_results:"No results for",history_of:"History of",
-total_purchases:"Total purchases",orders_count:"Orders",call:"Call",delete_client:"Delete this client?",
-delete_supplier:"Delete this supplier?",toast_client_added:"✅ Client added",
-toast_client_deleted:"🗑️ Client deleted",toast_supplier_added:"✅ Supplier added",
+total_purchases:"Total purchases",orders_count:"Orders",call:"Call",delete_client:"Delete this customer?",
+delete_supplier:"Delete this supplier?",toast_client_added:"✅ Customer added",
+toast_client_deleted:"🗑️ Customer deleted",toast_supplier_added:"✅ Supplier added",
 toast_supplier_deleted:"🗑️ Supplier deleted",toast_photo_added:"📸 Photo added",
 search_product_placeholder:"🔍 Search a product...",
-search_client_placeholder:"🔍 Search a client...",
+search_client_placeholder:"🔍 Search a customer...",
 supplier_name_placeholder:"Supplier name",
 address_placeholder:"District, city...",
 supplier_product_placeholder:"e.g. Staples, stationery...",
 barcode_placeholder:"e.g. 4009729008195",
 example_50:"e.g. 50",example_10:"e.g. 10",
-email_placeholder:"client@example.com",
+email_placeholder:"customer@example.com",
 app_version:"Version",
+hist_order_validated:"🧾 Order validated",
+hist_product_added:"➕ Product added",
+hist_product_updated:"✏️ Product updated",
+hist_product_deleted:"🗑️ Product deleted",
+hist_all_products_deleted:"🗑️ All products deleted",
+hist_stock_increased:"📦 Stock increased",
+hist_stock_increased_expense:"📦 Stock increased (expense)",
+hist_expense_recorded:"📉 Expense recorded",
+hist_carton_opened:"📦 Carton opened",
+hist_boite_opened:"📫 Box opened",
+hist_client_added:"👤 Customer added",
+hist_client_deleted:"🗑️ Customer deleted",
+hist_supplier_added:"🏭 Supplier added",
+hist_supplier_deleted:"🗑️ Supplier deleted",
+hist_profit_calculated:"📊 Profit calculation",
 currency_FCFA:"FCFA (CFA Franc)",currency_EUR:"€ Euro",currency_USD:"$ US Dollar",currency_GBP:"£ British Pound",currency_CAD:"$ Canadian Dollar",currency_CHF:"₣ Swiss Franc",currency_RUB:"₽ Russian Ruble",currency_CNY:"¥ Chinese Yuan",currency_SAR:"﷼ Saudi Riyal",currency_INR:"₹ Indian Rupee",currency_JPY:"¥ Japanese Yen",
 premium_free_version:"Free Version",premium_activate:"Activate Premium",
 premium_title:"✨ Premium Version",premium_unlock_title:"🚀 Unlock all Gestion Pro",
@@ -957,8 +994,8 @@ guide_step3:"3. Manage stock",
 guide_step3_text:"More tab → Stock → Select a product → Open a carton or box.",
 guide_step4:"4. Track profits",
 guide_step4_text:"Profits tab → Click Calculate profit.",
-guide_step5:"5. Manage clients",
-guide_step5_text:"Clients tab → Add a client with name and phone.",
+guide_step5:"5. Manage customers",
+guide_step5_text:"Customers tab → Add a customer with name and phone.",
 guide_step6:"6. Premium version",
 guide_step6_text:"Click Activate Premium → Send WhatsApp message → Receive your code → Activate.",
 guide_step7:"7. Support",
@@ -983,7 +1020,11 @@ calculate_profit:"🧮 Calcular",more_title:"📂 Más",stock_menu:"Stock",expen
 history_menu:"Historial",analysis_menu:"Análisis",charts_menu:"Gráficos",settings_menu:"Ajustes",
 export_csv:"CSV",export_pdf:"PDF",tutorial:"Ayuda",backup:"☁️ Copia",download_backup:"💾 Descargar",
 restore_backup:"📂 Restaurar",reset_all:"🔄 Reiniciar",settings_title:"⚙️ Ajustes",language:"🌍 Idioma",
-currency:"💱 Moneda",select_currency:"Seleccionar",exchange_rate:"Tipo de cambio",stock_title:"📦 Stock",
+currency:"💱 Moneda",select_currency:"Seleccionar",
+exchange_rate:"Tipo de cambio",
+exchange_rate_dynamic:"Tipo de cambio (1 {sym} = ? FCFA)",
+exchange_rate_ref:"Tipo de cambio (moneda de referencia)",
+stock_title:"📦 Stock",
 transfer_stock:"🔄 Transferir",open_carton:"📦 Abrir cartón",open_boite:"📫 Abrir caja",
 add_stock:"Añadir stock",add_to_stock:"➕ Añadir",expenses_title:"📉 Gastos",
 restock_product:"📦 Reabastecer",label:"Concepto",label_placeholder:"Ej: Compra",amount:"Monto",
@@ -1051,8 +1092,23 @@ address_placeholder:"Barrio, ciudad...",
 supplier_product_placeholder:"Ej: Grapas, papelería...",
 barcode_placeholder:"Ej: 4009729008195",
 example_50:"Ej: 50",example_10:"Ej: 10",
-email_placeholder:"cliente@ejemplo.com",
+email_placeholder:"cliente@ejemplo.es",
 app_version:"Versión",
+hist_order_validated:"🧾 Pedido validado",
+hist_product_added:"➕ Producto añadido",
+hist_product_updated:"✏️ Producto actualizado",
+hist_product_deleted:"🗑️ Producto eliminado",
+hist_all_products_deleted:"🗑️ Todos los productos eliminados",
+hist_stock_increased:"📦 Stock aumentado",
+hist_stock_increased_expense:"📦 Stock aumentado (gasto)",
+hist_expense_recorded:"📉 Gasto registrado",
+hist_carton_opened:"📦 Cartón abierto",
+hist_boite_opened:"📫 Caja abierta",
+hist_client_added:"👤 Cliente añadido",
+hist_client_deleted:"🗑️ Cliente eliminado",
+hist_supplier_added:"🏭 Proveedor añadido",
+hist_supplier_deleted:"🗑️ Proveedor eliminado",
+hist_profit_calculated:"📊 Cálculo de beneficio",
 currency_FCFA:"FCFA (Franco CFA)",currency_EUR:"€ Euro",currency_USD:"$ Dólar US",currency_GBP:"£ Libra Esterlina",currency_CAD:"$ Dólar Canadiense",currency_CHF:"₣ Franco Suizo",currency_RUB:"₽ Rublo Ruso",currency_CNY:"¥ Yuan Chino",currency_SAR:"﷼ Riyal Saudí",currency_INR:"₹ Rupia India",currency_JPY:"¥ Yen Japonés",
 premium_free_version:"Versión Gratuita",premium_activate:"Activar Premium",
 premium_title:"✨ Versión Premium",premium_unlock_title:"🚀 Desbloquea todo Gestion Pro",
@@ -1089,7 +1145,7 @@ guide_step5_text:"Pestaña Clientes → Añade un cliente con nombre y teléfono
 guide_step6:"6. Versión Premium",
 guide_step6_text:"Haz clic en Activar Premium → Envía el mensaje WhatsApp → Recibe tu código → Activa.",
 guide_step7:"7. Soporte",
-guide_step7_text:"📧 dasprostudio.niger@gmail.com — 📱 +227 94 92 92 10"
+guide_step7_text:"?? dasprostudio.niger@gmail.com — 📱 +227 94 92 92 10"
 },
 de:{
 home:"Startseite",sales:"Verkäufe",products_menu:"Produkte",clients_menu:"Kunden",profits:"Gewinne",
@@ -1112,7 +1168,12 @@ history_menu:"Verlauf",analysis_menu:"Analyse",charts_menu:"Diagramme",settings_
 export_csv:"CSV",export_pdf:"PDF",tutorial:"Hilfe",backup:"☁️ Sicherung",
 download_backup:"💾 Herunterladen",restore_backup:"📂 Wiederherstellen",reset_all:"🔄 Zurücksetzen",
 settings_title:"⚙️ Einstellungen",language:"🌍 Sprache",currency:"💱 Währung",
-select_currency:"Wählen",exchange_rate:"Kurs",stock_title:"📦 Bestand",transfer_stock:"🔄 Übertragen",
+select_currency:"Wählen",
+exchange_rate:"Kurs",
+exchange_rate_dynamic:"Wechselkurs (1 {sym} = ? FCFA)",
+exchange_rate_ref:"Wechselkurs (Referenzwährung)",
+stock_title:"📦 Bestand",
+transfer_stock:"🔄 Übertragen",
 open_carton:"📦 Karton öffnen",open_boite:"📫 Schachtel öffnen",add_stock:"Bestand hinzufügen",
 add_to_stock:"➕ Hinzufügen",expenses_title:"📉 Ausgaben",restock_product:"📦 Auffüllen",
 label:"Bezeichnung",label_placeholder:"z.B. Büromaterial",amount:"Betrag",amount_placeholder:"0",
@@ -1186,6 +1247,21 @@ barcode_placeholder:"z.B. 4009729008195",
 example_50:"z.B. 50",example_10:"z.B. 10",
 email_placeholder:"kunde@beispiel.de",
 app_version:"Version",
+hist_order_validated:"🧾 Bestellung bestätigt",
+hist_product_added:"➕ Produkt hinzugefügt",
+hist_product_updated:"✏️ Produkt aktualisiert",
+hist_product_deleted:"🗑️ Produkt gelöscht",
+hist_all_products_deleted:"🗑️ Alle Produkte gelöscht",
+hist_stock_increased:"📦 Bestand erhöht",
+hist_stock_increased_expense:"📦 Bestand erhöht (Ausgabe)",
+hist_expense_recorded:"📉 Ausgabe erfasst",
+hist_carton_opened:"📦 Karton geöffnet",
+hist_boite_opened:"📫 Schachtel geöffnet",
+hist_client_added:"👤 Kunde hinzugefügt",
+hist_client_deleted:"🗑️ Kunde gelöscht",
+hist_supplier_added:"🏭 Lieferant hinzugefügt",
+hist_supplier_deleted:"🗑️ Lieferant gelöscht",
+hist_profit_calculated:"📊 Gewinnberechnung",
 currency_FCFA:"FCFA (CFA-Franc)",currency_EUR:"€ Euro",currency_USD:"$ US-Dollar",currency_GBP:"£ Pfund Sterling",currency_CAD:"$ Kanadischer Dollar",currency_CHF:"₣ Schweizer Franken",currency_RUB:"₽ Russischer Rubel",currency_CNY:"¥ Chinesischer Yuan",currency_SAR:"﷼ Saudi-Riyal",currency_INR:"₹ Indische Rupie",currency_JPY:"¥ Japanischer Yen",
 premium_free_version:"Kostenlose Version",
 premium_activate:"Premium aktivieren",premium_title:"✨ Premium-Version",
@@ -1246,7 +1322,12 @@ stock_menu:"Stock",expenses_menu:"Spese",history_menu:"Cronologia",analysis_menu
 charts_menu:"Grafici",settings_menu:"Impostazioni",export_csv:"CSV",export_pdf:"PDF",
 tutorial:"Aiuto",backup:"☁️ Backup",download_backup:"💾 Scarica",restore_backup:"📂 Ripristina",
 reset_all:"🔄 Reimposta",settings_title:"⚙️ Impostazioni",language:"🌍 Lingua",currency:"💱 Valuta",
-select_currency:"Scegli",exchange_rate:"Tasso",stock_title:"📦 Stock",transfer_stock:"🔄 Trasferisci",
+select_currency:"Scegli",
+exchange_rate:"Tasso",
+exchange_rate_dynamic:"Tasso di cambio (1 {sym} = ? FCFA)",
+exchange_rate_ref:"Tasso di cambio (valuta di riferimento)",
+stock_title:"📦 Stock",
+transfer_stock:"🔄 Trasferisci",
 open_carton:"📦 Apri cartone",open_boite:"📫 Apri scatola",add_stock:"Aggiungi stock",
 add_to_stock:"➕ Aggiungi",expenses_title:"📉 Spese",restock_product:"📦 Rifornisci",
 label:"Etichetta",label_placeholder:"Es: Acquisto",amount:"Importo",amount_placeholder:"0",
@@ -1316,8 +1397,23 @@ address_placeholder:"Quartiere, città...",
 supplier_product_placeholder:"Es: Punti, cancelleria...",
 barcode_placeholder:"Es: 4009729008195",
 example_50:"Es: 50",example_10:"Es: 10",
-email_placeholder:"cliente@esempio.com",
+email_placeholder:"cliente@esempio.it",
 app_version:"Versione",
+hist_order_validated:"🧾 Ordine confermato",
+hist_product_added:"➕ Prodotto aggiunto",
+hist_product_updated:"✏️ Prodotto aggiornato",
+hist_product_deleted:"🗑️ Prodotto eliminato",
+hist_all_products_deleted:"🗑️ Tutti i prodotti eliminati",
+hist_stock_increased:"📦 Stock aumentato",
+hist_stock_increased_expense:"📦 Stock aumentato (spesa)",
+hist_expense_recorded:"📉 Spesa registrata",
+hist_carton_opened:"📦 Cartone aperto",
+hist_boite_opened:"📫 Scatola aperta",
+hist_client_added:"👤 Cliente aggiunto",
+hist_client_deleted:"🗑️ Cliente eliminato",
+hist_supplier_added:"🏭 Fornitore aggiunto",
+hist_supplier_deleted:"🗑️ Fornitore eliminato",
+hist_profit_calculated:"📊 Calcolo profitto",
 currency_FCFA:"FCFA (Franco CFA)",currency_EUR:"€ Euro",currency_USD:"$ Dollaro USA",currency_GBP:"£ Sterlina Britannica",currency_CAD:"$ Dollaro Canadese",currency_CHF:"₣ Franco Svizzero",currency_RUB:"₽ Rublo Russo",currency_CNY:"¥ Yuan Cinese",currency_SAR:"﷼ Riyal Saudita",currency_INR:"₹ Rupia Indiana",currency_JPY:"¥ Yen Giapponese",
 premium_free_version:"Versione Gratuita",
 premium_activate:"Attiva Premium",premium_title:"✨ Versione Premium",
@@ -1378,7 +1474,11 @@ history_menu:"Histórico",analysis_menu:"Análise",charts_menu:"Gráficos",
 settings_menu:"Configurações",export_csv:"CSV",export_pdf:"PDF",tutorial:"Ajuda",
 backup:"☁️ Backup",download_backup:"💾 Baixar",restore_backup:"📂 Restaurar",
 reset_all:"🔄 Redefinir",settings_title:"⚙️ Configurações",language:"🌍 Idioma",
-currency:"💱 Moeda",select_currency:"Escolher",exchange_rate:"Taxa",stock_title:"📦 Estoque",
+currency:"💱 Moeda",select_currency:"Escolher",
+exchange_rate:"Taxa",
+exchange_rate_dynamic:"Taxa de câmbio (1 {sym} = ? FCFA)",
+exchange_rate_ref:"Taxa de câmbio (moeda de referência)",
+stock_title:"📦 Estoque",
 transfer_stock:"🔄 Transferir",open_carton:"📦 Abrir caixa grande",open_boite:"📫 Abrir caixa",
 add_stock:"Adicionar estoque",add_to_stock:"➕ Adicionar",expenses_title:"📉 Despesas",
 restock_product:"📦 Reabastecer",label:"Rótulo",label_placeholder:"Ex: Compra",amount:"Valor",
@@ -1448,8 +1548,23 @@ address_placeholder:"Bairro, cidade...",
 supplier_product_placeholder:"Ex: Grampos, papelaria...",
 barcode_placeholder:"Ex: 4009729008195",
 example_50:"Ex: 50",example_10:"Ex: 10",
-email_placeholder:"cliente@exemplo.com",
+email_placeholder:"cliente@exemplo.pt",
 app_version:"Versão",
+hist_order_validated:"🧾 Pedido validado",
+hist_product_added:"➕ Produto adicionado",
+hist_product_updated:"✏️ Produto atualizado",
+hist_product_deleted:"🗑️ Produto excluído",
+hist_all_products_deleted:"🗑️ Todos os produtos excluídos",
+hist_stock_increased:"📦 Estoque aumentado",
+hist_stock_increased_expense:"📦 Estoque aumentado (despesa)",
+hist_expense_recorded:"📉 Despesa registrada",
+hist_carton_opened:"📦 Caixa grande aberta",
+hist_boite_opened:"📫 Caixa aberta",
+hist_client_added:"👤 Cliente adicionado",
+hist_client_deleted:"🗑️ Cliente excluído",
+hist_supplier_added:"🏭 Fornecedor adicionado",
+hist_supplier_deleted:"🗑️ Fornecedor excluído",
+hist_profit_calculated:"📊 Cálculo de lucro",
 currency_FCFA:"FCFA (Franco CFA)",currency_EUR:"€ Euro",currency_USD:"$ Dólar Americano",currency_GBP:"£ Libra Esterlina",currency_CAD:"$ Dólar Canadense",currency_CHF:"₣ Franco Suíço",currency_RUB:"₽ Rublo Russo",currency_CNY:"¥ Yuan Chinês",currency_SAR:"﷼ Riyal Saudita",currency_INR:"₹ Rupia Indiana",currency_JPY:"¥ Iene Japonês",
 premium_free_version:"Versão Gratuita",
 premium_activate:"Ativar Premium",premium_title:"✨ Versão Premium",
@@ -1510,7 +1625,10 @@ history_menu:"История",analysis_menu:"Анализ",charts_menu:"Граф
 export_csv:"CSV",export_pdf:"PDF",tutorial:"Помощь",backup:"☁️ Копия",
 download_backup:"💾 Скачать",restore_backup:"📂 Восстановить",reset_all:"🔄 Сбросить",
 settings_title:"⚙️ Настройки",language:"🌍 Язык",currency:"💱 Валюта",select_currency:"Выбрать",
-exchange_rate:"Курс",stock_title:"📦 Запас",transfer_stock:"🔄 Переместить",
+exchange_rate:"Курс",
+exchange_rate_dynamic:"Курс обмена (1 {sym} = ? FCFA)",
+exchange_rate_ref:"Курс обмена (базовая валюта)",
+stock_title:"📦 Запас",transfer_stock:"🔄 Переместить",
 open_carton:"📦 Открыть коробку",open_boite:"📫 Открыть коробочку",add_stock:"Добавить запас",
 add_to_stock:"➕ Добавить",expenses_title:"📉 Расходы",restock_product:"📦 Пополнить",
 label:"Наименование",label_placeholder:"Напр: Покупка",amount:"Сумма",amount_placeholder:"0",
@@ -1585,6 +1703,21 @@ barcode_placeholder:"Напр: 4009729008195",
 example_50:"Напр: 50",example_10:"Напр: 10",
 email_placeholder:"клиент@пример.рф",
 app_version:"Версия",
+hist_order_validated:"🧾 Заказ подтверждён",
+hist_product_added:"➕ Товар добавлен",
+hist_product_updated:"✏️ Товар обновлён",
+hist_product_deleted:"🗑️ Товар удалён",
+hist_all_products_deleted:"🗑️ Все товары удалены",
+hist_stock_increased:"📦 Запас увеличен",
+hist_stock_increased_expense:"📦 Запас увеличен (расход)",
+hist_expense_recorded:"📉 Расход записан",
+hist_carton_opened:"📦 Коробка открыта",
+hist_boite_opened:"📫 Коробочка открыта",
+hist_client_added:"👤 Клиент добавлен",
+hist_client_deleted:"🗑️ Клиент удалён",
+hist_supplier_added:"🏭 Поставщик добавлен",
+hist_supplier_deleted:"🗑️ Поставщик удалён",
+hist_profit_calculated:"📊 Расчёт прибыли",
 currency_FCFA:"FCFA (Франк КФА)",currency_EUR:"€ Евро",currency_USD:"$ Доллар США",currency_GBP:"£ Фунт стерлингов",currency_CAD:"$ Канадский доллар",currency_CHF:"₣ Швейцарский франк",currency_RUB:"₽ Российский рубль",currency_CNY:"¥ Китайский юань",currency_SAR:"﷼ Саудовский риял",currency_INR:"₹ Индийская рупия",currency_JPY:"¥ Японская йена",
 premium_free_version:"Бесплатная версия",
 premium_activate:"Активировать Premium",premium_title:"✨ Premium версия",
@@ -1643,7 +1776,11 @@ calculate_profit:"🧮 计算利润",more_title:"📂 更多",stock_menu:"库存
 history_menu:"历史",analysis_menu:"分析",charts_menu:"图表",settings_menu:"设置",
 export_csv:"CSV",export_pdf:"PDF",tutorial:"帮助",backup:"☁️ 备份",download_backup:"💾 下载",
 restore_backup:"📂 恢复",reset_all:"🔄 重置",settings_title:"⚙️ 设置",language:"🌍 语言",
-currency:"💱 货币",select_currency:"选择",exchange_rate:"汇率",stock_title:"📦 库存",
+currency:"💱 货币",select_currency:"选择",
+exchange_rate:"汇率",
+exchange_rate_dynamic:"汇率 (1 {sym} = ? FCFA)",
+exchange_rate_ref:"汇率（参考货币）",
+stock_title:"📦 库存",
 transfer_stock:"🔄 转移",open_carton:"📦 开箱",open_boite:"📫 开盒",add_stock:"添加库存",
 add_to_stock:"➕ 添加",expenses_title:"📉 支出",restock_product:"📦 补货",label:"标签",
 label_placeholder:"例如：采购",amount:"金额",amount_placeholder:"0",history_title:"📜 历史",
@@ -1705,8 +1842,23 @@ address_placeholder:"区，城市...",
 supplier_product_placeholder:"例如：订书钉，文具...",
 barcode_placeholder:"例如：4009729008195",
 example_50:"例如：50",example_10:"例如：10",
-email_placeholder:"客户@示例.com",
+email_placeholder:"客户@例子.cn",
 app_version:"版本",
+hist_order_validated:"🧾 订单已确认",
+hist_product_added:"➕ 产品已添加",
+hist_product_updated:"✏️ 产品已更新",
+hist_product_deleted:"🗑️ 产品已删除",
+hist_all_products_deleted:"🗑️ 所有产品已删除",
+hist_stock_increased:"📦 库存已增加",
+hist_stock_increased_expense:"📦 库存已增加（支出）",
+hist_expense_recorded:"📉 支出已记录",
+hist_carton_opened:"📦 箱已打开",
+hist_boite_opened:"📫 盒已打开",
+hist_client_added:"👤 客户已添加",
+hist_client_deleted:"🗑️ 客户已删除",
+hist_supplier_added:"🏭 供应商已添加",
+hist_supplier_deleted:"🗑️ 供应商已删除",
+hist_profit_calculated:"📊 利润计算",
 currency_FCFA:"FCFA（非洲法郎）",currency_EUR:"€ 欧元",currency_USD:"$ 美元",currency_GBP:"£ 英镑",currency_CAD:"$ 加元",currency_CHF:"₣ 瑞士法郎",currency_RUB:"₽ 俄罗斯卢布",currency_CNY:"¥ 人民币",currency_SAR:"﷼ 沙特里亚尔",currency_INR:"₹ 印度卢比",currency_JPY:"¥ 日元",
 premium_free_version:"免费版",
 premium_activate:"激活高级版",premium_title:"✨ 高级版",
@@ -1763,7 +1915,11 @@ expenses_menu:"المصروفات",history_menu:"التاريخ",analysis_menu:"
 settings_menu:"الإعدادات",export_csv:"CSV",export_pdf:"PDF",tutorial:"مساعدة",
 backup:"☁️ نسخ احتياطي",download_backup:"💾 تحميل",restore_backup:"📂 استعادة",
 reset_all:"🔄 إعادة تعيين",settings_title:"⚙️ الإعدادات",language:"🌍 اللغة",currency:"💱 العملة",
-select_currency:"اختر",exchange_rate:"سعر الصرف",stock_title:"📦 المخزون",transfer_stock:"🔄 نقل",
+select_currency:"اختر",
+exchange_rate:"سعر الصرف",
+exchange_rate_dynamic:"سعر الصرف (1 {sym} = ? FCFA)",
+exchange_rate_ref:"سعر الصرف (العملة المرجعية)",
+stock_title:"📦 المخزون",transfer_stock:"🔄 نقل",
 open_carton:"📦 فتح كرتون",open_boite:"📫 فتح علبة",add_stock:"إضافة مخزون",
 add_to_stock:"➕ إضافة",expenses_title:"📉 المصروفات",restock_product:"📦 إعادة تعبئة",
 label:"التسمية",label_placeholder:"مثال: شراء",amount:"المبلغ",amount_placeholder:"0",
@@ -1831,6 +1987,21 @@ barcode_placeholder:"مثال: 4009729008195",
 example_50:"مثال: 50",example_10:"مثال: 10",
 email_placeholder:"عميل@مثال.com",
 app_version:"الإصدار",
+hist_order_validated:"🧾 تم تأكيد الطلب",
+hist_product_added:"➕ تم إضافة المنتج",
+hist_product_updated:"✏️ تم تحديث المنتج",
+hist_product_deleted:"🗑️ تم حذف المنتج",
+hist_all_products_deleted:"🗑️ تم حذف كل المنتجات",
+hist_stock_increased:"📦 تم زيادة المخزون",
+hist_stock_increased_expense:"📦 زيادة المخزون (مصروف)",
+hist_expense_recorded:"📉 تم تسجيل المصروف",
+hist_carton_opened:"📦 تم فتح الكرتون",
+hist_boite_opened:"📫 تم فتح العلبة",
+hist_client_added:"👤 تم إضافة العميل",
+hist_client_deleted:"🗑️ تم حذف العميل",
+hist_supplier_added:"🏭 تم إضافة المورد",
+hist_supplier_deleted:"🗑️ تم حذف المورد",
+hist_profit_calculated:"📊 حساب الربح",
 currency_FCFA:"FCFA (فرنك CFA)",currency_EUR:"€ يورو",currency_USD:"$ دولار أمريكي",currency_GBP:"£ جنيه إسترليني",currency_CAD:"$ دولار كندي",currency_CHF:"₣ فرنك سويسري",currency_RUB:"₽ روبل روسي",currency_CNY:"¥ يوان صيني",currency_SAR:"﷼ ريال سعودي",currency_INR:"₹ روبية هندية",currency_JPY:"¥ ين ياباني",
 premium_free_version:"النسخة المجانية",
 premium_activate:"تنشيط النسخة المميزة",premium_title:"✨ النسخة المميزة",
@@ -1889,7 +2060,10 @@ history_menu:"इतिहास",analysis_menu:"विश्लेषण",chart
 export_csv:"CSV",export_pdf:"PDF",tutorial:"सहायता",backup:"☁️ बैकअप",
 download_backup:"💾 डाउनलोड",restore_backup:"📂 पुनर्स्थापित",reset_all:"🔄 रीसेट",
 settings_title:"⚙️ सेटिंग्स",language:"🌍 भाषा",currency:"💱 मुद्रा",select_currency:"चुनें",
-exchange_rate:"दर",stock_title:"📦 स्टॉक",transfer_stock:"🔄 स्थानांतरित",
+exchange_rate:"दर",
+exchange_rate_dynamic:"विनिमय दर (1 {sym} = ? FCFA)",
+exchange_rate_ref:"विनिमय दर (संदर्भ मुद्रा)",
+stock_title:"📦 स्टॉक",transfer_stock:"🔄 स्थानांतरित",
 open_carton:"📦 कार्टन खोलें",open_boite:"📫 डिब्बा खोलें",add_stock:"स्टॉक जोड़ें",
 add_to_stock:"➕ जोड़ें",expenses_title:"📉 खर्च",restock_product:"📦 पुनः भरें",label:"लेबल",
 label_placeholder:"जैसे: खरीद",amount:"राशि",amount_placeholder:"0",history_title:"📜 इतिहास",
@@ -1956,8 +2130,23 @@ address_placeholder:"क्षेत्र, शहर...",
 supplier_product_placeholder:"जैसे: स्टेपल्स, स्टेशनरी...",
 barcode_placeholder:"जैसे: 4009729008195",
 example_50:"जैसे: 50",example_10:"जैसे: 10",
-email_placeholder:"ग्राहक@उदाहरण.com",
+email_placeholder:"ग्राहक@उदाहरण.in",
 app_version:"संस्करण",
+hist_order_validated:"🧾 ऑर्डर की पुष्टि",
+hist_product_added:"➕ उत्पाद जोड़ा",
+hist_product_updated:"✏️ उत्पाद अद्यतन",
+hist_product_deleted:"🗑️ उत्पाद हटाया",
+hist_all_products_deleted:"🗑️ सभी उत्पाद हटाए",
+hist_stock_increased:"📦 स्टॉक बढ़ा",
+hist_stock_increased_expense:"📦 स्टॉक बढ़ा (खर्च)",
+hist_expense_recorded:"📉 खर्च दर्ज",
+hist_carton_opened:"📦 कार्टन खोला",
+hist_boite_opened:"📫 डिब्बा खोला",
+hist_client_added:"👤 ग्राहक जोड़ा",
+hist_client_deleted:"🗑️ ग्राहक हटाया",
+hist_supplier_added:"🏭 आपूर्तिकर्ता जोड़ा",
+hist_supplier_deleted:"🗑️ आपूर्तिकर्ता हटाया",
+hist_profit_calculated:"📊 लाभ गणना",
 currency_FCFA:"FCFA (सीएफए फ्रैंक)",currency_EUR:"€ यूरो",currency_USD:"$ अमेरिकी डॉलर",currency_GBP:"£ ब्रिटिश पाउंड",currency_CAD:"$ कनाडाई डॉलर",currency_CHF:"₣ स्विस फ्रैंक",currency_RUB:"₽ रूसी रूबल",currency_CNY:"¥ चीनी युआन",currency_SAR:"﷼ सऊदी रियाल",currency_INR:"₹ भारतीय रुपया",currency_JPY:"¥ जापानी येन",
 premium_free_version:"निःशुल्क संस्करण",premium_activate:"प्रीमियम सक्रिय करें",
 premium_title:"✨ प्रीमियम संस्करण",premium_unlock_title:"🚀 सभी Gestion Pro अनलॉक करें",
@@ -2018,7 +2207,10 @@ history_menu:"履歴",analysis_menu:"分析",charts_menu:"グラフ",settings_me
 export_csv:"CSV",export_pdf:"PDF",tutorial:"ヘルプ",backup:"☁️ バックアップ",
 download_backup:"💾 ダウンロード",restore_backup:"📂 復元",reset_all:"🔄 リセット",
 settings_title:"⚙️ 設定",language:"🌍 言語",currency:"💱 通貨",select_currency:"選択",
-exchange_rate:"レート",stock_title:"📦 在庫",transfer_stock:"🔄 移動",open_carton:"📦 カートン開封",
+exchange_rate:"レート",
+exchange_rate_dynamic:"為替レート (1 {sym} = ? FCFA)",
+exchange_rate_ref:"為替レート（基準通貨）",
+stock_title:"📦 在庫",transfer_stock:"🔄 移動",open_carton:"📦 カートン開封",
 open_boite:"📫 箱開封",add_stock:"在庫追加",add_to_stock:"➕ 追加",expenses_title:"📉 支出",
 restock_product:"📦 補充",label:"ラベル",label_placeholder:"例: 購入",amount:"金額",
 amount_placeholder:"0",history_title:"📜 履歴",all_actions:"すべて",clear_all:"すべてクリア",
@@ -2082,8 +2274,23 @@ address_placeholder:"地区、都市...",
 supplier_product_placeholder:"例: ステープル、文房具...",
 barcode_placeholder:"例: 4009729008195",
 example_50:"例: 50",example_10:"例: 10",
-email_placeholder:"顧客@example.com",
+email_placeholder:"顧客@例え.jp",
 app_version:"バージョン",
+hist_order_validated:"🧾 注文確定",
+hist_product_added:"➕ 商品追加",
+hist_product_updated:"✏️ 商品更新",
+hist_product_deleted:"🗑️ 商品削除",
+hist_all_products_deleted:"🗑️ すべての商品を削除",
+hist_stock_increased:"📦 在庫増加",
+hist_stock_increased_expense:"📦 在庫増加（支出）",
+hist_expense_recorded:"📉 支出記録",
+hist_carton_opened:"📦 カートン開封",
+hist_boite_opened:"📫 箱開封",
+hist_client_added:"👤 顧客追加",
+hist_client_deleted:"🗑️ 顧客削除",
+hist_supplier_added:"🏭 サプライヤー追加",
+hist_supplier_deleted:"🗑️ サプライヤー削除",
+hist_profit_calculated:"📊 利益計算",
 currency_FCFA:"FCFA（CFAフラン）",currency_EUR:"€ ユーロ",currency_USD:"$ 米ドル",currency_GBP:"£ 英ポンド",currency_CAD:"$ カナダドル",currency_CHF:"₣ スイスフラン",currency_RUB:"₽ ロシアルーブル",currency_CNY:"¥ 中国人民元",currency_SAR:"﷼ サウジリヤル",currency_INR:"₹ インドルピー",currency_JPY:"¥ 日本円",
 premium_free_version:"無料版",premium_activate:"プレミアムを有効化",
 premium_title:"✨ プレミアム版",premium_unlock_title:"🚀 Gestion Pro をすべて解放",
@@ -2125,33 +2332,36 @@ guide_step7_text:"📧 dasprostudio.niger@gmail.com — 📱 +227 94 92 92 10"
 }
 };
 
-
 let langueActuelle='fr',deviseActuelle='FCFA',tauxConversion=1;
 const deviseSymbols={'FCFA':'FCFA','EUR':'€','USD':'$','GBP':'£','CAD':'CA$','CHF':'₣','RUB':'₽','CNY':'¥','SAR':'﷼','INR':'₹','JPY':'¥'};
 const langueDeviseParDefaut={'fr':'FCFA','en':'USD','es':'EUR','de':'EUR','it':'EUR','pt':'EUR','ru':'RUB','zh':'CNY','ar':'SAR','hi':'INR','ja':'JPY'};
-// ✅ CORRECTION : taux exprimés en FCFA pour 1 unité de chaque devise (base = FCFA)
-const deviseTauxParDefaut={
-  'FCFA':1,
-  'EUR':655.957,
-  'USD':600,
-  'GBP':760,
-  'CAD':440,
-  'CHF':680,
-  'RUB':6.5,
-  'CNY':83,
-  'SAR':160,
-  'INR':7.2,
-  'JPY':3.9
-};
+const deviseTauxParDefaut={'FCFA':1,'EUR':655.957,'USD':600,'GBP':760,'CAD':440,'CHF':680,'RUB':6.5,'CNY':83,'SAR':160,'INR':7.2,'JPY':3.9};
+const localesChart={'fr':'fr-FR','en':'en-US','es':'es-ES','de':'de-DE','it':'it-IT','pt':'pt-PT','ru':'ru-RU','zh':'zh-CN','ar':'ar-SA','hi':'hi-IN','ja':'ja-JP'};
 let niveauVente='piece',produitVenteSelectionne=null,produitStockSelectionne=null,panier=[],commandeFiltreType='all',commandeSelectionneeIndex=-1,commandeSelectionneeRef=null;
 let periodeGraphique='all';
 let niveauDepense='carton',produitDepenseSelectionne=null;
 let photoProduitTemp=null;
 
-// ✅ Formate une date selon la langue active
+const HIST_MAP_FR={
+  '🧾 Commande validée':'hist_order_validated',
+  '➕ Produit ajouté':'hist_product_added',
+  '✏️ Produit mis à jour':'hist_product_updated',
+  '🗑️ Produit supprimé':'hist_product_deleted',
+  '🗑️ Tous les produits supprimés':'hist_all_products_deleted',
+  '📦 Carton ouvert':'hist_carton_opened',
+  '📫 Boîte ouverte':'hist_boite_opened',
+  '📦 Stock augmenté':'hist_stock_increased',
+  '📦 Stock augmenté (dépense)':'hist_stock_increased_expense',
+  '📉 Dépense enregistrée':'hist_expense_recorded',
+  '👤 Client ajouté':'hist_client_added',
+  '🗑️ Client supprimé':'hist_client_deleted',
+  '🏭 Fournisseur ajouté':'hist_supplier_added',
+  '🗑️ Fournisseur supprimé':'hist_supplier_deleted',
+  '📊 Calcul de bénéfice':'hist_profit_calculated'
+};
+
 function formatDateLocale(ts){
-  const locales={'fr':'fr-FR','en':'en-US','es':'es-ES','de':'de-DE','it':'it-IT','pt':'pt-PT','ru':'ru-RU','zh':'zh-CN','ar':'ar-SA','hi':'hi-IN','ja':'ja-JP'};
-  const locale=locales[langueActuelle]||'fr-FR';
+  const locale=localesChart[langueActuelle]||'fr-FR';
   try{return new Date(ts).toLocaleDateString(locale,{weekday:'long',day:'numeric',month:'long',year:'numeric'});}
   catch(e){return new Date(ts).toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});}
 }
@@ -2162,17 +2372,12 @@ function showToastTraduit(key,params){showToast(translate(key,params));}
 function showAlert(key){alert(translate(key));}
 function showConfirm(key,cb){if(confirm(translate(key)))cb();}
 
-// ✅ CORRECTION : conversion unique à l'affichage
 function formatMontantAvecDevise(m){
-  // m est TOUJOURS en FCFA (valeur brute interne)
   const montantFCFA=Number(m)||0;
-  if(deviseActuelle==='FCFA'||!tauxConversion||tauxConversion<=0){
-    return formatNombre(montantFCFA)+' FCFA';
-  }
+  if(deviseActuelle==='FCFA'||!tauxConversion||tauxConversion<=0){return formatNombre(montantFCFA)+' FCFA';}
   const converti=montantFCFA/tauxConversion;
   return formatNombre(Math.round(converti*100)/100)+' '+(deviseSymbols[deviseActuelle]||deviseActuelle);
 }
-
 function formatMontant(input){let v=input.value.replace(/[^0-9]/g,'');if(v===''){input.value='';return;}input.value=parseInt(v).toLocaleString('fr-FR').replace(/\s/g,'.');}
 function getValeurNumerique(input){if(!input||!input.value)return 0;return parseFloat(input.value.replace(/\./g,''))||0;}
 function formatNombre(n){if(n===undefined||n===null||isNaN(n))return '0';const arrondi=Math.round(n*100)/100;if(Number.isInteger(arrondi))return arrondi.toLocaleString('fr-FR').replace(/\s/g,'.');return arrondi.toLocaleString('fr-FR',{minimumFractionDigits:0,maximumFractionDigits:2}).replace(/\s/g,'.');}
@@ -2189,43 +2394,80 @@ function getClients(){try{return JSON.parse(localStorage.getItem('gestionPro_cli
 function setClients(c){localStorage.setItem('gestionPro_clients',JSON.stringify(c));}
 function getFournisseurs(){try{return JSON.parse(localStorage.getItem('gestionPro_fournisseurs'))||[];}catch(e){return[];}}
 function setFournisseurs(f){localStorage.setItem('gestionPro_fournisseurs',JSON.stringify(f));}
-function ajouterHistorique(action,detail){const h=getHistorique();const now=new Date();const dateStr=now.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});const heureStr=now.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});h.push({id:Date.now(),action,detail,date:dateStr,heure:heureStr,timestamp:now.getTime()});setHistorique(h);}
+
+function ajouterHistorique(actionKey,detail,params){
+  const h=getHistorique();const now=new Date();
+  const dateStr=now.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  const heureStr=now.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  h.push({id:Date.now(),actionKey,action:actionKey,detail,params:params||null,date:dateStr,heure:heureStr,timestamp:now.getTime()});
+  setHistorique(h);
+}
+
+function traduireHistorique(h){
+  if(h.actionKey&&translations[langueActuelle]&&translations[langueActuelle][h.actionKey])return translate(h.actionKey);
+  if(h.actionKey)return translate(h.actionKey);
+  if(h.action&&HIST_MAP_FR[h.action])return translate(HIST_MAP_FR[h.action]);
+  return h.action||'';
+}
+
+function estCommande(h){return h.actionKey==='hist_order_validated'||h.action==='🧾 Commande validée';}
+function estDepense(h){return h.actionKey==='hist_expense_recorded'||h.action==='📉 Dépense enregistrée';}
+
+// ✅ Détail traduit avec conversion devise
+function getDetailHistorique(h){
+  if(h.params&&h.actionKey==='hist_order_validated'){
+    return translate('client')+': '+h.params.client+' | '+translate('order_number')+': '+h.params.num+' | '+translate('total')+': '+formatMontantAvecDevise(h.params.total);
+  }
+  let d=h.detail||'';
+  if(h.actionKey==='hist_order_validated'||h.action==='🧾 Commande validée'){
+    const mClient=d.match(/Client\s*:\s*([^|]+)/);
+    const mNum=d.match(/N°\s*:\s*([^|]+)/);
+    const mTotal=d.match(/Total\s*:\s*([\d.]+)/);
+    if(mClient||mNum||mTotal){
+      const cli=mClient?mClient[1].trim():'';
+      const num=mNum?mNum[1].trim():'';
+      const tot=mTotal?parseFloat(mTotal[1].replace(/\./g,''))||0:0;
+      return translate('client')+': '+cli+' | '+translate('order_number')+': '+num+' | '+translate('total')+': '+formatMontantAvecDevise(tot);
+    }
+  }
+  return d;
+}
 
 function openScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));const target=document.getElementById(id);if(target)target.classList.add('active');document.querySelectorAll('.bottom-nav button').forEach(b=>b.classList.remove('active'));const btn=document.querySelector('.bottom-nav button[data-screen="'+id+'"]');if(btn)btn.classList.add('active');if(id==='screenAccueil'){mettreAJourStats();afficherStatsDetail();afficherResumeJour();afficherAlerteStock();}if(id==='screenProduits'){afficherProduits();reinitialiserPhotoProduit();}if(id==='screenClients')afficherClients();if(id==='screenFournisseurs')afficherFournisseurs();if(id==='screenHistorique')afficherHistorique();if(id==='screenBenefices'){document.getElementById('resultatBenefice').style.display='none';mettreAJourTotauxBenefice();afficherDepensesDetail();}if(id==='screenFacturation')afficherCommandes();if(id==='screenVentes'){['venteProduit','clientNom','venteQte','ventePrix'].forEach(i=>document.getElementById(i).value='');document.getElementById('venteInfoAuto').style.display='none';document.getElementById('suggestionsContainerVente').classList.remove('show');const sc=document.getElementById('suggestionsClientVente');if(sc)sc.classList.remove('show');produitVenteSelectionne=null;niveauVente='piece';document.querySelectorAll('#screenVentes [data-level]').forEach(b=>b.classList.remove('active'));document.querySelector('#screenVentes [data-level="piece"]').classList.add('active');document.getElementById('stockDisponibleValeur').value='0';afficherPanier();traduireInterface(langueActuelle);}if(id==='screenStock'){['stockProduit','ajoutCarton','ajoutBoite','ajoutPiece'].forEach(i=>document.getElementById(i).value='');document.getElementById('stockInfoContainer').style.display='none';document.getElementById('suggestionsContainerStock').classList.remove('show');produitStockSelectionne=null;}if(id==='screenDepenses'){['depenseProduit','depenseLibelle','depenseMontant','depensePrixUnitaire'].forEach(i=>{const el=document.getElementById(i);el.value='';delete el.dataset.rawFCFA;});document.getElementById('depenseQte').value='1';document.getElementById('depenseStockPanel').style.display='none';document.getElementById('suggestionsContainerDepense').classList.remove('show');produitDepenseSelectionne=null;niveauDepense='carton';}if(id==='screenAnalyse'){const b=document.querySelector('#screenAnalyse .btn.active');if(b)analyserPeriode(b.dataset.periode);else analyserPeriode('today');}if(id==='screenGraphiques')afficherGraphiques();if(id==='screenSettings'){const radio=document.querySelector('input[name="lang"][value="'+langueActuelle+'"]');if(radio)radio.checked=true;document.getElementById('deviseSelect').value=deviseActuelle;document.getElementById('tauxConversion').value=tauxConversion;mettreAJourLabelTaux();}window.scrollTo({top:0,behavior:'smooth'});}
 
 function chargerPhotoProduit(){const input=document.getElementById('productImageInput');const file=input.files[0];if(!file)return;if(file.size>10*1024*1024){showToast('⚠️ Image trop lourde (max 10 Mo)');input.value='';return;}const reader=new FileReader();reader.onload=function(e){const img=new Image();img.onload=function(){const canvas=document.createElement('canvas');let w=img.width,h=img.height;const maxDim=800;if(w>maxDim||h>maxDim){if(w>h){h=(h/w)*maxDim;w=maxDim;}else{w=(w/h)*maxDim;h=maxDim;}}canvas.width=w;canvas.height=h;const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,w,h);photoProduitTemp=canvas.toDataURL('image/jpeg',0.7);document.getElementById('productImagePreview').src=photoProduitTemp;showToastTraduit('toast_photo_added');};img.src=e.target.result;};reader.readAsDataURL(file);}
 function reinitialiserPhotoProduit(){photoProduitTemp=null;const p=document.getElementById('productImagePreview');if(p)p.src='launchericon-192x192.png';const i=document.getElementById('productImageInput');if(i)i.value='';}
 
-function verifierProduitExistant(){const nom=document.getElementById('nomProduit').value.trim();const cb=document.getElementById('codeBarresProduit').value.trim();const info=document.getElementById('infoAuto');if(!nom&&!cb){info.style.display='none';return;}const produits=getProduits();let trouve=null;if(cb)trouve=produits.find(p=>p.codeBarres===cb);if(!trouve&&nom)trouve=produits.find(p=>p.nom.toLowerCase()===nom.toLowerCase());if(trouve){document.getElementById('nomProduit').value=trouve.nom;document.getElementById('codeBarresProduit').value=trouve.codeBarres||'';document.getElementById('contenuCarton').value=trouve.contenuCarton||'';document.getElementById('contenuBoite').value=trouve.contenuBoite||'';document.getElementById('prixAchatCarton').value=formatNombre(trouve.prixAchatCarton||0);document.getElementById('prixVenteCarton').value=formatNombre(trouve.prixVenteCarton||0);document.getElementById('prixAchatBoite').value=formatNombre(trouve.prixAchatBoite||0);document.getElementById('prixVenteBoite').value=formatNombre(trouve.prixVenteBoite||0);document.getElementById('prixAchatPiece').value=formatNombre(trouve.prixAchatPiece||0);document.getElementById('prixVentePiece').value=formatNombre(trouve.prixVentePiece||0);document.getElementById('stockCarton').value=trouve.stockCarton||0;document.getElementById('stockBoite').value=trouve.stockBoite||0;document.getElementById('stockPiece').value=trouve.stockPiece||0;if(trouve.photo){photoProduitTemp=trouve.photo;document.getElementById('productImagePreview').src=trouve.photo;}info.style.display='block';info.textContent='✅ Produit "'+trouve.nom+'" trouvé';showToastTraduit('toast_existing_product');}else info.style.display='none';}
+function verifierProduitExistant(){const nom=document.getElementById('nomProduit').value.trim();const cb=document.getElementById('codeBarresProduit').value.trim();const info=document.getElementById('infoAuto');if(!nom&&!cb){info.style.display='none';return;}const produits=getProduits();let trouve=null;if(cb)trouve=produits.find(p=>p.codeBarres===cb);if(!trouve&&nom)trouve=produits.find(p=>p.nom.toLowerCase()===nom.toLowerCase());if(trouve){document.getElementById('nomProduit').value=trouve.nom;document.getElementById('codeBarresProduit').value=trouve.codeBarres||'';document.getElementById('contenuCarton').value=trouve.contenuCarton||'';document.getElementById('contenuBoite').value=trouve.contenuBoite||'';document.getElementById('prixAchatCarton').value=formatNombre(trouve.prixAchatCarton||0);document.getElementById('prixVenteCarton').value=formatNombre(trouve.prixVenteCarton||0);document.getElementById('prixAchatBoite').value=formatNombre(trouve.prixAchatBoite||0);document.getElementById('prixVenteBoite').value=formatNombre(trouve.prixVenteBoite||0);document.getElementById('prixAchatPiece').value=formatNombre(trouve.prixAchatPiece||0);document.getElementById('prixVentePiece').value=formatNombre(trouve.prixVentePiece||0);document.getElementById('stockCarton').value=trouve.stockCarton||0;document.getElementById('stockBoite').value=trouve.stockBoite||0;document.getElementById('stockPiece').value=trouve.stockPiece||0;if(trouve.photo){photoProduitTemp=trouve.photo;document.getElementById('productImagePreview').src=trouve.photo;}info.style.display='block';info.textContent='✅ '+trouve.nom;showToastTraduit('toast_existing_product');}else info.style.display='none';}
 
-function enregistrerProduit(){const nom=document.getElementById('nomProduit').value.trim();const cb=document.getElementById('codeBarresProduit').value.trim();const contenuCarton=parseInt(document.getElementById('contenuCarton').value)||0;const contenuBoite=parseInt(document.getElementById('contenuBoite').value)||0;const paCarton=getValeurNumerique(document.getElementById('prixAchatCarton'));const pvCarton=getValeurNumerique(document.getElementById('prixVenteCarton'));const paBoite=getValeurNumerique(document.getElementById('prixAchatBoite'));const pvBoite=getValeurNumerique(document.getElementById('prixVenteBoite'));const paPiece=getValeurNumerique(document.getElementById('prixAchatPiece'));const pvPiece=getValeurNumerique(document.getElementById('prixVentePiece'));const sCarton=parseInt(document.getElementById('stockCarton').value)||0;const sBoite=parseInt(document.getElementById('stockBoite').value)||0;const sPiece=parseInt(document.getElementById('stockPiece').value)||0;if(!nom){showAlert('fill_all_fields');return;}let produits=getProduits();let index=-1;if(cb)index=produits.findIndex(p=>p.codeBarres===cb);if(index===-1)index=produits.findIndex(p=>p.nom.toLowerCase()===nom.toLowerCase());const produit={id:Date.now(),nom,codeBarres:cb,contenuCarton,contenuBoite,prixAchatCarton:paCarton,prixVenteCarton:pvCarton,prixAchatBoite:paBoite,prixVenteBoite:pvBoite,prixAchatPiece:paPiece,prixVentePiece:pvPiece,stockCarton:sCarton,stockBoite:sBoite,stockPiece:sPiece,photo:photoProduitTemp||null};if(index!==-1){produit.id=produits[index].id;produits[index]=produit;setProduits(produits);ajouterHistorique('✏️ Produit mis à jour',nom);showToastTraduit('toast_product_updated');}else{produits.push(produit);setProduits(produits);ajouterHistorique('➕ Produit ajouté',nom);showToastTraduit('toast_product_added');}['nomProduit','codeBarresProduit','contenuCarton','contenuBoite','prixAchatCarton','prixVenteCarton','prixAchatBoite','prixVenteBoite','prixAchatPiece','prixVentePiece','stockCarton','stockBoite','stockPiece'].forEach(i=>document.getElementById(i).value='');document.getElementById('infoAuto').style.display='none';reinitialiserPhotoProduit();document.activeElement.blur();afficherProduits();mettreAJourStats();afficherStatsDetail();afficherAlerteStock();}
+function enregistrerProduit(){const nom=document.getElementById('nomProduit').value.trim();const cb=document.getElementById('codeBarresProduit').value.trim();const contenuCarton=parseInt(document.getElementById('contenuCarton').value)||0;const contenuBoite=parseInt(document.getElementById('contenuBoite').value)||0;const paCarton=getValeurNumerique(document.getElementById('prixAchatCarton'));const pvCarton=getValeurNumerique(document.getElementById('prixVenteCarton'));const paBoite=getValeurNumerique(document.getElementById('prixAchatBoite'));const pvBoite=getValeurNumerique(document.getElementById('prixVenteBoite'));const paPiece=getValeurNumerique(document.getElementById('prixAchatPiece'));const pvPiece=getValeurNumerique(document.getElementById('prixVentePiece'));const sCarton=parseInt(document.getElementById('stockCarton').value)||0;const sBoite=parseInt(document.getElementById('stockBoite').value)||0;const sPiece=parseInt(document.getElementById('stockPiece').value)||0;if(!nom){showAlert('fill_all_fields');return;}let produits=getProduits();let index=-1;if(cb)index=produits.findIndex(p=>p.codeBarres===cb);if(index===-1)index=produits.findIndex(p=>p.nom.toLowerCase()===nom.toLowerCase());const produit={id:Date.now(),nom,codeBarres:cb,contenuCarton,contenuBoite,prixAchatCarton:paCarton,prixVenteCarton:pvCarton,prixAchatBoite:paBoite,prixVenteBoite:pvBoite,prixAchatPiece:paPiece,prixVentePiece:pvPiece,stockCarton:sCarton,stockBoite:sBoite,stockPiece:sPiece,photo:photoProduitTemp||null};if(index!==-1){produit.id=produits[index].id;produits[index]=produit;setProduits(produits);ajouterHistorique('hist_product_updated',nom);showToastTraduit('toast_product_updated');}else{produits.push(produit);setProduits(produits);ajouterHistorique('hist_product_added',nom);showToastTraduit('toast_product_added');}['nomProduit','codeBarresProduit','contenuCarton','contenuBoite','prixAchatCarton','prixVenteCarton','prixAchatBoite','prixVenteBoite','prixAchatPiece','prixVentePiece','stockCarton','stockBoite','stockPiece'].forEach(i=>document.getElementById(i).value='');document.getElementById('infoAuto').style.display='none';reinitialiserPhotoProduit();document.activeElement.blur();afficherProduits();mettreAJourStats();afficherStatsDetail();afficherAlerteStock();}
 
 function afficherProduits(){const container=document.getElementById('productListContainer');if(!container)return;const produits=getProduits();const recherche=(document.getElementById('rechercheProduit')?.value||'').toLowerCase().trim();let filtres=produits;if(recherche)filtres=produits.filter(p=>p.nom.toLowerCase().includes(recherche)||(p.codeBarres&&p.codeBarres.includes(recherche)));if(produits.length===0){container.innerHTML='<div class="empty-state">'+translate('no_products')+'</div>';return;}if(filtres.length===0){container.innerHTML='<div class="empty-state">'+translate('no_results')+' "'+recherche+'"</div>';return;}let html='';filtres.forEach(p=>{const codeInfo=p.codeBarres?'<span class="sub">🔖 '+p.codeBarres+'</span>':'';const badges='<div class="stock-badges"><span class="stock-badge carton">📦 '+formatNombre(p.stockCarton||0)+'</span><span class="stock-badge boite">📫 '+formatNombre(p.stockBoite||0)+'</span><span class="stock-badge piece">🔹 '+formatNombre(p.stockPiece||0)+'</span></div>';const img=p.photo?'<img class="product-img" src="'+p.photo+'" alt=""/>':'';html+='<div class="list-item"><div style="display:flex;gap:10px;align-items:flex-start;flex:1;min-width:150px">'+img+'<div class="left"><span class="name">'+p.nom+'</span>'+codeInfo+'<span class="sub">📦 '+formatMontantAvecDevise(p.prixVenteCarton||0)+' · 📫 '+formatMontantAvecDevise(p.prixVenteBoite||0)+' · 🔹 '+formatMontantAvecDevise(p.prixVentePiece||0)+'</span>'+badges+'</div></div><div class="right"><div style="display:flex;gap:4px"><button class="btn btn-sm btn-outline" onclick="afficherQRProduit('+p.id+')">📱</button><button class="btn btn-sm btn-danger" onclick="supprimerProduit('+p.id+')">🗑️</button></div></div></div>';});container.innerHTML=html;}
 
-function supprimerProduit(id){showConfirm('confirm_delete_product',function(){let produits=getProduits();const produit=produits.find(p=>p.id===id);if(produit)ajouterHistorique('🗑️ Produit supprimé',produit.nom);produits=produits.filter(p=>p.id!==id);setProduits(produits);afficherProduits();mettreAJourStats();afficherStatsDetail();afficherAlerteStock();showToastTraduit('toast_product_deleted');});}
-function supprimerTousProduits(){showConfirm('confirm_delete_all_products',function(){setProduits([]);afficherProduits();mettreAJourStats();afficherStatsDetail();afficherAlerteStock();ajouterHistorique('🗑️ Tous les produits supprimés','');showToastTraduit('toast_all_products_deleted');});}
+function supprimerProduit(id){showConfirm('confirm_delete_product',function(){let produits=getProduits();const produit=produits.find(p=>p.id===id);if(produit)ajouterHistorique('hist_product_deleted',produit.nom);produits=produits.filter(p=>p.id!==id);setProduits(produits);afficherProduits();mettreAJourStats();afficherStatsDetail();afficherAlerteStock();showToastTraduit('toast_product_deleted');});}
+function supprimerTousProduits(){showConfirm('confirm_delete_all_products',function(){setProduits([]);afficherProduits();mettreAJourStats();afficherStatsDetail();afficherAlerteStock();ajouterHistorique('hist_all_products_deleted','');showToastTraduit('toast_all_products_deleted');});}
 function mettreAJourStats(){const produits=getProduits();document.getElementById('totalProduits').textContent=produits.length;let stock=0,val=0;produits.forEach(p=>{const sc=p.stockCarton||0,sb=p.stockBoite||0,sp=p.stockPiece||0;stock+=sc+sb+sp;val+=sc*(p.prixVenteCarton||0)+sb*(p.prixVenteBoite||0)+sp*(p.prixVentePiece||0);});document.getElementById('totalStock').textContent=formatNombre(stock);document.getElementById('totalValeur').textContent=formatMontantAvecDevise(val);}
 function afficherStatsDetail(){const container=document.getElementById('statsDetailContainer');if(!container)return;const produits=getProduits();if(produits.length===0){container.innerHTML='<div class="empty-state">'+translate('no_products')+'</div>';return;}let html='';produits.forEach(p=>{const sc=p.stockCarton||0,sb=p.stockBoite||0,sp=p.stockPiece||0;const total=sc*(p.prixVenteCarton||0)+sb*(p.prixVenteBoite||0)+sp*(p.prixVentePiece||0);html+='<div style="background:var(--card);border-radius:12px;padding:12px 14px;border:1px solid var(--border);margin-bottom:8px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px"><span style="font-weight:600;color:var(--text)">'+p.nom+'</span><span style="font-weight:700;color:#2563eb">'+formatMontantAvecDevise(total)+'</span></div><div class="stock-badges"><span class="stock-badge carton">📦 '+sc+'</span><span class="stock-badge boite">📫 '+sb+'</span><span class="stock-badge piece">🔹 '+sp+'</span></div></div>';});container.innerHTML=html;}
 
 // ============ CLIENTS ============
-function enregistrerClient(){const nom=document.getElementById('clientNomInput').value.trim();const tel=document.getElementById('clientTelInput').value.trim();const email=document.getElementById('clientEmailInput').value.trim();const adresse=document.getElementById('clientAdresseInput').value.trim();if(!nom){showAlert('fill_all_fields');return;}let clients=getClients();const index=clients.findIndex(c=>c.nom.toLowerCase()===nom.toLowerCase()&&(c.tel||'')===tel);if(index!==-1){showToastTraduit('client_exists');return;}const client={id:Date.now(),nom,tel,email,adresse,dateCreation:new Date().toISOString(),totalAchats:0,nbCommandes:0};clients.push(client);setClients(clients);ajouterHistorique('👤 Client ajouté',nom+(tel?' | '+tel:''));showToastTraduit('toast_client_added');['clientNomInput','clientTelInput','clientEmailInput','clientAdresseInput'].forEach(i=>document.getElementById(i).value='');document.activeElement.blur();afficherClients();}
+function enregistrerClient(){const nom=document.getElementById('clientNomInput').value.trim();const tel=document.getElementById('clientTelInput').value.trim();const email=document.getElementById('clientEmailInput').value.trim();const adresse=document.getElementById('clientAdresseInput').value.trim();if(!nom){showAlert('fill_all_fields');return;}let clients=getClients();const index=clients.findIndex(c=>c.nom.toLowerCase()===nom.toLowerCase()&&(c.tel||'')===tel);if(index!==-1){showToastTraduit('client_exists');return;}const client={id:Date.now(),nom,tel,email,adresse,dateCreation:new Date().toISOString(),totalAchats:0,nbCommandes:0};clients.push(client);setClients(clients);ajouterHistorique('hist_client_added',nom+(tel?' | '+tel:''));showToastTraduit('toast_client_added');['clientNomInput','clientTelInput','clientEmailInput','clientAdresseInput'].forEach(i=>document.getElementById(i).value='');document.activeElement.blur();afficherClients();}
 
 function afficherClients(){const container=document.getElementById('clientsListContainer');const count=document.getElementById('clientsCount');if(!container)return;const clients=getClients();if(count)count.textContent=clients.length;const recherche=(document.getElementById('rechercheClient')?.value||'').toLowerCase().trim();let filtres=clients;if(recherche){filtres=clients.filter(c=>c.nom.toLowerCase().includes(recherche)||(c.tel&&c.tel.includes(recherche))||(c.email&&c.email.toLowerCase().includes(recherche)));}if(clients.length===0){container.innerHTML='<div class="empty-state">'+translate('no_clients')+'</div>';return;}if(filtres.length===0){container.innerHTML='<div class="empty-state">'+translate('no_results')+' "'+recherche+'"</div>';return;}let html='';filtres.forEach(c=>{const info=c.tel?'📱 '+c.tel:'';const info2=c.email?'📧 '+c.email:'';const info3=c.adresse?'📍 '+c.adresse:'';html+='<div class="list-item" onclick="afficherHistoriqueClient('+c.id+')"><div class="left"><span class="name">👤 '+c.nom+'</span>'+(info?'<span class="sub">'+info+'</span>':'')+(info2?'<span class="sub">'+info2+'</span>':'')+(info3?'<span class="sub">'+info3+'</span>':'')+'<div class="stock-badges"><span class="stock-badge carton">🛒 '+c.nbCommandes+' '+translate('orders_count')+'</span><span class="stock-badge piece">💰 '+formatMontantAvecDevise(c.totalAchats||0)+'</span></div></div><div class="right"><div style="display:flex;gap:4px"><button class="btn btn-sm btn-outline" onclick="event.stopPropagation();appelerClient(\''+(c.tel||'')+'\')">📞</button><button class="btn btn-sm btn-danger" onclick="event.stopPropagation();supprimerClient('+c.id+')">🗑️</button></div></div></div>';});container.innerHTML=html;}
 
-function afficherHistoriqueClient(id){const clients=getClients();const client=clients.find(c=>c.id===id);if(!client)return;const commandes=getCommandes();const commandesClient=commandes.filter(c=>c.client.toLowerCase()===client.nom.toLowerCase()).sort((a,b)=>b.timestamp-a.timestamp);const container=document.getElementById('clientHistoriqueContainer');let html='<div class="card" style="border:2px solid #2563eb"><div class="card-title">📜 '+translate('history_of')+' '+client.nom+'</div>';html+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">';html+='<div style="background:var(--bg);padding:8px;border-radius:8px"><div style="font-size:11px;color:var(--text-light)">'+translate('total_purchases')+'</div><div style="font-weight:700;color:#2563eb">'+formatMontantAvecDevise(client.totalAchats||0)+'</div></div>';html+='<div style="background:var(--bg);padding:8px;border-radius:8px"><div style="font-size:11px;color:var(--text-light)">'+translate('orders_count')+'</div><div style="font-weight:700;color:#10b981">'+client.nbCommandes+'</div></div></div>';if(commandesClient.length===0){html+='<div class="empty-state">'+translate('no_sales_to_display')+'</div>';}else{commandesClient.forEach(c=>{html+='<div class="hist-item">'<div class="date">'+formatDateLocale(c.timestamp)+' — '+c.heure+'</div>'<div class="action">'+translate(c.type)+' N°'+c.numero+'</div><div class="detail">'+c.articles.length+' '+translate('items')+' · '+formatMontantAvecDevise(c.total)+'</div></div>';});}html+='<button class="btn btn-outline mt-2" onclick="fermerHistoriqueClient()">⬅️ '+translate('back')+'</button></div>';container.innerHTML=html;container.style.display='block';container.scrollIntoView({behavior:'smooth',block:'start'});}
+function afficherHistoriqueClient(id){const clients=getClients();const client=clients.find(c=>c.id===id);if(!client)return;const commandes=getCommandes();const commandesClient=commandes.filter(c=>c.client.toLowerCase()===client.nom.toLowerCase()).sort((a,b)=>b.timestamp-a.timestamp);const container=document.getElementById('clientHistoriqueContainer');let html='<div class="card" style="border:2px solid #2563eb"><div class="card-title">📜 '+translate('history_of')+' '+client.nom+'</div>';html+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">';html+='<div style="background:var(--bg);padding:8px;border-radius:8px"><div style="font-size:11px;color:var(--text-light)">'+translate('total_purchases')+'</div><div style="font-weight:700;color:#2563eb">'+formatMontantAvecDevise(client.totalAchats||0)+'</div></div>';html+='<div style="background:var(--bg);padding:8px;border-radius:8px"><div style="font-size:11px;color:var(--text-light)">'+translate('orders_count')+'</div><div style="font-weight:700;color:#10b981">'+client.nbCommandes+'</div></div></div>';if(commandesClient.length===0){html+='<div class="empty-state">'+translate('no_sales_to_display')+'</div>';}else{commandesClient.forEach(c=>{html+='<div class="hist-item"><div class="date">'+formatDateLocale(c.timestamp)+' — '+c.heure+'</div><div class="action">'+translate(c.type)+' N°'+c.numero+'</div><div class="detail">'+c.articles.length+' '+translate('items')+' · '+formatMontantAvecDevise(c.total)+'</div></div>';});}html+='<button class="btn btn-outline mt-2" onclick="fermerHistoriqueClient()">⬅️ '+translate('back')+'</button></div>';container.innerHTML=html;container.style.display='block';container.scrollIntoView({behavior:'smooth',block:'start'});}
 
 function fermerHistoriqueClient(){document.getElementById('clientHistoriqueContainer').style.display='none';}
-function supprimerClient(id){if(!confirm(translate('delete_client')))return;let clients=getClients();const c=clients.find(x=>x.id===id);if(c)ajouterHistorique('🗑️ Client supprimé',c.nom);clients=clients.filter(x=>x.id!==id);setClients(clients);afficherClients();showToastTraduit('toast_client_deleted');}
+function supprimerClient(id){if(!confirm(translate('delete_client')))return;let clients=getClients();const c=clients.find(x=>x.id===id);if(c)ajouterHistorique('hist_client_deleted',c.nom);clients=clients.filter(x=>x.id!==id);setClients(clients);afficherClients();showToastTraduit('toast_client_deleted');}
 function appelerClient(tel){if(!tel){showToast('⚠️ Aucun numéro');return;}window.location.href='tel:'+tel;}
 function rechercherClientVente(){const input=document.getElementById('clientNom');const container=document.getElementById('suggestionsClientVente');if(!input||!container)return;const texte=input.value.trim().toLowerCase();if(texte===''){container.classList.remove('show');container.innerHTML='';return;}const clients=getClients().filter(c=>c.nom.toLowerCase().includes(texte)||(c.tel&&c.tel.includes(texte)));if(clients.length===0){container.classList.remove('show');return;}let html='';clients.forEach(c=>{html+='<div class="item" onclick="selectionnerClientVente('+c.id+')"><div class="name">👤 '+c.nom+'</div><div class="sub">'+(c.tel?'📱 '+c.tel:'')+(c.email?' · 📧 '+c.email:'')+'</div></div>';});container.innerHTML=html;container.classList.add('show');}
 function selectionnerClientVente(id){const clients=getClients();const c=clients.find(x=>x.id===id);if(!c)return;document.getElementById('clientNom').value=c.nom;const container=document.getElementById('suggestionsClientVente');if(container)container.classList.remove('show');}
 
 // ============ FOURNISSEURS ============
-function enregistrerFournisseur(){const nom=document.getElementById('fournisseurNomInput').value.trim();const tel=document.getElementById('fournisseurTelInput').value.trim();const produit=document.getElementById('fournisseurProduitInput').value.trim();const adresse=document.getElementById('fournisseurAdresseInput').value.trim();if(!nom){showAlert('fill_all_fields');return;}let fournisseurs=getFournisseurs();const index=fournisseurs.findIndex(f=>f.nom.toLowerCase()===nom.toLowerCase());if(index!==-1){showToastTraduit('supplier_exists');return;}const fournisseur={id:Date.now(),nom,tel,produit,adresse,dateCreation:new Date().toISOString()};fournisseurs.push(fournisseur);setFournisseurs(fournisseurs);ajouterHistorique('🏭 Fournisseur ajouté',nom);showToastTraduit('toast_supplier_added');['fournisseurNomInput','fournisseurTelInput','fournisseurProduitInput','fournisseurAdresseInput'].forEach(i=>document.getElementById(i).value='');document.activeElement.blur();afficherFournisseurs();}
+function enregistrerFournisseur(){const nom=document.getElementById('fournisseurNomInput').value.trim();const tel=document.getElementById('fournisseurTelInput').value.trim();const produit=document.getElementById('fournisseurProduitInput').value.trim();const adresse=document.getElementById('fournisseurAdresseInput').value.trim();if(!nom){showAlert('fill_all_fields');return;}let fournisseurs=getFournisseurs();const index=fournisseurs.findIndex(f=>f.nom.toLowerCase()===nom.toLowerCase());if(index!==-1){showToastTraduit('supplier_exists');return;}const fournisseur={id:Date.now(),nom,tel,produit,adresse,dateCreation:new Date().toISOString()};fournisseurs.push(fournisseur);setFournisseurs(fournisseurs);ajouterHistorique('hist_supplier_added',nom);showToastTraduit('toast_supplier_added');['fournisseurNomInput','fournisseurTelInput','fournisseurProduitInput','fournisseurAdresseInput'].forEach(i=>document.getElementById(i).value='');document.activeElement.blur();afficherFournisseurs();}
 
 function afficherFournisseurs(){const container=document.getElementById('fournisseursListContainer');const count=document.getElementById('fournisseursCount');if(!container)return;const fournisseurs=getFournisseurs();if(count)count.textContent=fournisseurs.length;if(fournisseurs.length===0){container.innerHTML='<div class="empty-state">'+translate('no_suppliers')+'</div>';return;}let html='';fournisseurs.forEach(f=>{html+='<div class="list-item"><div class="left"><span class="name">🏭 '+f.nom+'</span>'+(f.tel?'<span class="sub">📱 '+f.tel+'</span>':'')+(f.produit?'<span class="sub">📦 '+f.produit+'</span>':'')+(f.adresse?'<span class="sub">📍 '+f.adresse+'</span>':'')+'</div><div class="right"><div style="display:flex;gap:4px"><button class="btn btn-sm btn-outline" onclick="appelerClient(\''+(f.tel||'')+'\')">📞</button><button class="btn btn-sm btn-danger" onclick="supprimerFournisseur('+f.id+')">🗑️</button></div></div></div>';});container.innerHTML=html;}
 
-function supprimerFournisseur(id){if(!confirm(translate('delete_supplier')))return;let fournisseurs=getFournisseurs();const f=fournisseurs.find(x=>x.id===id);if(f)ajouterHistorique('🗑️ Fournisseur supprimé',f.nom);fournisseurs=fournisseurs.filter(x=>x.id!==id);setFournisseurs(fournisseurs);afficherFournisseurs();showToastTraduit('toast_supplier_deleted');}
+function supprimerFournisseur(id){if(!confirm(translate('delete_supplier')))return;let fournisseurs=getFournisseurs();const f=fournisseurs.find(x=>x.id===id);if(f)ajouterHistorique('hist_supplier_deleted',f.nom);fournisseurs=fournisseurs.filter(x=>x.id!==id);setFournisseurs(fournisseurs);afficherFournisseurs();showToastTraduit('toast_supplier_deleted');}
 
 // ============ VENTES ============
 function changerNiveauVente(niveau,btn){niveauVente=niveau;document.querySelectorAll('#screenVentes [data-level]').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(produitVenteSelectionne){miseAJourPrixVente();afficherStockDisponible();}}
@@ -2233,7 +2475,6 @@ function rechercherProduits(){const input=document.getElementById('venteProduit'
 function selectionnerProduitVente(id){const produits=getProduits();const p=produits.find(x=>x.id===id);if(!p)return;produitVenteSelectionne=p;document.getElementById('venteProduit').value=p.nom;document.getElementById('suggestionsContainerVente').classList.remove('show');document.getElementById('venteInfoAuto').style.display='block';miseAJourPrixVente();afficherStockDisponible();}
 function afficherStockDisponible(){if(!produitVenteSelectionne)return;let q=0;if(niveauVente==='carton')q=produitVenteSelectionne.stockCarton||0;else if(niveauVente==='boite')q=produitVenteSelectionne.stockBoite||0;else q=produitVenteSelectionne.stockPiece||0;document.getElementById('stockDisponibleValeur').value=formatNombre(q);}
 
-// ✅ CORRECTION : prix affiché avec dataset.rawFCFA (valeur brute FCFA)
 function miseAJourPrixVente(){
   if(!produitVenteSelectionne)return;
   let prixFCFA=0;
@@ -2243,13 +2484,11 @@ function miseAJourPrixVente(){
   const input=document.getElementById('ventePrix');
   input.value=formatMontantAvecDevise(prixFCFA);
   input.dataset.rawFCFA=prixFCFA;
-  // Hint : montre l'équivalent FCFA si devise ≠ FCFA
   let hint=document.getElementById('ventePrixHint');
   if(!hint){hint=document.createElement('div');hint.id='ventePrixHint';hint.className='text-sm text-muted';hint.style.marginTop='4px';input.parentElement.appendChild(hint);}
   if(deviseActuelle!=='FCFA'){hint.textContent='≈ '+formatNombre(prixFCFA)+' FCFA';}else{hint.textContent='';}
 }
 
-// ✅ CORRECTION : le panier utilise la valeur FCFA brute
 function ajouterAuPanier(){
   if(!produitVenteSelectionne){showAlert('select_product_first');return;}
   const qte=parseInt(document.getElementById('venteQte').value);
@@ -2263,7 +2502,7 @@ function ajouterAuPanier(){
   if(niveauVente==='carton'&&(prod.stockCarton||0)<qte){alert(translate('stock_insufficient'));return;}
   if(niveauVente==='boite'&&(prod.stockBoite||0)<qte){alert(translate('stock_insufficient'));return;}
   if(niveauVente==='piece'&&(prod.stockPiece||0)<qte){alert(translate('stock_insufficient'));return;}
-  panier.push({produitId:produitVenteSelectionne.id,nom:produitVenteSelectionne.nom,niveau:niveauVente,niveauLabel:translate(niveauVente),quantite:qte,prixUnitaire:prixFCFA,total:qte*prixFCFA});
+  panier.push({produitId:produitVenteSelectionne.id,nom:produitVenteSelectionne.nom,niveau:niveauVente,niveauLabel:niveauVente,quantite:qte,prixUnitaire:prixFCFA,total:qte*prixFCFA});
   afficherPanier();
   showToastTraduit('toast_product_added');
   ['venteProduit','venteQte','ventePrix'].forEach(i=>document.getElementById(i).value='');
@@ -2273,33 +2512,32 @@ function ajouterAuPanier(){
   produitVenteSelectionne=null;
 }
 
-function afficherPanier(){const container=document.getElementById('cartContainer');const totalEl=document.getElementById('cartTotal');const totalAmount=document.getElementById('cartTotalAmount');if(panier.length===0){container.innerHTML='<div class="empty-state">'+translate('cart_empty')+'</div>';totalEl.style.display='none';return;}let html='',total=0;panier.forEach(item=>{total+=item.total;html+='<div class="cart-item"><span>'+item.nom+' ('+item.niveauLabel+') × '+item.quantite+'</span><span>'+formatMontantAvecDevise(item.total)+'</span></div>';});container.innerHTML=html;totalEl.style.display='block';totalAmount.textContent=formatMontantAvecDevise(total);}
+function afficherPanier(){const container=document.getElementById('cartContainer');const totalEl=document.getElementById('cartTotal');const totalAmount=document.getElementById('cartTotalAmount');if(panier.length===0){container.innerHTML='<div class="empty-state">'+translate('cart_empty')+'</div>';totalEl.style.display='none';return;}let html='',total=0;panier.forEach(item=>{total+=item.total;html+='<div class="cart-item"><span>'+item.nom+' ('+translate(item.niveau)+') × '+item.quantite+'</span><span>'+formatMontantAvecDevise(item.total)+'</span></div>';});container.innerHTML=html;totalEl.style.display='block';totalAmount.textContent=formatMontantAvecDevise(total);}
 function viderPanier(){if(panier.length===0)return;panier=[];afficherPanier();}
 
-function validerCommande(){if(panier.length===0){showAlert('cart_empty');return;}const clientNom=document.getElementById('clientNom').value.trim()||'Client';const numCommande=getFactureCounter();setFactureCounter(numCommande+1);const now=new Date();const dateStr=now.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});const heureStr=now.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});const docType=document.getElementById('docTypeSelect').value;let total=0;panier.forEach(i=>total+=i.total);const commande={id:Date.now(),numero:numCommande,client:clientNom,date:dateStr,heure:heureStr,articles:panier.map(i=>({...i})),total,type:docType,timestamp:now.getTime()};const commandes=getCommandes();commandes.push(commande);setCommandes(commandes);ajouterHistorique('🧾 Commande validée','Client: '+clientNom+' | N°: '+numCommande+' | Total: '+formatNombre(total)+' F');let clients=getClients();const idxClient=clients.findIndex(c=>c.nom.toLowerCase()===clientNom.toLowerCase());if(idxClient!==-1){clients[idxClient].totalAchats=(clients[idxClient].totalAchats||0)+total;clients[idxClient].nbCommandes=(clients[idxClient].nbCommandes||0)+1;setClients(clients);}let produits=getProduits();panier.forEach(item=>{const idx=produits.findIndex(p=>p.id===item.produitId);if(idx!==-1){if(item.niveau==='carton')produits[idx].stockCarton=(produits[idx].stockCarton||0)-item.quantite;else if(item.niveau==='boite')produits[idx].stockBoite=(produits[idx].stockBoite||0)-item.quantite;else produits[idx].stockPiece=(produits[idx].stockPiece||0)-item.quantite;}});setProduits(produits);panier=[];afficherPanier();document.getElementById('clientNom').value='';showToastTraduit('toast_order_validated',{number:numCommande});openScreen('screenFacturation');setTimeout(()=>{commandeFiltreType='all';document.querySelectorAll('#screenFacturation .btn[data-type]').forEach(b=>b.classList.remove('active'));document.querySelector('#screenFacturation .btn[data-type="all"]').classList.add('active');afficherCommandes();afficherCommande(0);},100);}
+function validerCommande(){if(panier.length===0){showAlert('cart_empty');return;}const clientNom=document.getElementById('clientNom').value.trim()||'Client';const numCommande=getFactureCounter();setFactureCounter(numCommande+1);const now=new Date();const dateStr=now.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});const heureStr=now.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});const docType=document.getElementById('docTypeSelect').value;let total=0;panier.forEach(i=>total+=i.total);const commande={id:Date.now(),numero:numCommande,client:clientNom,date:dateStr,heure:heureStr,articles:panier.map(i=>({...i})),total,type:docType,timestamp:now.getTime()};const commandes=getCommandes();commandes.push(commande);setCommandes(commandes);ajouterHistorique('hist_order_validated','',{client:clientNom,num:numCommande,total:total});let clients=getClients();const idxClient=clients.findIndex(c=>c.nom.toLowerCase()===clientNom.toLowerCase());if(idxClient!==-1){clients[idxClient].totalAchats=(clients[idxClient].totalAchats||0)+total;clients[idxClient].nbCommandes=(clients[idxClient].nbCommandes||0)+1;setClients(clients);}let produits=getProduits();panier.forEach(item=>{const idx=produits.findIndex(p=>p.id===item.produitId);if(idx!==-1){if(item.niveau==='carton')produits[idx].stockCarton=(produits[idx].stockCarton||0)-item.quantite;else if(item.niveau==='boite')produits[idx].stockBoite=(produits[idx].stockBoite||0)-item.quantite;else produits[idx].stockPiece=(produits[idx].stockPiece||0)-item.quantite;}});setProduits(produits);panier=[];afficherPanier();document.getElementById('clientNom').value='';showToastTraduit('toast_order_validated',{number:numCommande});openScreen('screenFacturation');setTimeout(()=>{commandeFiltreType='all';document.querySelectorAll('#screenFacturation .btn[data-type]').forEach(b=>b.classList.remove('active'));document.querySelector('#screenFacturation .btn[data-type="all"]').classList.add('active');afficherCommandes();afficherCommande(0);},100);}
 
 // ============ FACTURATION ============
 function filtrerCommandes(type,btn){commandeFiltreType=type;commandeSelectionneeIndex=-1;commandeSelectionneeRef=null;document.querySelectorAll('#screenFacturation .btn[data-type]').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');afficherCommandes();}
-function afficherCommandes(){const container=document.getElementById('commandesListContainer');const commandes=getCommandes();let filtrees=commandeFiltreType!=='all'?commandes.filter(c=>c.type===commandeFiltreType):commandes;filtrees.sort((a,b)=>b.timestamp-a.timestamp);if(filtrees.length===0){container.innerHTML='<div class="empty-state">'+translate('no_sales_to_display')+'</div>';document.getElementById('receiptContainer').style.display='none';return;}let html='';filtrees.forEach((c,i)=>{const typeLabel=translate(c.type)||c.type;let preview='';const maxPreview=2;c.articles.slice(0,maxPreview).forEach(art=>{preview+='<div>• '+art.nom+' ('+art.niveauLabel+') × '+art.quantite+'</div>';});if(c.articles.length>maxPreview)preview+='<div style="color:#2563eb;font-weight:600">+ '+(c.articles.length-maxPreview)+'...</div>';const isActive=(commandeSelectionneeRef&&commandeSelectionneeRef.id===c.id);html+='<div class="list-item '+(isActive?'active':'')+'" onclick="afficherCommande('+i+')"><div class="left"><span class="name">'+typeLabel+' - '+c.client+'</span>'<span class="sub">'+formatDateLocale(c.timestamp)+' — '+c.heure+'</span>'<span class="sub">N°: '+c.numero+' · '+c.articles.length+' art.</span><div class="preview">'+preview+'</div></div><div class="right"><div class="price">'+formatMontantAvecDevise(c.total)+'</div></div></div>';});container.innerHTML=html;if(!commandeSelectionneeRef)document.getElementById('receiptContainer').style.display='none';}
-function afficherCommande(index){const commandes=getCommandes();let filtrees=commandeFiltreType!=='all'?commandes.filter(c=>c.type===commandeFiltreType):commandes;filtrees.sort((a,b)=>b.timestamp-a.timestamp);if(index<0||index>=filtrees.length)return;const c=filtrees[index];commandeSelectionneeIndex=index;commandeSelectionneeRef=c;const typeLabel=translate(c.type)||c.type;document.getElementById('receiptHeader').textContent='🧾 '+typeLabel;let bodyHtml='<div class="info-grid"><div class="info-item"><div class="lbl">'+translate('order_number')+'</div><div class="val">'+c.numero+'</div></div><div class="info-item"><div class="lbl">'+translate('client')+'</div><div class="val">'+c.client+'</div></div>'<div class="info-item"><div class="lbl">'+translate('date')+'</div><div class="val">'+formatDateLocale(c.timestamp)+'</div></div>'<div class="info-item"><div class="lbl">'+translate('order_type')+'</div><div class="val">'+typeLabel+'</div></div></div><div class="section-title">📋 '+translate('details')+' ('+c.articles.length+')</div>';c.articles.forEach((item,idx)=>{bodyHtml+='<div class="article-block"><div class="article-title">'+(idx+1)+'. '+item.nom+'</div><div class="article-detail"><span>'+translate('unit_label')+' :</span><strong>'+item.niveauLabel+'</strong></div><div class="article-detail"><span>'+translate('qty')+' :</span><strong>'+item.quantite+'</strong></div><div class="article-detail"><span>'+translate('unit_price_label')+' :</span><strong>'+formatMontantAvecDevise(item.prixUnitaire)+'</strong></div><div class="article-subtotal"><span>'+translate('subtotal')+' :</span><span>'+formatMontantAvecDevise(item.total)+'</span></div></div>';});bodyHtml+='<div class="summary-box"><div class="line total"><span>'+translate('total_amount')+'</span><span>'+formatMontantAvecDevise(c.total)+'</span></div></div>';document.getElementById('receiptBody').innerHTML=bodyHtml;document.getElementById('receiptContainer').style.display='block';document.getElementById('qrFactureContainer').style.display='flex';document.getElementById('qrFacture').innerHTML='';afficherCommandes();setTimeout(()=>{const rc=document.getElementById('receiptContainer');if(rc)rc.scrollIntoView({behavior:'smooth',block:'start'});genererQRDocument();},150);}
+function afficherCommandes(){const container=document.getElementById('commandesListContainer');const commandes=getCommandes();let filtrees=commandeFiltreType!=='all'?commandes.filter(c=>c.type===commandeFiltreType):commandes;filtrees.sort((a,b)=>b.timestamp-a.timestamp);if(filtrees.length===0){container.innerHTML='<div class="empty-state">'+translate('no_sales_to_display')+'</div>';document.getElementById('receiptContainer').style.display='none';return;}let html='';filtrees.forEach((c,i)=>{const typeLabel=translate(c.type)||c.type;let preview='';const maxPreview=2;c.articles.slice(0,maxPreview).forEach(art=>{preview+='<div>• '+art.nom+' ('+translate(art.niveau)+') × '+art.quantite+'</div>';});if(c.articles.length>maxPreview)preview+='<div style="color:#2563eb;font-weight:600">+ '+(c.articles.length-maxPreview)+'...</div>';const isActive=(commandeSelectionneeRef&&commandeSelectionneeRef.id===c.id);html+='<div class="list-item '+(isActive?'active':'')+'" onclick="afficherCommande('+i+')"><div class="left"><span class="name">'+typeLabel+' - '+c.client+'</span><span class="sub">'+formatDateLocale(c.timestamp)+' — '+c.heure+'</span><span class="sub">N°: '+c.numero+' · '+c.articles.length+' '+translate('items')+'</span><div class="preview">'+preview+'</div></div><div class="right"><div class="price">'+formatMontantAvecDevise(c.total)+'</div></div></div>';});container.innerHTML=html;if(!commandeSelectionneeRef)document.getElementById('receiptContainer').style.display='none';}
+function afficherCommande(index){const commandes=getCommandes();let filtrees=commandeFiltreType!=='all'?commandes.filter(c=>c.type===commandeFiltreType):commandes;filtrees.sort((a,b)=>b.timestamp-a.timestamp);if(index<0||index>=filtrees.length)return;const c=filtrees[index];commandeSelectionneeIndex=index;commandeSelectionneeRef=c;const typeLabel=translate(c.type)||c.type;document.getElementById('receiptHeader').textContent='🧾 '+typeLabel;let bodyHtml='<div class="info-grid"><div class="info-item"><div class="lbl">'+translate('order_number')+'</div><div class="val">'+c.numero+'</div></div><div class="info-item"><div class="lbl">'+translate('client')+'</div><div class="val">'+c.client+'</div></div><div class="info-item"><div class="lbl">'+translate('date')+'</div><div class="val">'+formatDateLocale(c.timestamp)+'</div></div><div class="info-item"><div class="lbl">'+translate('order_type')+'</div><div class="val">'+typeLabel+'</div></div></div><div class="section-title">📋 '+translate('details')+' ('+c.articles.length+')</div>';c.articles.forEach((item,idx)=>{bodyHtml+='<div class="article-block"><div class="article-title">'+(idx+1)+'. '+item.nom+'</div><div class="article-detail"><span>'+translate('unit_label')+' :</span><strong>'+translate(item.niveau)+'</strong></div><div class="article-detail"><span>'+translate('qty')+' :</span><strong>'+item.quantite+'</strong></div><div class="article-detail"><span>'+translate('unit_price_label')+' :</span><strong>'+formatMontantAvecDevise(item.prixUnitaire)+'</strong></div><div class="article-subtotal"><span>'+translate('subtotal')+' :</span><span>'+formatMontantAvecDevise(item.total)+'</span></div></div>';});bodyHtml+='<div class="summary-box"><div class="line total"><span>'+translate('total_amount')+'</span><span>'+formatMontantAvecDevise(c.total)+'</span></div></div>';document.getElementById('receiptBody').innerHTML=bodyHtml;document.getElementById('receiptContainer').style.display='block';document.getElementById('qrFactureContainer').style.display='flex';document.getElementById('qrFacture').innerHTML='';afficherCommandes();setTimeout(()=>{const rc=document.getElementById('receiptContainer');if(rc)rc.scrollIntoView({behavior:'smooth',block:'start'});genererQRDocument();},150);}
 function genererQRDocument(){if(!commandeSelectionneeRef)return;const c=commandeSelectionneeRef;const container=document.getElementById('qrFactureContainer');const qrDiv=document.getElementById('qrFacture');if(!container||!qrDiv)return;function clean(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^\x20-\x7E\n]/g,'').replace(/\s+/g,' ').trim();}const sym=clean(deviseSymbols[deviseActuelle]||deviseActuelle);const typeClean=clean((translations[langueActuelle]||translations.fr)[c.type]||c.type).toUpperCase();const total=formatNombre(c.total);let articlesTxt='';c.articles.forEach(a=>{articlesTxt+=clean(a.nom)+' x'+a.quantite+'\n';});const v1=typeClean+' No'+c.numero+'\n'+articlesTxt+'TOTAL: '+total+' '+sym+'\nGestion Pro';const v3=typeClean+' No'+c.numero+'\nTOTAL: '+total+' '+sym+'\nGestion Pro';const v4=typeClean+' '+c.numero+' - '+total+' '+sym;let texte=v1;if(texte.length>250)texte=v3;if(texte.length>250)texte=v4;qrDiv.innerHTML='';try{new QRCode(qrDiv,{text:texte,width:200,height:200,colorDark:"#0f172a",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.L});container.style.display='flex';}catch(e){console.error('QR error',e);}}
 function exporterRecuImage(){if(!commandeSelectionneeRef)return;const el=document.getElementById('receiptContent');if(!el)return;html2canvas(el,{scale:2,backgroundColor:'#ffffff'}).then(canvas=>{const link=document.createElement('a');link.download='Recu_'+commandeSelectionneeRef.numero+'.png';link.href=canvas.toDataURL('image/png');link.click();showToastTraduit('toast_image_saved');}).catch(err=>{console.error(err);});}
-function partagerRecuWhatsApp(){if(!commandeSelectionneeRef)return;const c=commandeSelectionneeRef;const typeLabel=translate(c.type)||c.type;let msg='🧾 *'+typeLabel+' N°'+c.numero+'*\n\n';msg+='👤 '+translate('client')+' : '+c.client+'\n';msg+='📅 '+translate('date')+' : '+c.date+' '+c.heure+'\n\n';msg+='📋 *'+translate('items')+' :*\n';c.articles.forEach((item,idx)=>{msg+='\n'+(idx+1)+'. '+item.nom+'\n   • '+translate('unit_label')+' : '+item.niveauLabel+'\n   • '+translate('qty')+' : '+item.quantite+'\n   • '+translate('unit_price_label')+' : '+formatMontantAvecDevise(item.prixUnitaire)+'\n   • '+translate('subtotal')+' : '+formatMontantAvecDevise(item.total)+'\n';});msg+='\n━━━━━━━━━━━━━━\n💰 *'+translate('total_amount')+' : '+formatMontantAvecDevise(c.total)+'*\n━━━━━━━━━━━━━━\n\n_Gestion Pro - DAS PRO STUDIO_';const encoded=encodeURIComponent(msg);window.open('https://wa.me/?text='+encoded,'_blank');}
+function partagerRecuWhatsApp(){if(!commandeSelectionneeRef)return;const c=commandeSelectionneeRef;const typeLabel=translate(c.type)||c.type;let msg='🧾 *'+typeLabel+' N°'+c.numero+'*\n\n';msg+='👤 '+translate('client')+' : '+c.client+'\n';msg+='📅 '+translate('date')+' : '+formatDateLocale(c.timestamp)+' '+c.heure+'\n\n';msg+='📋 *'+translate('items')+' :*\n';c.articles.forEach((item,idx)=>{msg+='\n'+(idx+1)+'. '+item.nom+'\n   • '+translate('unit_label')+' : '+translate(item.niveau)+'\n   • '+translate('qty')+' : '+item.quantite+'\n   • '+translate('unit_price_label')+' : '+formatMontantAvecDevise(item.prixUnitaire)+'\n   • '+translate('subtotal')+' : '+formatMontantAvecDevise(item.total)+'\n';});msg+='\n━━━━━━━━━━━━━━\n💰 *'+translate('total_amount')+' : '+formatMontantAvecDevise(c.total)+'*\n━━━━━━━━━━━━━━\n\n_Gestion Pro - DAS PRO STUDIO_';const encoded=encodeURIComponent(msg);window.open('https://wa.me/?text='+encoded,'_blank');}
 
 // ============ STOCK ============
 function rechercherProduitsStock(){const input=document.getElementById('stockProduit');const container=document.getElementById('suggestionsContainerStock');const texte=input.value.trim().toLowerCase();if(texte===''){container.classList.remove('show');container.innerHTML='';return;}const produits=getProduits().filter(p=>p.nom.toLowerCase().includes(texte)||(p.codeBarres&&p.codeBarres.toLowerCase().includes(texte)));if(produits.length===0){container.classList.remove('show');return;}let html='';produits.forEach(p=>{html+='<div class="item" onclick="selectionnerProduitStock('+p.id+')"><div class="name">'+p.nom+'</div><div class="sub">📦'+(p.stockCarton||0)+' · 📫'+(p.stockBoite||0)+' · 🔹'+(p.stockPiece||0)+'</div></div>';});container.innerHTML=html;container.classList.add('show');}
 function selectionnerProduitStock(id){const produits=getProduits();const p=produits.find(x=>x.id===id);if(!p)return;produitStockSelectionne=p;document.getElementById('stockProduit').value=p.nom;document.getElementById('stockInfoContainer').style.display='block';document.getElementById('suggestionsContainerStock').classList.remove('show');document.getElementById('stockActuelCarton').textContent=formatNombre(p.stockCarton||0);document.getElementById('stockActuelBoite').textContent=formatNombre(p.stockBoite||0);document.getElementById('stockActuelPiece').textContent=formatNombre(p.stockPiece||0);}
-function ouvrirCarton(){if(!produitStockSelectionne)return;let produits=getProduits();const idx=produits.findIndex(p=>p.id===produitStockSelectionne.id);if(idx===-1)return;if((produits[idx].stockCarton||0)<1){alert(translate('no_carton'));return;}if(!produits[idx].contenuCarton){alert(translate('fill_all_fields'));return;}produits[idx].stockCarton-=1;produits[idx].stockBoite=(produits[idx].stockBoite||0)+produits[idx].contenuCarton;setProduits(produits);ajouterHistorique('📦 Carton ouvert',produits[idx].nom+' | +'+produits[idx].contenuCarton+' boîtes');produitStockSelectionne=produits[idx];document.getElementById('stockActuelCarton').textContent=formatNombre(produits[idx].stockCarton);document.getElementById('stockActuelBoite').textContent=formatNombre(produits[idx].stockBoite);afficherProduits();mettreAJourStats();afficherAlerteStock();showToastTraduit('toast_carton_opened');}
-function ouvrirBoite(){if(!produitStockSelectionne)return;let produits=getProduits();const idx=produits.findIndex(p=>p.id===produitStockSelectionne.id);if(idx===-1)return;if((produits[idx].stockBoite||0)<1){alert(translate('no_boite'));return;}if(!produits[idx].contenuBoite){alert(translate('fill_all_fields'));return;}produits[idx].stockBoite-=1;produits[idx].stockPiece=(produits[idx].stockPiece||0)+produits[idx].contenuBoite;setProduits(produits);ajouterHistorique('📫 Boîte ouverte',produits[idx].nom+' | +'+produits[idx].contenuBoite+' pièces');produitStockSelectionne=produits[idx];document.getElementById('stockActuelBoite').textContent=formatNombre(produits[idx].stockBoite);document.getElementById('stockActuelPiece').textContent=formatNombre(produits[idx].stockPiece);afficherProduits();mettreAJourStats();afficherAlerteStock();showToastTraduit('toast_boite_opened');}
-function ajouterStock(){if(!produitStockSelectionne){showAlert('select_product_first');return;}const ac=parseInt(document.getElementById('ajoutCarton').value)||0;const ab=parseInt(document.getElementById('ajoutBoite').value)||0;const ap=parseInt(document.getElementById('ajoutPiece').value)||0;if(ac<=0&&ab<=0&&ap<=0){showAlert('positive_quantity');return;}let produits=getProduits();const idx=produits.findIndex(p=>p.id===produitStockSelectionne.id);if(idx===-1)return;produits[idx].stockCarton=(produits[idx].stockCarton||0)+ac;produits[idx].stockBoite=(produits[idx].stockBoite||0)+ab;produits[idx].stockPiece=(produits[idx].stockPiece||0)+ap;setProduits(produits);ajouterHistorique('📦 Stock augmenté',produits[idx].nom+' | 📦+'+ac+' 📫+'+ab+' 🔹+'+ap);showToastTraduit('toast_stock_updated');['ajoutCarton','ajoutBoite','ajoutPiece'].forEach(i=>document.getElementById(i).value='');produitStockSelectionne=produits[idx];document.getElementById('stockActuelCarton').textContent=formatNombre(produits[idx].stockCarton);document.getElementById('stockActuelBoite').textContent=formatNombre(produits[idx].stockBoite);document.getElementById('stockActuelPiece').textContent=formatNombre(produits[idx].stockPiece);afficherProduits();mettreAJourStats();afficherStatsDetail();afficherAlerteStock();}
+function ouvrirCarton(){if(!produitStockSelectionne)return;let produits=getProduits();const idx=produits.findIndex(p=>p.id===produitStockSelectionne.id);if(idx===-1)return;if((produits[idx].stockCarton||0)<1){alert(translate('no_carton'));return;}if(!produits[idx].contenuCarton){alert(translate('fill_all_fields'));return;}produits[idx].stockCarton-=1;produits[idx].stockBoite=(produits[idx].stockBoite||0)+produits[idx].contenuCarton;setProduits(produits);ajouterHistorique('hist_carton_opened',produits[idx].nom+' | +'+produits[idx].contenuCarton);produitStockSelectionne=produits[idx];document.getElementById('stockActuelCarton').textContent=formatNombre(produits[idx].stockCarton);document.getElementById('stockActuelBoite').textContent=formatNombre(produits[idx].stockBoite);afficherProduits();mettreAJourStats();afficherAlerteStock();showToastTraduit('toast_carton_opened');}
+function ouvrirBoite(){if(!produitStockSelectionne)return;let produits=getProduits();const idx=produits.findIndex(p=>p.id===produitStockSelectionne.id);if(idx===-1)return;if((produits[idx].stockBoite||0)<1){alert(translate('no_boite'));return;}if(!produits[idx].contenuBoite){alert(translate('fill_all_fields'));return;}produits[idx].stockBoite-=1;produits[idx].stockPiece=(produits[idx].stockPiece||0)+produits[idx].contenuBoite;setProduits(produits);ajouterHistorique('hist_boite_opened',produits[idx].nom+' | +'+produits[idx].contenuBoite);produitStockSelectionne=produits[idx];document.getElementById('stockActuelBoite').textContent=formatNombre(produits[idx].stockBoite);document.getElementById('stockActuelPiece').textContent=formatNombre(produits[idx].stockPiece);afficherProduits();mettreAJourStats();afficherAlerteStock();showToastTraduit('toast_boite_opened');}
+function ajouterStock(){if(!produitStockSelectionne){showAlert('select_product_first');return;}const ac=parseInt(document.getElementById('ajoutCarton').value)||0;const ab=parseInt(document.getElementById('ajoutBoite').value)||0;const ap=parseInt(document.getElementById('ajoutPiece').value)||0;if(ac<=0&&ab<=0&&ap<=0){showAlert('positive_quantity');return;}let produits=getProduits();const idx=produits.findIndex(p=>p.id===produitStockSelectionne.id);if(idx===-1)return;produits[idx].stockCarton=(produits[idx].stockCarton||0)+ac;produits[idx].stockBoite=(produits[idx].stockBoite||0)+ab;produits[idx].stockPiece=(produits[idx].stockPiece||0)+ap;setProduits(produits);ajouterHistorique('hist_stock_increased',produits[idx].nom+' | 📦+'+ac+' 📫+'+ab+' 🔹+'+ap);showToastTraduit('toast_stock_updated');['ajoutCarton','ajoutBoite','ajoutPiece'].forEach(i=>document.getElementById(i).value='');produitStockSelectionne=produits[idx];document.getElementById('stockActuelCarton').textContent=formatNombre(produits[idx].stockCarton);document.getElementById('stockActuelBoite').textContent=formatNombre(produits[idx].stockBoite);document.getElementById('stockActuelPiece').textContent=formatNombre(produits[idx].stockPiece);afficherProduits();mettreAJourStats();afficherStatsDetail();afficherAlerteStock();}
 
 // ============ DEPENSES ============
 function rechercherProduitsDepense(){const input=document.getElementById('depenseProduit');const container=document.getElementById('suggestionsContainerDepense');const texte=input.value.trim().toLowerCase();if(texte===''){container.classList.remove('show');container.innerHTML='';produitDepenseSelectionne=null;document.getElementById('depenseStockPanel').style.display='none';return;}const produits=getProduits().filter(p=>p.nom.toLowerCase().includes(texte)||(p.codeBarres&&p.codeBarres.toLowerCase().includes(texte)));if(produits.length===0){container.classList.remove('show');return;}let html='';produits.forEach(p=>{html+='<div class="item" onclick="selectionnerProduitDepense('+p.id+')"><div class="name">'+p.nom+'</div><div class="sub">📦'+(p.stockCarton||0)+' · 📫'+(p.stockBoite||0)+' · 🔹'+(p.stockPiece||0)+'</div></div>';});container.innerHTML=html;container.classList.add('show');}
-function selectionnerProduitDepense(id){const produits=getProduits();const p=produits.find(x=>x.id===id);if(!p)return;produitDepenseSelectionne=p;document.getElementById('depenseProduit').value=p.nom;document.getElementById('depenseLibelle').value='Achat '+p.nom;document.getElementById('depenseStockPanel').style.display='block';document.getElementById('depenseQte').value='1';document.getElementById('suggestionsContainerDepense').classList.remove('show');niveauDepense='carton';document.querySelectorAll('#depenseStockPanel [data-dep-level]').forEach(b=>b.classList.remove('active'));const btn=document.querySelector('#depenseStockPanel [data-dep-level="carton"]');if(btn)btn.classList.add('active');afficherStockInfoDepense(p);mettreAJourPrixUnitaireDepense();}
+function selectionnerProduitDepense(id){const produits=getProduits();const p=produits.find(x=>x.id===id);if(!p)return;produitDepenseSelectionne=p;document.getElementById('depenseProduit').value=p.nom;document.getElementById('depenseLibelle').value=p.nom;document.getElementById('depenseStockPanel').style.display='block';document.getElementById('depenseQte').value='1';document.getElementById('suggestionsContainerDepense').classList.remove('show');niveauDepense='carton';document.querySelectorAll('#depenseStockPanel [data-dep-level]').forEach(b=>b.classList.remove('active'));const btn=document.querySelector('#depenseStockPanel [data-dep-level="carton"]');if(btn)btn.classList.add('active');afficherStockInfoDepense(p);mettreAJourPrixUnitaireDepense();}
 function afficherStockInfoDepense(p){const el=document.getElementById('depenseStockInfo');el.innerHTML='<span class="stock-badge carton">📦 '+(p.stockCarton||0)+'</span><span class="stock-badge boite">📫 '+(p.stockBoite||0)+'</span><span class="stock-badge piece">🔹 '+(p.stockPiece||0)+'</span>';}
 function changerNiveauDepense(niveau,btn){niveauDepense=niveau;document.querySelectorAll('#depenseStockPanel [data-dep-level]').forEach(b=>b.classList.remove('active'));btn.classList.add('active');mettreAJourPrixUnitaireDepense();}
 
-// ✅ CORRECTION : prix d'achat affiché mais stocké en FCFA brut
 function mettreAJourPrixUnitaireDepense(){
   if(!produitDepenseSelectionne)return;
   let prixFCFA=0;
@@ -2311,21 +2549,13 @@ function mettreAJourPrixUnitaireDepense(){
   input.dataset.rawFCFA=prixFCFA;
   calculerMontantDepense();
 }
-
-// ✅ CORRECTION : calcul du montant en FCFA brut
 function calculerMontantDepense(){
   const qte=parseInt(document.getElementById('depenseQte').value)||0;
   const input=document.getElementById('depensePrixUnitaire');
   const prixFCFA=parseFloat(input.dataset.rawFCFA)||0;
   const total=qte*prixFCFA;
-  if(total>0){
-    const mInput=document.getElementById('depenseMontant');
-    mInput.value=formatMontantAvecDevise(total);
-    mInput.dataset.rawFCFA=total;
-  }
+  if(total>0){const mInput=document.getElementById('depenseMontant');mInput.value=formatMontantAvecDevise(total);mInput.dataset.rawFCFA=total;}
 }
-
-// ✅ CORRECTION : enregistrement avec montant FCFA brut
 function enregistrerDepense(){
   const libelle=document.getElementById('depenseLibelle').value.trim();
   const mInput=document.getElementById('depenseMontant');
@@ -2333,19 +2563,9 @@ function enregistrerDepense(){
   if(!libelle||isNaN(montantFCFA)||montantFCFA<=0){showAlert('fill_all_fields_correctly');return;}
   if(produitDepenseSelectionne){
     const qte=parseInt(document.getElementById('depenseQte').value)||0;
-    if(qte>0){
-      let produits=getProduits();
-      const idx=produits.findIndex(p=>p.id===produitDepenseSelectionne.id);
-      if(idx!==-1){
-        if(niveauDepense==='carton')produits[idx].stockCarton=(produits[idx].stockCarton||0)+qte;
-        else if(niveauDepense==='boite')produits[idx].stockBoite=(produits[idx].stockBoite||0)+qte;
-        else produits[idx].stockPiece=(produits[idx].stockPiece||0)+qte;
-        setProduits(produits);
-        ajouterHistorique('📦 Stock augmenté (dépense)',produits[idx].nom+' | '+translate(niveauDepense)+': +'+qte);
-      }
-    }
+    if(qte>0){let produits=getProduits();const idx=produits.findIndex(p=>p.id===produitDepenseSelectionne.id);if(idx!==-1){if(niveauDepense==='carton')produits[idx].stockCarton=(produits[idx].stockCarton||0)+qte;else if(niveauDepense==='boite')produits[idx].stockBoite=(produits[idx].stockBoite||0)+qte;else produits[idx].stockPiece=(produits[idx].stockPiece||0)+qte;setProduits(produits);ajouterHistorique('hist_stock_increased_expense',produits[idx].nom+' | '+translate(niveauDepense)+': +'+qte);}}
   }
-  ajouterHistorique('📉 Dépense enregistrée',libelle+' | Montant: '+formatNombre(montantFCFA)+' F');
+  ajouterHistorique('hist_expense_recorded',libelle+' | '+formatNombre(montantFCFA)+' F');
   showToastTraduit('toast_expense_recorded');
   ['depenseProduit','depenseLibelle','depenseMontant','depensePrixUnitaire'].forEach(i=>{const el=document.getElementById(i);el.value='';delete el.dataset.rawFCFA;});
   document.getElementById('depenseQte').value='1';
@@ -2357,59 +2577,85 @@ function enregistrerDepense(){
 }
 
 // ============ BENEFICES ============
-// ✅ CORRECTION : totaux affichés mais stockés en FCFA brut
 function mettreAJourTotauxBenefice(){
-  const historique=getHistorique();
-  let ca=0,dep=0;
+  const historique=getHistorique();let ca=0,dep=0;
   historique.forEach(h=>{
-    if(h.action.includes('🧾 Commande validée')){
-      const m=h.detail.match(/Total:\s*([\d.]+)/);
-      if(m)ca+=parseFloat(m[1].replace(/\./g,''));
-    }
-    if(h.action.includes('📉 Dépense enregistrée')){
-      const m=h.detail.match(/Montant:\s*([\d.]+)\s*F/);
-      if(m)dep+=parseFloat(m[1].replace(/\./g,''));
-    }
+    if(estCommande(h)){if(h.params&&h.params.total){ca+=Number(h.params.total)||0;}else{const m=(h.detail||'').match(/Total:\s*([\d.]+)/);if(m)ca+=parseFloat(m[1].replace(/\./g,''));}}
+    if(estDepense(h)){const m=(h.detail||'').match(/([\d.]+)\s*F/);if(m)dep+=parseFloat(m[1].replace(/\./g,''));}
   });
-  const caInput=document.getElementById('ca');
-  const depInput=document.getElementById('depensesTotal');
-  caInput.value=formatMontantAvecDevise(ca);
-  depInput.value=formatMontantAvecDevise(dep);
-  caInput.dataset.rawFCFA=ca;
-  depInput.dataset.rawFCFA=dep;
-  afficherDepensesDetail();
-  showToastTraduit('toast_totals_updated');
+  const caInput=document.getElementById('ca');const depInput=document.getElementById('depensesTotal');
+  caInput.value=formatMontantAvecDevise(ca);depInput.value=formatMontantAvecDevise(dep);
+  caInput.dataset.rawFCFA=ca;depInput.dataset.rawFCFA=dep;
+  afficherDepensesDetail();showToastTraduit('toast_totals_updated');
 }
-
-function afficherDepensesDetail(){const historique=getHistorique();const container=document.getElementById('depensesDetailContainer');const depenses=historique.filter(h=>h.action.includes('📉 Dépense enregistrée'));depenses.sort((a,b)=>b.timestamp-a.timestamp);let total=0;if(depenses.length===0){container.innerHTML='<div class="empty-state">'+translate('no_expenses')+'</div>';document.getElementById('depensesTotalRecap').textContent=formatMontantAvecDevise(0);return;}let html='';depenses.forEach(d=>{const m=d.detail.match(/Montant:\s*([\d.]+)\s*F/);let montant=0,libelle=d.detail;if(m){montant=parseFloat(m[1].replace(/\./g,''));libelle=d.detail.replace(/\s*\|\s*Montant:\s*[\d.]+\s*F/,'');total+=montant;}html+='<div class="depense-item"><span>'+libelle+'</span><span class="montant">'+formatMontantAvecDevise(montant)+'</span></div>';});container.innerHTML=html;document.getElementById('depensesTotalRecap').textContent=formatMontantAvecDevise(total);}
-
-// ✅ CORRECTION : calcul basé sur les valeurs FCFA brutes
+function afficherDepensesDetail(){
+  const historique=getHistorique();const container=document.getElementById('depensesDetailContainer');
+  const depenses=historique.filter(h=>estDepense(h));depenses.sort((a,b)=>b.timestamp-a.timestamp);
+  let total=0;
+  if(depenses.length===0){container.innerHTML='<div class="empty-state">'+translate('no_expenses')+'</div>';document.getElementById('depensesTotalRecap').textContent=formatMontantAvecDevise(0);return;}
+  let html='';
+  depenses.forEach(d=>{const m=(d.detail||'').match(/([\d.]+)\s*F/);let montant=0,libelle=d.detail||'';if(m){montant=parseFloat(m[1].replace(/\./g,''));libelle=libelle.replace(/\s*\|\s*[\d.]+\s*F/,'');total+=montant;}html+='<div class="depense-item"><span>'+libelle+'</span><span class="montant">'+formatMontantAvecDevise(montant)+'</span></div>';});
+  container.innerHTML=html;
+  document.getElementById('depensesTotalRecap').textContent=formatMontantAvecDevise(total);
+}
 function calculerBenefice(){
-  const caInput=document.getElementById('ca');
-  const depInput=document.getElementById('depensesTotal');
+  const caInput=document.getElementById('ca');const depInput=document.getElementById('depensesTotal');
   const ca=parseFloat(caInput.dataset.rawFCFA)||getValeurNumerique(caInput);
   const dep=parseFloat(depInput.dataset.rawFCFA)||getValeurNumerique(depInput);
   if(isNaN(ca)||isNaN(dep)){showAlert('invalid_amount');return;}
   const benefice=ca-dep;
   document.getElementById('resultatBenefice').style.display='block';
-  document.getElementById('resultatBeneficeContent').innerHTML=
-    '<div style="font-size:16px;color:var(--text)">CA : '+formatMontantAvecDevise(ca)+'</div>'+
-    '<div style="font-size:16px;color:var(--text)">Dépenses : '+formatMontantAvecDevise(dep)+'</div>'+
-    '<div style="font-size:22px;font-weight:700;color:'+(benefice>=0?'#10b981':'#ef4444')+';margin-top:8px">'+(benefice>=0?'✅ Bénéfice':'❌ Perte')+' : '+formatMontantAvecDevise(benefice)+'</div>';
-  ajouterHistorique('📊 Calcul de bénéfice','CA: '+formatNombre(ca)+' F | Dépenses: '+formatNombre(dep)+' F | Résultat: '+formatNombre(benefice)+' F');
+  document.getElementById('resultatBeneficeContent').innerHTML='<div style="font-size:16px;color:var(--text)">'+translate('revenue')+' : '+formatMontantAvecDevise(ca)+'</div><div style="font-size:16px;color:var(--text)">'+translate('expenses_total')+' : '+formatMontantAvecDevise(dep)+'</div><div style="font-size:22px;font-weight:700;color:'+(benefice>=0?'#10b981':'#ef4444')+';margin-top:8px">'+(benefice>=0?'✅ '+translate('net_profit'):'❌')+' : '+formatMontantAvecDevise(benefice)+'</div>';
+  ajouterHistorique('hist_profit_calculated','CA: '+formatNombre(ca)+' | Dep: '+formatNombre(dep)+' | Res: '+formatNombre(benefice));
 }
 
 // ============ HISTORIQUE ============
-function afficherHistorique(){const container=document.getElementById('historiqueContainer');const historique=getHistorique();if(historique.length===0){container.innerHTML='<div class="empty-state">'+translate('no_history')+'</div>';return;}historique.sort((a,b)=>b.timestamp-a.timestamp);let html='';historique.forEach(h=>{html+='<div class="hist-item">'<div class="date">'+formatDateLocale(h.timestamp)+' — '+h.heure+'</div>'<div class="action">'+h.action+'</div><div class="detail">'+h.detail+'</div></div>';});container.innerHTML=html;}
+function afficherHistorique(){const container=document.getElementById('historiqueContainer');const historique=getHistorique();if(historique.length===0){container.innerHTML='<div class="empty-state">'+translate('no_history')+'</div>';return;}historique.sort((a,b)=>b.timestamp-a.timestamp);let html='';historique.forEach(h=>{html+='<div class="hist-item"><div class="date">'+formatDateLocale(h.timestamp)+' — '+h.heure+'</div><div class="action">'+traduireHistorique(h)+'</div><div class="detail">'+getDetailHistorique(h)+'</div></div>';});container.innerHTML=html;}
 function supprimerHistorique(){showConfirm('confirm_clear_history',function(){setHistorique([]);afficherHistorique();showToastTraduit('toast_history_cleared');});}
 
 // ============ ANALYSE ============
 function changerPeriode(periode,btn){document.querySelectorAll('#screenAnalyse .btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');analyserPeriode(periode);}
-function analyserPeriode(periode){const historique=getHistorique();const now=new Date();let debut=new Date(0);if(periode==='today')debut=new Date(now.getFullYear(),now.getMonth(),now.getDate());else if(periode==='week'){debut=new Date(now);debut.setDate(now.getDate()-(now.getDay()||7)+1);debut.setHours(0,0,0,0);}else if(periode==='month')debut=new Date(now.getFullYear(),now.getMonth(),1);else if(periode==='year')debut=new Date(now.getFullYear(),0,1);const fin=new Date(now);fin.setHours(23,59,59,999);let ca=0,dep=0;historique.forEach(h=>{const d=new Date(h.timestamp);if(d>=debut&&d<=fin){if(h.action.includes('🧾 Commande validée')){const m=h.detail.match(/Total:\s*([\d.]+)/);if(m)ca+=parseFloat(m[1].replace(/\./g,''));}if(h.action.includes('📉 Dépense enregistrée')){const m=h.detail.match(/Montant:\s*([\d.]+)\s*F/);if(m)dep+=parseFloat(m[1].replace(/\./g,''));}}});document.getElementById('analyseCA').textContent=formatMontantAvecDevise(ca);document.getElementById('analyseDepenses').textContent=formatMontantAvecDevise(dep);const benef=ca-dep;const el=document.getElementById('analyseBenefice');el.textContent=formatMontantAvecDevise(benef);el.className='badge '+(benef>=0?'green':'red');const container=document.getElementById('analyseDetailContainer');const filtres=historique.filter(h=>{const d=new Date(h.timestamp);return d>=debut&&d<=fin;});if(filtres.length===0){container.innerHTML='<div class="empty-state">'+translate('no_operations')+'</div>';return;}let html='';filtres.slice(0,20).forEach(h=>{html+='<div class="hist-item">'<div class="date">'+formatDateLocale(h.timestamp)+' '+h.heure+'</div>'<div class="action">'+h.action+'</div><div class="detail">'+h.detail+'</div></div>';});container.innerHTML=html;}
+function analyserPeriode(periode){const historique=getHistorique();const now=new Date();let debut=new Date(0);if(periode==='today')debut=new Date(now.getFullYear(),now.getMonth(),now.getDate());else if(periode==='week'){debut=new Date(now);debut.setDate(now.getDate()-(now.getDay()||7)+1);debut.setHours(0,0,0,0);}else if(periode==='month')debut=new Date(now.getFullYear(),now.getMonth(),1);else if(periode==='year')debut=new Date(now.getFullYear(),0,1);const fin=new Date(now);fin.setHours(23,59,59,999);let ca=0,dep=0;historique.forEach(h=>{const d=new Date(h.timestamp);if(d>=debut&&d<=fin){if(estCommande(h)){if(h.params&&h.params.total){ca+=Number(h.params.total)||0;}else{const m=(h.detail||'').match(/Total:\s*([\d.]+)/);if(m)ca+=parseFloat(m[1].replace(/\./g,''));}}if(estDepense(h)){const m=(h.detail||'').match(/([\d.]+)\s*F/);if(m)dep+=parseFloat(m[1].replace(/\./g,''));}}});document.getElementById('analyseCA').textContent=formatMontantAvecDevise(ca);document.getElementById('analyseDepenses').textContent=formatMontantAvecDevise(dep);const benef=ca-dep;const el=document.getElementById('analyseBenefice');el.textContent=formatMontantAvecDevise(benef);el.className='badge '+(benef>=0?'green':'red');const container=document.getElementById('analyseDetailContainer');const filtres=historique.filter(h=>{const d=new Date(h.timestamp);return d>=debut&&d<=fin;});if(filtres.length===0){container.innerHTML='<div class="empty-state">'+translate('no_operations')+'</div>';return;}let html='';filtres.slice(0,20).forEach(h=>{html+='<div class="hist-item"><div class="date">'+formatDateLocale(h.timestamp)+' '+h.heure+'</div><div class="action">'+traduireHistorique(h)+'</div><div class="detail">'+getDetailHistorique(h)+'</div></div>';});container.innerHTML=html;}
 
 // ============ GRAPHIQUES ============
 function changerPeriodeGraphique(periode,btn){document.querySelectorAll('#screenGraphiques .btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');periodeGraphique=periode;afficherGraphiques();}
-function afficherGraphiques(){const container=document.getElementById('chartBars');const summary=document.getElementById('chartSummary');const historique=getHistorique();if(historique.length===0){container.innerHTML='<div class="chart-empty">'+translate('no_data_available')+'</div>';summary.style.display='none';return;}const moisMap=new Map();historique.forEach(h=>{const d=new Date(h.timestamp);const key=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');const monthName=d.toLocaleString('fr-FR',{month:'short'});if(!moisMap.has(key))moisMap.set(key,{ca:0,dep:0,label:monthName+' '+d.getFullYear()});if(h.action.includes('🧾 Commande validée')){const m=h.detail.match(/Total:\s*([\d.]+)/);if(m)moisMap.get(key).ca+=parseFloat(m[1].replace(/\./g,''));}if(h.action.includes('📉 Dépense enregistrée')){const m=h.detail.match(/Montant:\s*([\d.]+)\s*F/);if(m)moisMap.get(key).dep+=parseFloat(m[1].replace(/\./g,''));}});let keys=Array.from(moisMap.keys()).sort();const now=new Date();if(periodeGraphique==='year')keys=keys.filter(k=>parseInt(k.split('-')[0])===now.getFullYear());else if(periodeGraphique==='6months'){const l=new Date(now);l.setMonth(now.getMonth()-5);keys=keys.filter(k=>{const[y,m]=k.split('-').map(Number);return y>l.getFullYear()||(y===l.getFullYear()&&m>=l.getMonth()+1);});}else if(periodeGraphique==='3months'){const l=new Date(now);l.setMonth(now.getMonth()-2);keys=keys.filter(k=>{const[y,m]=k.split('-').map(Number);return y>l.getFullYear()||(y===l.getFullYear()&&m>=l.getMonth()+1);});}if(keys.length===0){container.innerHTML='<div class="chart-empty">'+translate('no_data_available')+'</div>';summary.style.display='none';return;}let totalCA=0,totalDep=0,totalBen=0;keys.forEach(k=>{const d=moisMap.get(k);totalCA+=d.ca;totalDep+=d.dep;totalBen+=d.ca-d.dep;});document.getElementById('chartTotalCA').textContent=formatMontantAvecDevise(totalCA);document.getElementById('chartTotalDep').textContent=formatMontantAvecDevise(totalDep);document.getElementById('chartTotalBen').textContent=formatMontantAvecDevise(totalBen);summary.style.display='flex';let maxVal=0;keys.forEach(k=>{const d=moisMap.get(k);maxVal=Math.max(maxVal,d.ca,d.dep,d.ca-d.dep);});if(maxVal===0)maxVal=1;let html='';keys.forEach(k=>{const d=moisMap.get(k);const ben=d.ca-d.dep;const detailText=d.label+' | CA: '+formatMontantAvecDevise(d.ca)+' | Dépenses: '+formatMontantAvecDevise(d.dep)+' | Bénéfice: '+formatMontantAvecDevise(ben);html+='<div class="chart-month" onclick="showToast(\''+detailText.replace(/'/g,"\\'")+'\')"><div class="bars">'+(d.ca>0?'<div class="bar ca" style="height:'+Math.max((d.ca/maxVal)*100,2)+'%"></div>':'<div class="bar ca" style="height:2%"></div>')+(d.dep>0?'<div class="bar dep" style="height:'+Math.max((d.dep/maxVal)*100,2)+'%"></div>':'<div class="bar dep" style="height:2%"></div>')+(ben>0?'<div class="bar ben" style="height:'+Math.max((ben/maxVal)*100,2)+'%"></div>':'<div class="bar ben" style="height:2%"></div>')+'</div><div class="label">'+d.label+'</div></div>';});container.innerHTML=html;}
+function afficherGraphiques(){
+  const container=document.getElementById('chartBars');
+  const summary=document.getElementById('chartSummary');
+  const historique=getHistorique();
+  if(historique.length===0){container.innerHTML='<div class="chart-empty">'+translate('no_data_available')+'</div>';summary.style.display='none';return;}
+  const moisMap=new Map();
+  historique.forEach(h=>{
+    const d=new Date(h.timestamp);
+    const key=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');
+    const monthName=d.toLocaleString(localesChart[langueActuelle]||'fr-FR',{month:'short'});
+    if(!moisMap.has(key))moisMap.set(key,{ca:0,dep:0,label:monthName+' '+d.getFullYear()});
+    if(estCommande(h)){if(h.params&&h.params.total){moisMap.get(key).ca+=Number(h.params.total)||0;}else{const m=(h.detail||'').match(/Total:\s*([\d.]+)/);if(m)moisMap.get(key).ca+=parseFloat(m[1].replace(/\./g,''));}}
+    if(estDepense(h)){const m=(h.detail||'').match(/([\d.]+)\s*F/);if(m)moisMap.get(key).dep+=parseFloat(m[1].replace(/\./g,''));}
+  });
+  let keys=Array.from(moisMap.keys()).sort();
+  const now=new Date();
+  if(periodeGraphique==='year')keys=keys.filter(k=>parseInt(k.split('-')[0])===now.getFullYear());
+  else if(periodeGraphique==='6months'){const l=new Date(now);l.setMonth(now.getMonth()-5);keys=keys.filter(k=>{const[y,m]=k.split('-').map(Number);return y>l.getFullYear()||(y===l.getFullYear()&&m>=l.getMonth()+1);});}
+  else if(periodeGraphique==='3months'){const l=new Date(now);l.setMonth(now.getMonth()-2);keys=keys.filter(k=>{const[y,m]=k.split('-').map(Number);return y>l.getFullYear()||(y===l.getFullYear()&&m>=l.getMonth()+1);});}
+  if(keys.length===0){container.innerHTML='<div class="chart-empty">'+translate('no_data_available')+'</div>';summary.style.display='none';return;}
+  let totalCA=0,totalDep=0,totalBen=0;
+  keys.forEach(k=>{const d=moisMap.get(k);totalCA+=d.ca;totalDep+=d.dep;totalBen+=d.ca-d.dep;});
+  summary.innerHTML='<span>💰 '+translate('revenue_short')+' : <span class="total green">'+formatMontantAvecDevise(totalCA)+'</span></span>'
+    +'<span>📉 '+translate('expenses_short')+' : <span class="total red">'+formatMontantAvecDevise(totalDep)+'</span></span>'
+    +'<span>📊 '+translate('profit_short')+' : <span class="total blue">'+formatMontantAvecDevise(totalBen)+'</span></span>';
+  summary.style.display='flex';
+  let maxVal=0;
+  keys.forEach(k=>{const d=moisMap.get(k);maxVal=Math.max(maxVal,d.ca,d.dep,d.ca-d.dep);});
+  if(maxVal===0)maxVal=1;
+  let html='';
+  keys.forEach(k=>{
+    const d=moisMap.get(k);const ben=d.ca-d.dep;
+    const detailText=d.label+' | '+translate('revenue_short')+': '+formatMontantAvecDevise(d.ca)+' | '+translate('expenses_short')+': '+formatMontantAvecDevise(d.dep)+' | '+translate('profit_short')+': '+formatMontantAvecDevise(ben);
+    html+='<div class="chart-month" onclick="showToast(\''+detailText.replace(/'/g,"\\'")+'\')"><div class="bars">'+(d.ca>0?'<div class="bar ca" style="height:'+Math.max((d.ca/maxVal)*100,2)+'%"></div>':'<div class="bar ca" style="height:2%"></div>')+(d.dep>0?'<div class="bar dep" style="height:'+Math.max((d.dep/maxVal)*100,2)+'%"></div>':'<div class="bar dep" style="height:2%"></div>')+(ben>0?'<div class="bar ben" style="height:'+Math.max((ben/maxVal)*100,2)+'%"></div>':'<div class="bar ben" style="height:2%"></div>')+'</div><div class="label">'+d.label+'</div></div>';
+  });
+  container.innerHTML=html;
+}
 
 // ============ QR PRODUITS ============
 function genererQRProduit(p){return JSON.stringify({type:'product',nom:p.nom,codeBarres:p.codeBarres||'',contenuCarton:p.contenuCarton||0,contenuBoite:p.contenuBoite||0,prixVenteCarton:p.prixVenteCarton||0,prixVenteBoite:p.prixVenteBoite||0,prixVentePiece:p.prixVentePiece||0,stockCarton:p.stockCarton||0,stockBoite:p.stockBoite||0,stockPiece:p.stockPiece||0});}
@@ -2435,9 +2681,9 @@ function arreterScannerDocument(){scannerDoc.arreter();}
 
 // ============ EXPORT CSV & PDF ============
 function exporterCSV(){const produits=getProduits();if(produits.length===0){showAlert('no_products');return;}let csv='Nom,Code-barres,Contenu carton,Contenu boite,PA carton,PV carton,PA boite,PV boite,PA piece,PV piece,Stock carton,Stock boite,Stock piece\n';produits.forEach(p=>{csv+='"'+p.nom+'","'+(p.codeBarres||'')+'",'+(p.contenuCarton||0)+','+(p.contenuBoite||0)+','+(p.prixAchatCarton||0)+','+(p.prixVenteCarton||0)+','+(p.prixAchatBoite||0)+','+(p.prixVenteBoite||0)+','+(p.prixAchatPiece||0)+','+(p.prixVentePiece||0)+','+(p.stockCarton||0)+','+(p.stockBoite||0)+','+(p.stockPiece||0)+'\n';});const blob=new Blob([csv],{type:'text/csv'});const link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download='GestionPro_donnees.csv';link.click();showToastTraduit('toast_csv_exported');}
-function exporterPDF(){const produits=getProduits();if(produits.length===0){showAlert('no_products');return;}const now=new Date();const dateStr=now.toLocaleDateString('fr-FR');const heureStr=now.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});let html='<html><head><meta charset="UTF-8"><title>Rapport Gestion Pro</title><style>body{font-family:Arial,sans-serif;padding:30px;color:#0f172a}h1{color:#2563eb;text-align:center;border-bottom:3px solid #2563eb;padding-bottom:10px}h2{color:#2563eb;margin-top:25px;font-size:16px}.info{text-align:center;color:#64748b;font-size:12px;margin-bottom:20px}table{width:100%;border-collapse:collapse;margin-top:15px;font-size:12px}th{background:#2563eb;color:#fff;padding:8px;text-align:left}td{padding:8px;border-bottom:1px solid #e2e8f0}tr:nth-child(even){background:#f8fafc}.total{margin-top:20px;padding:15px;background:#dbeafe;border-radius:8px;font-weight:bold;text-align:right}.footer{margin-top:40px;text-align:center;font-size:11px;color:#94a3b8;border-top:1px solid #e2e8f0;padding-top:15px}</style></head><body>';html+='<h1>📊 Rapport Gestion Pro</h1>';html+='<div class="info">Généré le '+dateStr+' à '+heureStr+' • DAS PRO STUDIO</div>';html+='<h2>📦 Liste des produits ('+produits.length+')</h2>';html+='<table><thead><tr><th>Nom</th><th>Code</th><th>Stock (C/B/P)</th><th>Prix Vente</th><th>Valeur</th></tr></thead><tbody>';let totalVal=0;produits.forEach(p=>{const sc=p.stockCarton||0,sb=p.stockBoite||0,sp=p.stockPiece||0;const val=sc*(p.prixVenteCarton||0)+sb*(p.prixVenteBoite||0)+sp*(p.prixVentePiece||0);totalVal+=val;html+='<tr><td>'+p.nom+'</td><td>'+(p.codeBarres||'-')+'</td><td>'+sc+' / '+sb+' / '+sp+'</td><td>'+formatMontantAvecDevise(p.prixVentePiece||0)+'</td><td>'+formatMontantAvecDevise(val)+'</td></tr>';});html+='</tbody></table>';html+='<div class="total">💰 Valeur totale du stock : '+formatMontantAvecDevise(totalVal)+'</div>';html+='<div class="footer">© 2026 DAS PRO STUDIO — Aboubacar Mahaman Natitia<br>Gestion Pro v5.0.0</div>';html+='</body></html>';const win=window.open('','_blank');win.document.write(html);win.document.close();setTimeout(()=>{win.print();},500);showToastTraduit('toast_pdf_exported');}
+function exporterPDF(){const produits=getProduits();if(produits.length===0){showAlert('no_products');return;}const now=new Date();const dateStr=now.toLocaleDateString('fr-FR');const heureStr=now.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});let html='<html><head><meta charset="UTF-8"><title>Gestion Pro</title><style>body{font-family:Arial,sans-serif;padding:30px;color:#0f172a}h1{color:#2563eb;text-align:center;border-bottom:3px solid #2563eb;padding-bottom:10px}h2{color:#2563eb;margin-top:25px;font-size:16px}.info{text-align:center;color:#64748b;font-size:12px;margin-bottom:20px}table{width:100%;border-collapse:collapse;margin-top:15px;font-size:12px}th{background:#2563eb;color:#fff;padding:8px;text-align:left}td{padding:8px;border-bottom:1px solid #e2e8f0}tr:nth-child(even){background:#f8fafc}.total{margin-top:20px;padding:15px;background:#dbeafe;border-radius:8px;font-weight:bold;text-align:right}.footer{margin-top:40px;text-align:center;font-size:11px;color:#94a3b8;border-top:1px solid #e2e8f0;padding-top:15px}</style></head><body>';html+='<h1>📊 Gestion Pro</h1>';html+='<div class="info">'+dateStr+' • '+heureStr+' • DAS PRO STUDIO</div>';html+='<h2>📦 '+translate('product_list')+' ('+produits.length+')</h2>';html+='<table><thead><tr><th>'+translate('product_name_label')+'</th><th>'+translate('product_barcode_label')+'</th><th>'+translate('stock')+'</th><th>'+translate('unit_price')+'</th><th>'+translate('value')+'</th></tr></thead><tbody>';let totalVal=0;produits.forEach(p=>{const sc=p.stockCarton||0,sb=p.stockBoite||0,sp=p.stockPiece||0;const val=sc*(p.prixVenteCarton||0)+sb*(p.prixVenteBoite||0)+sp*(p.prixVentePiece||0);totalVal+=val;html+='<tr><td>'+p.nom+'</td><td>'+(p.codeBarres||'-')+'</td><td>'+sc+' / '+sb+' / '+sp+'</td><td>'+formatMontantAvecDevise(p.prixVentePiece||0)+'</td><td>'+formatMontantAvecDevise(val)+'</td></tr>';});html+='</tbody></table>';html+='<div class="total">💰 '+translate('value')+' : '+formatMontantAvecDevise(totalVal)+'</div>';html+='<div class="footer">© 2026 DAS PRO STUDIO — Aboubacar Mahaman Natitia<br>Gestion Pro v5.1.0</div>';html+='</body></html>';const win=window.open('','_blank');win.document.write(html);win.document.close();setTimeout(()=>{win.print();},500);showToastTraduit('toast_pdf_exported');}
 
-// ============ TUTORIEL MULTILINGUE ============
+// ============ TUTORIEL ============
 function afficherTutoriel(){const overlay=document.createElement('div');overlay.className='qr-modal-overlay active';overlay.onclick=function(e){if(e.target===this)document.body.removeChild(this);};overlay.innerHTML='<div class="qr-modal" style="max-width:95%;width:500px;text-align:left;max-height:85vh;overflow-y:auto"><div class="qr-title" style="text-align:center">'+translate('guide_title')+'</div><div style="font-size:13px;line-height:1.6;color:var(--text);margin-top:12px"><strong>'+translate('guide_step1')+'</strong><br>'+translate('guide_step1_text')+'<br><br><strong>'+translate('guide_step2')+'</strong><br>'+translate('guide_step2_text')+'<br><br><strong>'+translate('guide_step3')+'</strong><br>'+translate('guide_step3_text')+'<br><br><strong>'+translate('guide_step4')+'</strong><br>'+translate('guide_step4_text')+'<br><br><strong>'+translate('guide_step5')+'</strong><br>'+translate('guide_step5_text')+'<br><br><strong>'+translate('guide_step6')+'</strong><br>'+translate('guide_step6_text')+'<br><br><strong>'+translate('guide_step7')+'</strong><br>'+translate('guide_step7_text')+'</div><button class="btn btn-primary btn-close" onclick="document.body.removeChild(this.closest(\'.qr-modal-overlay\'))">'+translate('close')+'</button></div>';document.body.appendChild(overlay);}
 
 // ============ SAUVEGARDE ============
@@ -2446,8 +2692,8 @@ function restaurerCloud(){const input=document.createElement('input');input.type
 function reinitialiserTout(){showConfirm('confirm_reset_all',function(){showConfirm('confirm_reset_all_confirm',function(){setProduits([]);setHistorique([]);setCommandes([]);setClients([]);setFournisseurs([]);setFactureCounter(1);showToastTraduit('toast_data_reset');openScreen('screenAccueil');});});}
 
 // ============ NOTIFICATIONS PUSH ============
-function toggleNotifPush(){const actif=document.getElementById('notifPushToggle').checked;localStorage.setItem('gestionPro_notifPush',actif.toString());if(actif){if('Notification' in window){Notification.requestPermission().then(perm=>{if(perm==='granted'){localStorage.setItem('gestionPro_notifGranted','true');showToast('🔔 Notifications activées');envoyerNotificationsStockBas();}else{showToast('⚠️ Permission refusée');document.getElementById('notifPushToggle').checked=false;localStorage.setItem('gestionPro_notifPush','false');}});}else{showToast('⚠️ Non supporté');}}}
-function envoyerNotificationsStockBas(){if(!('Notification' in window)||Notification.permission!=='granted')return;const produits=getProduits();const bas=produits.filter(p=>(p.stockPiece||0)<=3||((p.stockBoite||0)===0&&(p.stockCarton||0)>0&&(p.stockPiece||0)===0));if(bas.length===0)return;try{new Notification('⚠️ Gestion Pro - Stock bas',{body:bas.length+' produit(s) à réapprovisionner',icon:'launchericon-192x192.png',tag:'stock-bas'});}catch(e){console.error(e);}}
+function toggleNotifPush(){const actif=document.getElementById('notifPushToggle').checked;localStorage.setItem('gestionPro_notifPush',actif.toString());if(actif){if('Notification' in window){Notification.requestPermission().then(perm=>{if(perm==='granted'){localStorage.setItem('gestionPro_notifGranted','true');showToast('🔔 '+translate('notifications'));envoyerNotificationsStockBas();}else{showToast('⚠️');document.getElementById('notifPushToggle').checked=false;localStorage.setItem('gestionPro_notifPush','false');}});}else{showToast('⚠️');}}}
+function envoyerNotificationsStockBas(){if(!('Notification' in window)||Notification.permission!=='granted')return;const produits=getProduits();const bas=produits.filter(p=>(p.stockPiece||0)<=3||((p.stockBoite||0)===0&&(p.stockCarton||0)>0&&(p.stockPiece||0)===0));if(bas.length===0)return;try{new Notification('⚠️ Gestion Pro - '+translate('alert_stock_title'),{body:bas.length+' '+translate('alert_stock_desc'),icon:'launchericon-192x192.png',tag:'stock-bas'});}catch(e){console.error(e);}}
 
 // ============ SAISIE CLAVIER ============
 function getAllInputs(){const active=document.querySelector('.screen.active');if(!active)return[];const inputs=Array.from(active.querySelectorAll('input, select, textarea'));return inputs.filter(el=>{if(el.disabled||el.readOnly)return false;if(el.type==='radio'||el.type==='checkbox')return false;if(el.offsetParent===null)return false;return true;});}
@@ -2462,39 +2708,36 @@ function initPrefs(){const alerte=localStorage.getItem('gestionPro_alerte')!=='f
 function toggleAlerteStock(){const actif=document.getElementById('alerteStockToggle').checked;localStorage.setItem('gestionPro_alerte',actif.toString());afficherAlerteStock();afficherResumeJour();}
 function toggleResumeJour(){const actif=document.getElementById('resumeJourToggle').checked;localStorage.setItem('gestionPro_resume',actif.toString());afficherResumeJour();}
 
-function afficherResumeJour(){const container=document.getElementById('resumeJourContainer');if(!container)return;const actif=localStorage.getItem('gestionPro_resume')!=='false';if(!actif){container.innerHTML='';return;}const h=getHistorique();const today=new Date();today.setHours(0,0,0,0);const fin=new Date();fin.setHours(23,59,59,999);let ca=0,dep=0;h.forEach(x=>{const d=new Date(x.timestamp);if(d>=today&&d<=fin){if(x.action.includes('🧾 Commande validée')){const m=x.detail.match(/Total:\s*([\d.]+)/);if(m)ca+=parseFloat(m[1].replace(/\./g,''));}if(x.action.includes('📉 Dépense enregistrée')){const m=x.detail.match(/Montant:\s*([\d.]+)\s*F/);if(m)dep+=parseFloat(m[1].replace(/\./g,''));}}});const benef=ca-dep;const cls=benef>=0?'positif':'negatif';container.innerHTML='<div class="resume-jour"><h3>📅 '+translate('resume_today')+'</h3><div class="resume-grid"><div class="resume-item"><div class="lbl">'+translate('resume_sales')+'</div><div class="val">'+formatMontantAvecDevise(ca)+'</div></div><div class="resume-item"><div class="lbl">'+translate('resume_expenses')+'</div><div class="val">'+formatMontantAvecDevise(dep)+'</div></div><div class="resume-item"><div class="lbl">'+translate('resume_profit')+'</div><div class="val '+cls+'">'+formatMontantAvecDevise(benef)+'</div></div></div></div>';}
-function afficherAlerteStock(){const container=document.getElementById('alerteStockContainer');if(!container)return;const actif=localStorage.getItem('gestionPro_alerte')!=='false';if(!actif){container.innerHTML='';return;}const produits=getProduits();const bas=produits.filter(p=>(p.stockPiece||0)<=3||((p.stockBoite||0)===0&&(p.stockCarton||0)>0&&(p.stockPiece||0)===0));if(bas.length===0){container.innerHTML='';return;}let liste='';bas.slice(0,5).forEach(p=>{liste+='<div>• '+p.nom+' : 📦 '+(p.stockCarton||0)+' · 📫 '+(p.stockBoite||0)+' · 🔹 '+(p.stockPiece||0)+'</div>';});if(bas.length>5)liste+='<div style="margin-top:4px;font-weight:600">+ '+(bas.length-5)+' autres...</div>';container.innerHTML='<div class="alerte-stock"><div class="icone">⚠️</div><div class="contenu"><div class="titre">'+translate('alert_stock_title')+' ('+bas.length+')</div><div class="liste">'+liste+'</div></div></div>';}
+function afficherResumeJour(){const container=document.getElementById('resumeJourContainer');if(!container)return;const actif=localStorage.getItem('gestionPro_resume')!=='false';if(!actif){container.innerHTML='';return;}const h=getHistorique();const today=new Date();today.setHours(0,0,0,0);const fin=new Date();fin.setHours(23,59,59,999);let ca=0,dep=0;h.forEach(x=>{const d=new Date(x.timestamp);if(d>=today&&d<=fin){if(estCommande(x)){if(x.params&&x.params.total){ca+=Number(x.params.total)||0;}else{const m=(x.detail||'').match(/Total:\s*([\d.]+)/);if(m)ca+=parseFloat(m[1].replace(/\./g,''));}}if(estDepense(x)){const m=(x.detail||'').match(/([\d.]+)\s*F/);if(m)dep+=parseFloat(m[1].replace(/\./g,''));}}});const benef=ca-dep;const cls=benef>=0?'positif':'negatif';container.innerHTML='<div class="resume-jour"><h3>📅 '+translate('resume_today')+'</h3><div class="resume-grid"><div class="resume-item"><div class="lbl">'+translate('resume_sales')+'</div><div class="val">'+formatMontantAvecDevise(ca)+'</div></div><div class="resume-item"><div class="lbl">'+translate('resume_expenses')+'</div><div class="val">'+formatMontantAvecDevise(dep)+'</div></div><div class="resume-item"><div class="lbl">'+translate('resume_profit')+'</div><div class="val '+cls+'">'+formatMontantAvecDevise(benef)+'</div></div></div></div>';}
+function afficherAlerteStock(){const container=document.getElementById('alerteStockContainer');if(!container)return;const actif=localStorage.getItem('gestionPro_alerte')!=='false';if(!actif){container.innerHTML='';return;}const produits=getProduits();const bas=produits.filter(p=>(p.stockPiece||0)<=3||((p.stockBoite||0)===0&&(p.stockCarton||0)>0&&(p.stockPiece||0)===0));if(bas.length===0){container.innerHTML='';return;}let liste='';bas.slice(0,5).forEach(p=>{liste+='<div>• '+p.nom+' : 📦 '+(p.stockCarton||0)+' · 📫 '+(p.stockBoite||0)+' · 🔹 '+(p.stockPiece||0)+'</div>';});if(bas.length>5)liste+='<div style="margin-top:4px;font-weight:600">+ '+(bas.length-5)+'</div>';container.innerHTML='<div class="alerte-stock"><div class="icone">⚠️</div><div class="contenu"><div class="titre">'+translate('alert_stock_title')+' ('+bas.length+')</div><div class="liste">'+liste+'</div></div></div>';}
 
 // ============ TRADUCTION & PREFERENCES ============
-// ✅ NOUVEAU : label du taux dynamique
-function mettreAJourLabelTaux(){
-  const label=document.querySelector('label[data-i18n="exchange_rate"]');
-  if(label){
-    const sym=deviseSymbols[deviseActuelle]||deviseActuelle;
-    const base='Taux de conversion';
-    if(deviseActuelle==='FCFA'){label.textContent=base+' (devise de référence)';}
-    else{label.textContent=base+' (1 '+sym+' = ? FCFA)';}
-  }
-}
+function mettreAJourLabelTaux(){const label=document.getElementById('exchangeRateLabel');if(!label)return;const sym=deviseSymbols[deviseActuelle]||deviseActuelle;if(deviseActuelle==='FCFA'){label.textContent=translate('exchange_rate_ref');}else{label.textContent=translate('exchange_rate_dynamic',{sym:sym});}}
 
 function traduireInterface(lang){const t=translations[lang]||translations.fr;document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.textContent=t[k];});document.querySelectorAll('[data-placeholder-i18n]').forEach(el=>{const k=el.getAttribute('data-placeholder-i18n');if(t[k]!==undefined)el.placeholder=t[k];});const select=document.getElementById('docTypeSelect');if(select)select.querySelectorAll('option').forEach(opt=>{const k=opt.getAttribute('data-i18n');if(k&&t[k])opt.textContent=t[k];});const deviseSelect=document.getElementById('deviseSelect');if(deviseSelect)deviseSelect.querySelectorAll('option').forEach(opt=>{const k=opt.getAttribute('data-i18n');if(k&&t[k])opt.textContent=t[k];});afficherDevise();mettreAJourLabelTaux();if(typeof window.injecterBanniere==='function')window.injecterBanniere();}
 
+function rafraichirToutAffichage(){
+  afficherProduits();afficherClients();afficherFournisseurs();mettreAJourStats();afficherStatsDetail();
+  afficherResumeJour();afficherAlerteStock();afficherPanier();afficherHistorique();
+  if(document.getElementById('commandesListContainer'))afficherCommandes();
+  if(commandeSelectionneeRef&&commandeSelectionneeIndex>=0)afficherCommande(commandeSelectionneeIndex);
+  if(document.getElementById('chartBars'))afficherGraphiques();
+  if(document.getElementById('depensesDetailContainer'))afficherDepensesDetail();
+  if(document.getElementById('analyseDetailContainer')){const b=document.querySelector('#screenAnalyse .btn.active');if(b)analyserPeriode(b.dataset.periode);else analyserPeriode('today');}
+}
+
 function changerLangue(lang){
-  langueActuelle=lang;
-  localStorage.setItem('gestionPro_langue',lang);
+  langueActuelle=lang;localStorage.setItem('gestionPro_langue',lang);
   const deviseParDefaut=langueDeviseParDefaut[lang]||'FCFA';
   const tauxParDefaut=deviseTauxParDefaut[deviseParDefaut]||1;
-  deviseActuelle=deviseParDefaut;
-  tauxConversion=tauxParDefaut;
+  deviseActuelle=deviseParDefaut;tauxConversion=tauxParDefaut;
   const ds=document.getElementById('deviseSelect');if(ds)ds.value=deviseActuelle;
   const tc=document.getElementById('tauxConversion');if(tc)tc.value=tauxParDefaut;
   localStorage.setItem('gestionPro_devise',deviseActuelle);
   localStorage.setItem('gestionPro_taux',tauxParDefaut.toString());
   traduireInterface(lang);
-  afficherDevise();
-  mettreAJourLabelTaux();
-  mettreAJourStats();afficherStatsDetail();afficherProduits();afficherClients();afficherFournisseurs();afficherResumeJour();afficherAlerteStock();
-  if(commandeSelectionneeIndex>=0)afficherCommande(commandeSelectionneeIndex);
+  afficherDevise();mettreAJourLabelTaux();
+  rafraichirToutAffichage();
   showToastTraduit('toast_language_changed');
   if(typeof window.injecterBanniere==='function')setTimeout(window.injecterBanniere,150);
 }
@@ -2502,37 +2745,19 @@ function changerLangue(lang){
 function changerDevise(){
   deviseActuelle=document.getElementById('deviseSelect').value;
   let taux=parseFloat(document.getElementById('tauxConversion').value);
-  // ✅ CORRECTION : si l'utilisateur met 0 ou vide, on prend le taux par défaut
   if(!taux||taux<=0)taux=deviseTauxParDefaut[deviseActuelle]||1;
   if(deviseActuelle==='FCFA')taux=1;
-  tauxConversion=taux;
-  document.getElementById('tauxConversion').value=taux;
+  tauxConversion=taux;document.getElementById('tauxConversion').value=taux;
   localStorage.setItem('gestionPro_devise',deviseActuelle);
   localStorage.setItem('gestionPro_taux',taux.toString());
-  afficherDevise();
-  mettreAJourLabelTaux();
-  mettreAJourStats();afficherStatsDetail();afficherProduits();afficherResumeJour();
-  if(commandeSelectionneeIndex>=0)afficherCommande(commandeSelectionneeIndex);
+  afficherDevise();mettreAJourLabelTaux();
+  rafraichirToutAffichage();
   showToastTraduit('toast_currency_updated');
 }
 
 function afficherDevise(){const s=deviseSymbols[deviseActuelle]||deviseActuelle;document.querySelectorAll('.currency-symbol').forEach(el=>el.textContent=s);}
 
-function initPreferences(){
-  const lang=localStorage.getItem('gestionPro_langue')||'fr';
-  const devise=localStorage.getItem('gestionPro_devise')||'FCFA';
-  let taux=parseFloat(localStorage.getItem('gestionPro_taux'));
-  // ✅ CORRECTION : si le taux stocké est invalide (0, NaN), on prend le taux par défaut
-  if(!taux||taux<=0||isNaN(taux))taux=deviseTauxParDefaut[devise]||1;
-  if(devise==='FCFA')taux=1;
-  langueActuelle=lang;deviseActuelle=devise;tauxConversion=taux;
-  const radio=document.querySelector('input[name="lang"][value="'+lang+'"]');if(radio)radio.checked=true;
-  const ds=document.getElementById('deviseSelect');if(ds)ds.value=devise;
-  const tc=document.getElementById('tauxConversion');if(tc)tc.value=taux;
-  traduireInterface(lang);
-  afficherDevise();
-  mettreAJourLabelTaux();
-}
+function initPreferences(){const lang=localStorage.getItem('gestionPro_langue')||'fr';const devise=localStorage.getItem('gestionPro_devise')||'FCFA';let taux=parseFloat(localStorage.getItem('gestionPro_taux'));if(!taux||taux<=0||isNaN(taux))taux=deviseTauxParDefaut[devise]||1;if(devise==='FCFA')taux=1;langueActuelle=lang;deviseActuelle=devise;tauxConversion=taux;const radio=document.querySelector('input[name="lang"][value="'+lang+'"]');if(radio)radio.checked=true;const ds=document.getElementById('deviseSelect');if(ds)ds.value=devise;const tc=document.getElementById('tauxConversion');if(tc)tc.value=taux;traduireInterface(lang);afficherDevise();mettreAJourLabelTaux();}
 
 // ============ SERVICE WORKER ============
 if ('serviceWorker' in navigator) {
@@ -2543,7 +2768,7 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// ============ FIX ÉCRAN SOMBRE (RENFORCÉ) ============
+// ============ FIX ÉCRAN SOMBRE ============
 function forcerAffichage(){
   try{
     const splash = document.getElementById('splash');
@@ -2557,26 +2782,11 @@ function forcerAffichage(){
 }
 
 document.addEventListener('visibilitychange', function() {
-  if (!document.hidden) {
-    setTimeout(forcerAffichage, 50);
-    setTimeout(forcerAffichage, 250);
-  }
+  if (!document.hidden) { setTimeout(forcerAffichage, 50); setTimeout(forcerAffichage, 250); }
 });
-
-window.addEventListener('pageshow', function(e) {
-  setTimeout(forcerAffichage, 50);
-  setTimeout(forcerAffichage, 250);
-});
-
-window.addEventListener('focus', function() {
-  setTimeout(forcerAffichage, 50);
-  setTimeout(forcerAffichage, 250);
-});
-
-window.addEventListener('resume', function() {
-  setTimeout(forcerAffichage, 50);
-  setTimeout(forcerAffichage, 250);
-});
+window.addEventListener('pageshow', function(e) { setTimeout(forcerAffichage, 50); setTimeout(forcerAffichage, 250); });
+window.addEventListener('focus', function() { setTimeout(forcerAffichage, 50); setTimeout(forcerAffichage, 250); });
+window.addEventListener('resume', function() { setTimeout(forcerAffichage, 50); setTimeout(forcerAffichage, 250); });
 
 if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.App) {
   try {
