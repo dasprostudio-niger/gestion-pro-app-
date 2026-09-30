@@ -2795,15 +2795,18 @@ if ('serviceWorker' in navigator) {
 }
 
 // ============ FIX ÉCRAN SOMBRE ============
+const SPLASH_DEBUT = Date.now();
 function forcerAffichage(){
   try{
-    const splash = document.getElementById('splash');
     const app = document.getElementById('app');
-    if(splash){ splash.classList.add('hide'); splash.style.display='none'; splash.style.visibility='hidden'; splash.style.opacity='0'; splash.style.pointerEvents='none'; }
     if(app){ app.style.opacity='1'; app.style.visibility='visible'; }
     document.body.style.background = document.body.classList.contains('dark') ? '#0f172a' : '#f8fafc';
     document.documentElement.style.background = document.body.classList.contains('dark') ? '#0f172a' : '#f8fafc';
     if(app){ void app.offsetHeight; }
+    if(Date.now() - SPLASH_DEBUT > 4000){
+      const splash = document.getElementById('splash');
+      if(splash){ splash.classList.add('hide'); splash.style.display='none'; }
+    }
   }catch(e){ console.error('forcerAffichage error', e); }
 }
 
@@ -2825,19 +2828,11 @@ if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.App
 // ============ INITIALISATION ============
 document.addEventListener('DOMContentLoaded',function(){
   try{
-    const dejaVu=sessionStorage.getItem('splashVu')==='true';
-    if(dejaVu){
-      const sp=document.getElementById('splash');
-      if(sp){sp.classList.add('hide');sp.style.display='none';}
-      document.getElementById('app').style.opacity='1';
-    }else{
-      sessionStorage.setItem('splashVu','true');
-      setTimeout(()=>{
-        const sp=document.getElementById('splash');
-        if(sp){sp.classList.add('hide');sp.style.display='none';}
-        document.getElementById('app').style.opacity='1';
-      },3500);
-    }
+    setTimeout(()=>{
+  const sp=document.getElementById('splash');
+  if(sp){sp.classList.add('hide');sp.style.display='none';}
+  document.getElementById('app').style.opacity='1';
+},4000);
     initPreferences();
     initDarkMode();
     initPrefs();
