@@ -11,18 +11,18 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-    
+
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '22'
-    
+
     - name: Setup Java JDK
       uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
         java-version: '21'
-    
+
     - name: Prepare www folder
       run: |
         mkdir -p www
@@ -34,21 +34,36 @@ jobs:
         cp html5-qrcode.min.js www/
         cp html2canvas.min.js www/
         cp launchericon-*.png www/ 2>/dev/null || true
-    
+
     - name: Install Capacitor
       run: |
         npm init -y
-        npm install @capacitor/core @capacitor/cli @capacitor/android @capacitor/camera
-    
+        npm install @capacitor/core @capacitor/cli @capacitor/android
+
     - name: Initialize Capacitor
       run: |
         npx cap init "Gestion Pro" "com.dasprostudio.gestionproapp" --web-dir=www
-    
+
     - name: Add Android platform
       run: |
         npx cap add android
         npx cap sync android
-    
+
+    - name: Replace Android launcher icons
+      run: |
+        cp launchericon-48x48.png android/app/src/main/res/mipmap-mdpi/ic_launcher.png
+        cp launchericon-72x72.png android/app/src/main/res/mipmap-hdpi/ic_launcher.png
+        cp launchericon-96x96.png android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
+        cp launchericon-144x144.png android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+        cp launchericon-192x192.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
+        cp launchericon-48x48.png android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png
+        cp launchericon-72x72.png android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png
+        cp launchericon-96x96.png android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png
+        cp launchericon-144x144.png android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png
+        cp launchericon-192x192.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png
+        rm -f android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+        rm -f android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
+
     - name: Set version code and name
       run: |
         GRADLE="android/app/build.gradle"
@@ -56,32 +71,32 @@ jobs:
         sed -i -E 's/versionName "[^"]*"/versionName "5.1.0"/' "$GRADLE"
         echo "=== Version mise à jour ==="
         grep -E "versionCode|versionName" "$GRADLE" || true
-    
+
     - name: Add camera permissions to AndroidManifest
       run: |
         MANIFEST="android/app/src/main/AndroidManifest.xml"
-        sed -i 's|</manifest>|<uses-permission android:name="android.permission.CAMERA" />\n    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />\n    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />\n    <uses-feature android:name="android.hardware.camera" android:required="false" />\n</manifest>|' "$MANIFEST"
-    
+        sed -i 's|</manifest>|<uses-permission android:name="android.permission.CAMERA"/><uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/><uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/></manifest>|' "$MANIFEST"
+
     - name: Build APK release
       run: |
         cd android
         chmod +x gradlew
         ./gradlew assembleRelease
-    
+
     - name: Align and sign APK
       run: |
         BT=$(ls $ANDROID_SDK_ROOT/build-tools/ | tail -1)
         ZIPALIGN="$ANDROID_SDK_ROOT/build-tools/$BT/zipalign"
         APKSIGNER="$ANDROID_SDK_ROOT/build-tools/$BT/apksigner"
-        
+
         mkdir -p signed
         cd android/app/build/outputs/apk/release
-        
+
         $ZIPALIGN -v 4 app-release-unsigned.apk $GITHUB_WORKSPACE/signed/app-aligned.apk
-        
+
         cd $GITHUB_WORKSPACE/signed
         zip -d app-aligned.apk "META-INF/*.RSA" "META-INF/*.SF" "META-INF/*.MF" || true
-        
+
         $APKSIGNER sign \
           --ks $GITHUB_WORKSPACE/gestionpro.keystore \
           --ks-pass pass:gestionpro2026 \
@@ -89,10 +104,10 @@ jobs:
           --ks-key-alias gestionpro \
           --out GestionPro-signed.apk \
           app-aligned.apk
-        
+
         $APKSIGNER verify --verbose GestionPro-signed.apk
         ls -la GestionPro-signed.apk
-    
+
     - name: Upload signed APK
       uses: actions/upload-artifact@v4
       with:
