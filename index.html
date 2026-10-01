@@ -2857,6 +2857,27 @@ document.addEventListener('DOMContentLoaded',function(){
     document.getElementById('app').style.opacity='1';
   }
 });
+// ============ FAILSAFE URGENT - FERME LE SPLASH QUOI QU'IL ARRIVE ============
+setTimeout(function(){
+  const sp = document.getElementById('splash');
+  if(sp){ 
+    sp.classList.add('hide'); 
+    sp.style.display='none'; 
+    sp.style.opacity='0';
+    sp.style.visibility='hidden';
+    sp.style.pointerEvents='none';
+  }
+  const app = document.getElementById('app');
+  if(app){ app.style.opacity='1'; app.style.visibility='visible'; }
+}, 5000);
+
+// Deuxième failsafe (au cas où)
+setTimeout(function(){
+  const sp = document.getElementById('splash');
+  if(sp){ sp.style.display='none'; }
+  const app = document.getElementById('app');
+  if(app){ app.style.opacity='1'; app.style.visibility='visible'; }
+}, 8000);
 </script>
 <script src="premium.js"></script>
 </body>
