@@ -282,6 +282,7 @@ body.dark .alerte-stock .liste{color:#fecaca}
 <div class="input-with-btn">
 <input class="input-field" id="venteProduit" data-placeholder-i18n="product_search_placeholder" oninput="rechercherProduits()" autocomplete="off" enterkeyhint="search"/>
 <button onclick="demarrerScannerVente()">📷</button>
+<button onclick="scannerParPhoto('sale')" style="background:#10b981" title="Scanner avec photo">🖼️</button>
 </div>
 <div id="suggestionsContainerVente" class="suggestions"></div>
 <div id="scannerSaleContainer"><div id="readerSale"></div><div id="scannerSaleStatus" data-i18n="scanner_ready">Prêt à scanner...</div><div class="scanner-actions"><button class="btn btn-sm btn-danger" onclick="arreterScannerVente()" data-i18n="stop_scan">⏹ Arrêter</button></div></div>
@@ -332,7 +333,9 @@ body.dark .alerte-stock .liste{color:#fecaca}
 <div class="screen-title" data-i18n="products_title">📦 Produits</div>
 <div class="card">
 <div class="card-title" data-i18n="add_edit">➕ Ajouter / Modifier</div>
+<button onclick="demarrerScannerProduit()" style="width:100%;margin-bottom:12px" data-i18n="scan_product_qr">📷 Scanner un produit (QR / Code-barres)</button>
 <button class="btn btn-sm btn-outline mb-2" onclick="demarrerScannerProduit()" style="width:100%;margin-bottom:12px" data-i18n="scan_product_qr">📷 Scanner un produit (QR / Code-barres)</button>
+<button class="btn btn-sm btn-success mb-2" onclick="scannerParPhoto('product')" style="width:100%;margin-bottom:12px">🖼️ Scanner avec une photo (iPhone)</button>
 <div id="scannerProductContainer"><div id="readerProduct"></div><div id="scannerProductStatus" data-i18n="scanner_ready">Prêt à scanner...</div><div class="scanner-actions"><button class="btn btn-sm btn-danger" onclick="arreterScannerProduit()" data-i18n="stop_scan">⏹ Arrêter</button></div></div>
 <div class="product-image-upload">
 <img id="productImagePreview" class="product-image-preview" src="launchericon-192x192.png" onclick="document.getElementById('productImageInput').click()"/>
@@ -578,6 +581,7 @@ body.dark .alerte-stock .liste{color:#fecaca}
 <div class="input-with-btn">
 <input class="input-field" id="stockProduit" data-placeholder-i18n="product_search_placeholder" oninput="rechercherProduitsStock()" autocomplete="off" enterkeyhint="search"/>
 <button onclick="demarrerScannerStock()" type="button">📷</button>
+<button onclick="scannerParPhoto('stock')">🖼️ Photo</button>
 </div>
 <div id="suggestionsContainerStock" class="suggestions"></div>
 <div id="scannerStockContainer"><div id="readerStock"></div><div id="scannerStockStatus" data-i18n="scanner_ready">Prêt à scanner...</div><div class="scanner-actions"><button class="btn btn-sm btn-danger" onclick="arreterScannerStock()" data-i18n="stop_scan">⏹ Arrêter</button></div></div>
@@ -615,6 +619,7 @@ body.dark .alerte-stock .liste{color:#fecaca}
 <div class="input-with-btn">
 <input class="input-field" id="depenseProduit" data-placeholder-i18n="product_search_placeholder" oninput="rechercherProduitsDepense()" autocomplete="off" enterkeyhint="search"/>
 <button onclick="demarrerScannerDepense()">📷</button>
+<button onclick="scannerParPhoto('depense')">🖼️ Photo</button>
 </div>
 <div id="suggestionsContainerDepense" class="suggestions"></div>
 <div id="scannerDepenseContainer"><div id="readerDepense"></div><div id="scannerDepenseStatus" data-i18n="scanner_ready">Prêt à scanner...</div><div class="scanner-actions"><button class="btn btn-sm btn-danger" onclick="arreterScannerDepense()" data-i18n="stop_scan">⏹ Arrêter</button></div></div>
@@ -2687,6 +2692,54 @@ function arreterScannerProduit(){scannerProduit.arreter();}
 const scannerVente=creerScanner("readerSale","scannerSaleStatus","scannerSaleContainer",(texte,status,arreter)=>{const produits=getProduits();let trouve=null;try{const data=JSON.parse(texte);if(data.type==='product'){trouve=produits.find(p=>p.codeBarres===data.codeBarres);}}catch(e){}if(!trouve&&texte)trouve=produits.find(p=>p.codeBarres===texte);if(trouve){selectionnerProduitVente(trouve.id);status.textContent='✅ '+trouve.nom;status.style.color='#10b981';showToast('✅ '+trouve.nom);arreter();}else{status.textContent='⚠️ '+translate('scanner_barcode_not_found');status.style.color='#f59e0b';showToast('⚠️ '+translate('scanner_barcode_not_found'));}});
 function demarrerScannerVente(){scannerVente.demarrer();}
 function arreterScannerVente(){scannerVente.arreter();}
+// ============ SCAN PAR PHOTO (iPhone/Safari compatible) ============
+function scannerParPhoto(type){
+  const input=document.createElement('input');
+  input.type='file';
+  input.accept='image/*';
+  input.capture='environment';
+  input.onchange=function(e){
+    const file=e.target.files[0];
+    if(!file)return;
+    const h5=new Html5Qrcode("readerSale");
+    h5.scanFile(file,true).then(txt=>{
+      if(type==='sale')traiterScanVente(txt);
+      else if(type==='product')traiterScanProduit(txt);
+      else if(type==='stock')traiterScanStock(txt);
+      else if(type==='depense')traiterScanDepense(txt);
+      h5.clear();
+    }).catch(err=>{
+      alert('❌ QR non détecté. Réessayez avec une photo nette.');
+      h5.clear();
+    });
+  };
+  input.click();
+}
+function traiterScanVente(texte){
+  const produits=getProduits();let trouve=null;
+  try{const data=JSON.parse(texte);if(data.type==='product')trouve=produits.find(p=>p.codeBarres===data.codeBarres);}catch(e){}
+  if(!trouve&&texte)trouve=produits.find(p=>p.codeBarres===texte);
+  if(trouve){selectionnerProduitVente(trouve.id);showToast('✅ '+trouve.nom);}
+  else showToast('⚠️ Code non trouvé');
+}
+function traiterScanProduit(texte){
+  try{const data=JSON.parse(texte);if(data.type==='product'){document.getElementById('nomProduit').value=data.nom||'';if(data.codeBarres)document.getElementById('codeBarresProduit').value=data.codeBarres;showToast('✅ '+data.nom);return;}}catch(e){}
+  document.getElementById('codeBarresProduit').value=texte;verifierProduitExistant();showToast('📦 Code enregistré');
+}
+function traiterScanStock(texte){
+  const produits=getProduits();let trouve=null;
+  try{const data=JSON.parse(texte);if(data.type==='product')trouve=produits.find(p=>p.codeBarres===data.codeBarres);}catch(e){}
+  if(!trouve&&texte)trouve=produits.find(p=>p.codeBarres===texte);
+  if(trouve){selectionnerProduitStock(trouve.id);showToast('✅ '+trouve.nom);}
+  else showToast('⚠️ Code non trouvé');
+}
+function traiterScanDepense(texte){
+  const produits=getProduits();let trouve=null;
+  try{const data=JSON.parse(texte);if(data.type==='product')trouve=produits.find(p=>p.codeBarres===data.codeBarres);}catch(e){}
+  if(!trouve&&texte)trouve=produits.find(p=>p.codeBarres===texte);
+  if(trouve){selectionnerProduitDepense(trouve.id);showToast('✅ '+trouve.nom);}
+  else showToast('⚠️ Code non trouvé');
+}
 const scannerStock=creerScanner("readerStock","scannerStockStatus","scannerStockContainer",(texte,status,arreter)=>{const produits=getProduits();let trouve=null;try{const data=JSON.parse(texte);if(data.type==='product'){trouve=produits.find(p=>p.codeBarres===data.codeBarres);}}catch(e){}if(!trouve&&texte)trouve=produits.find(p=>p.codeBarres===texte);if(trouve){selectionnerProduitStock(trouve.id);status.textContent='✅ '+trouve.nom;status.style.color='#10b981';showToast('✅ '+trouve.nom);arreter();}else{status.textContent='⚠️ '+translate('scanner_barcode_not_found');status.style.color='#f59e0b';showToast('⚠️ '+translate('scanner_barcode_not_found'));}});
 function demarrerScannerStock(){scannerStock.demarrer();}
 function arreterScannerStock(){scannerStock.arreter();}
