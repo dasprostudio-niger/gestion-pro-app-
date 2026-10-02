@@ -281,7 +281,6 @@ body.dark .alerte-stock .liste{color:#fecaca}
 <label data-i18n="product_search_label">🔍 Produit</label>
 <div class="input-with-btn">
 <input class="input-field" id="venteProduit" data-placeholder-i18n="product_search_placeholder" oninput="rechercherProduits()" autocomplete="off" enterkeyhint="search"/>
-<button onclick="demarrerScannerVente()">📷</button>
 <button onclick="scannerParPhoto('sale')" style="background:#10b981" title="Scanner avec photo">🖼️</button>
 </div>
 <div id="suggestionsContainerVente" class="suggestions"></div>
@@ -333,7 +332,6 @@ body.dark .alerte-stock .liste{color:#fecaca}
 <div class="screen-title" data-i18n="products_title">📦 Produits</div>
 <div class="card">
 <div class="card-title" data-i18n="add_edit">➕ Ajouter / Modifier</div>
-<button class="btn btn-sm btn-outline mb-2" onclick="demarrerScannerProduit()" style="width:100%;margin-bottom:12px" data-i18n="scan_product_qr">📷 Scanner un produit (QR / Code-barres)</button>
 <button class="btn btn-sm btn-success mb-2" onclick="scannerParPhoto('product')" style="width:100%;margin-bottom:12px">🖼️ Scanner avec une photo (iPhone)</button>
 <div id="scannerProductContainer"><div id="readerProduct"></div><div id="scannerProductStatus" data-i18n="scanner_ready">Prêt à scanner...</div><div class="scanner-actions"><button class="btn btn-sm btn-danger" onclick="arreterScannerProduit()" data-i18n="stop_scan">⏹ Arrêter</button></div></div>
 <div class="product-image-upload">
@@ -579,7 +577,6 @@ body.dark .alerte-stock .liste{color:#fecaca}
 <label data-i18n="product_search_label">Produit</label>
 <div class="input-with-btn">
 <input class="input-field" id="stockProduit" data-placeholder-i18n="product_search_placeholder" oninput="rechercherProduitsStock()" autocomplete="off" enterkeyhint="search"/>
-<button onclick="demarrerScannerStock()" type="button">📷</button>
 <button onclick="scannerParPhoto('stock')">🖼️ Photo</button>
 </div>
 <div id="suggestionsContainerStock" class="suggestions"></div>
@@ -617,7 +614,6 @@ body.dark .alerte-stock .liste{color:#fecaca}
 <label data-i18n="product_search_label">🔍 Produit (optionnel)</label>
 <div class="input-with-btn">
 <input class="input-field" id="depenseProduit" data-placeholder-i18n="product_search_placeholder" oninput="rechercherProduitsDepense()" autocomplete="off" enterkeyhint="search"/>
-<button onclick="demarrerScannerDepense()">📷</button>
 <button onclick="scannerParPhoto('depense')">🖼️ Photo</button>
 </div>
 <div id="suggestionsContainerDepense" class="suggestions"></div>
@@ -2935,4 +2931,4 @@ setTimeout(function(){
 </script>
 <script src="premium.js"></script>
 </body>
-</html> 
+</html>
