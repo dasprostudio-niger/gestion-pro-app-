@@ -1,18 +1,20 @@
-const CACHE_NAME = 'gestion-pro-v5.1.0';
+const CACHE_NAME = 'gestion-pro-v5.1.1';
 const urlsToCache = [
   './',
   './index.html',
+  './index-ios.html',
   './premium.js',
   './qrcode.min.js',
   './html5-qrcode.min.js',
   './html2canvas.min.js',
   './manifest.json',
+  './launchericon-48x48.png',
+  './launchericon-72x72.png',
+  './launchericon-96x96.png',
+  './launchericon-144x144.png',
   './launchericon-192x192.png',
   './launchericon-512x512.png'
 ];
-
-// Fichiers critiques qui doivent TOUJOURS être pris depuis le réseau en priorité
-const NETWORK_FIRST_FILES = ['index.html', 'premium.js', '/'];
 
 self.addEventListener('install', event => {
   event.waitUntil(
@@ -37,38 +39,24 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
   if (event.request.url.startsWith('chrome-extension://')) return;
+  if (event.request.url.startsWith('http://127.0.0.1')) return;
+  if (!event.request.url.startsWith('http')) return;
 
-  const url = event.request.url;
-  const isNetworkFirst = NETWORK_FIRST_FILES.some(f => url.endsWith(f) || url.includes(f + '?'));
-
-  if (isNetworkFirst) {
-    // Stratégie Network First : essaie le réseau, sinon le cache
-    event.respondWith(
-      fetch(event.request)
-        .then(response => {
-          if (response && response.status === 200) {
-            const responseClone = response.clone();
-            caches.open(CACHE_NAME).then(cache => cache.put(event.request, responseClone));
-          }
-          return response;
-        })
-        .catch(() => caches.match(event.request).then(r => r || caches.match('./index.html')))
-    );
-    return;
-  }
-
-  // Stratégie Cache First pour les autres ressources (images, libs)
   event.respondWith(
     caches.match(event.request)
       .then(response => {
         if (response) return response;
-        return fetch(event.request).then(response => {
-          if (!response || response.status !== 200 || response.type === 'opaque') return response;
-          const responseClone = response.clone();
-          caches.open(CACHE_NAME).then(cache => {cache.put(event.request, responseClone);});
-          return response;
+        return fetch(event.request).then(res => {
+          if (!res || res.status !== 200 || res.type === 'opaque') return res;
+          const responseClone = res.clone();
+          caches.open(CACHE_NAME).then(cache => { cache.put(event.request, responseClone); });
+          return res;
         }).catch(() => {
-          if (event.request.mode === 'navigate') return caches.match('./index.html');
+          if (event.request.mode === 'navigate') {
+            const url = event.request.url;
+            if (url.includes('index-ios')) return caches.match('./index-ios.html');
+            return caches.match('./index.html');
+          }
         });
       })
   );
