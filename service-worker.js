@@ -8,6 +8,7 @@ const urlsToCache = [
   './html5-qrcode.min.js',
   './html2canvas.min.js',
   './manifest.json',
+  './manifest-ios.json',
   './launchericon-48x48.png',
   './launchericon-72x72.png',
   './launchericon-96x96.png',
