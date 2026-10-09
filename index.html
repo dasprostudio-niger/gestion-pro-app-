@@ -2674,14 +2674,31 @@ function afficherGraphiques(){
   });
   container.innerHTML=html;
 }
-
+// ============ SCAN HYBRIDE - Recherche produit en ligne ============
+async function chercherNomProduit(codeBarres) {
+  try {
+    const url = 'https://world.openfoodfacts.org/api/v0/product/' + codeBarres + '.json';
+    const response = await fetch(url);
+    const data = await response.json();
+    if (data.status === 1 && data.product) {
+      return data.product.product_name_fr 
+          || data.product.product_name 
+          || data.product.generic_name 
+          || null;
+    }
+    return null;
+  } catch (erreur) {
+    console.log("Erreur recherche produit :", erreur);
+    return null;
+  }
+}
 // ============ QR PRODUITS ============
 function genererQRProduit(p){return JSON.stringify({type:'product',nom:p.nom,codeBarres:p.codeBarres||'',contenuCarton:p.contenuCarton||0,contenuBoite:p.contenuBoite||0,prixVenteCarton:p.prixVenteCarton||0,prixVenteBoite:p.prixVenteBoite||0,prixVentePiece:p.prixVentePiece||0,stockCarton:p.stockCarton||0,stockBoite:p.stockBoite||0,stockPiece:p.stockPiece||0});}
 function afficherQRProduit(id){const produits=getProduits();const p=produits.find(x=>x.id===id);if(!p)return;const overlay=document.createElement('div');overlay.className='qr-modal-overlay active';overlay.onclick=function(e){if(e.target===this)document.body.removeChild(this);};overlay.innerHTML='<div class="qr-modal"><div class="qr-title">QR: '+p.nom+'</div><div id="qrProductContainer" style="display:flex;justify-content:center;margin:12px 0;padding:8px;background:#fff;border-radius:12px;border:1px solid #e9edf2"></div><button class="btn btn-primary btn-close" onclick="document.body.removeChild(this.closest(\'.qr-modal-overlay\'))">'+translate('close')+'</button></div>';document.body.appendChild(overlay);new QRCode(overlay.querySelector('#qrProductContainer'),{text:genererQRProduit(p),width:200,height:200,colorDark:"#0f172a",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.M});}
 
 // ============ SCANNERS ============
 function creerScanner(readerId,statusId,containerId,onSuccess){let html5QrCode=null,actif=false;function demarrer(){const container=document.getElementById(containerId);const status=document.getElementById(statusId);if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){status.textContent=translate('scanner_not_supported');status.style.color='#ef4444';return;}container.classList.add('active');status.textContent=translate('scanner_starting');status.style.color='var(--text-muted)';function reel(){try{html5QrCode=new Html5Qrcode(readerId);const config={fps:10,qrbox:{width:250,height:250},aspectRatio:1.0,formatsToSupport:[Html5QrcodeSupportedFormats.QR_CODE,Html5QrcodeSupportedFormats.EAN_13,Html5QrcodeSupportedFormats.EAN_8,Html5QrcodeSupportedFormats.CODE_128,Html5QrcodeSupportedFormats.CODE_39,Html5QrcodeSupportedFormats.UPC_A,Html5QrcodeSupportedFormats.UPC_E,Html5QrcodeSupportedFormats.ITF]};html5QrCode.start({facingMode:"environment"},config,(text)=>{onSuccess(text,status,arreter);},()=>{}).then(()=>{actif=true;status.textContent=translate('scanner_ready');status.style.color='#10b981';}).catch((err)=>{status.textContent=translate('scanner_error')+' : '+err;status.style.color='#ef4444';});}catch(e){status.textContent=translate('scanner_error')+' : '+e;status.style.color='#ef4444';}}if(html5QrCode){html5QrCode.stop().then(()=>{html5QrCode.clear();html5QrCode=null;reel();}).catch(()=>reel());}else reel();}function arreter(){if(html5QrCode&&actif){html5QrCode.stop().then(()=>{html5QrCode.clear();html5QrCode=null;actif=false;document.getElementById(containerId).classList.remove('active');}).catch(()=>{html5QrCode=null;actif=false;document.getElementById(containerId).classList.remove('active');});}else document.getElementById(containerId).classList.remove('active');}return {demarrer,arreter};}
-const scannerProduit=creerScanner("readerProduct","scannerProductStatus","scannerProductContainer",(texte,status,arreter)=>{try{const data=JSON.parse(texte);if(data.type==='product'){document.getElementById('nomProduit').value=data.nom||'';if(data.codeBarres)document.getElementById('codeBarresProduit').value=data.codeBarres;document.getElementById('contenuCarton').value=data.contenuCarton||'';document.getElementById('contenuBoite').value=data.contenuBoite||'';document.getElementById('prixVenteCarton').value=formatNombre(data.prixVenteCarton||0);document.getElementById('prixVenteBoite').value=formatNombre(data.prixVenteBoite||0);document.getElementById('prixVentePiece').value=formatNombre(data.prixVentePiece||0);document.getElementById('stockCarton').value=data.stockCarton||0;document.getElementById('stockBoite').value=data.stockBoite||0;document.getElementById('stockPiece').value=data.stockPiece||0;status.textContent='✅ '+data.nom;status.style.color='#10b981';showToast('✅ '+data.nom);arreter();return;}}catch(e){}if(texte){document.getElementById('codeBarresProduit').value=texte;verifierProduitExistant();const nomActuel=document.getElementById('nomProduit').value.trim();if(!nomActuel||nomActuel===texte){document.getElementById('nomProduit').value=texte;status.textContent='📦 '+translate('scanner_code_added');status.style.color='#f59e0b';showToast('📦 '+translate('scanner_code_added'));}arreter();}});
+const scannerProduit=creerScanner("readerProduct","scannerProductStatus","scannerProductContainer",async(texte,status,arreter)=>{try{const data=JSON.parse(texte);if(data.type==='product'){document.getElementById('nomProduit').value=data.nom||'';if(data.codeBarres)document.getElementById('codeBarresProduit').value=data.codeBarres;document.getElementById('contenuCarton').value=data.contenuCarton||'';document.getElementById('contenuBoite').value=data.contenuBoite||'';document.getElementById('prixVenteCarton').value=formatNombre(data.prixVenteCarton||0);document.getElementById('prixVenteBoite').value=formatNombre(data.prixVenteBoite||0);document.getElementById('prixVentePiece').value=formatNombre(data.prixVentePiece||0);document.getElementById('stockCarton').value=data.stockCarton||0;document.getElementById('stockBoite').value=data.stockBoite||0;document.getElementById('stockPiece').value=data.stockPiece||0;status.textContent='✅ '+data.nom;status.style.color='#10b981';showToast('✅ '+data.nom);arreter();return;}}catch(e){}if(texte){document.getElementById('codeBarresProduit').value=texte;verifierProduitExistant();const nomActuel=document.getElementById('nomProduit').value.trim();if(!nomActuel||nomActuel===texte){status.textContent='🔍 Recherche du produit...';status.style.color='#2563eb';showToast('🔍 Recherche...');chercherNomProduit(texte).then(function(nom){if(nom){document.getElementById('nomProduit').value=nom;status.textContent='✅ '+nom;status.style.color='#10b981';showToast('✅ '+nom);}else{document.getElementById('nomProduit').value=texte;status.textContent='⚠️ Nom non trouvé. Saisissez-le.';status.style.color='#f59e0b';showToast('⚠️ Saisissez le nom');}setTimeout(function(){arreter();},1500);});}else{arreter();}}});
 function demarrerScannerProduit(){scannerProduit.demarrer();}
 function arreterScannerProduit(){scannerProduit.arreter();}
 const scannerVente=creerScanner("readerSale","scannerSaleStatus","scannerSaleContainer",(texte,status,arreter)=>{const produits=getProduits();let trouve=null;try{const data=JSON.parse(texte);if(data.type==='product'){trouve=produits.find(p=>p.codeBarres===data.codeBarres);}}catch(e){}if(!trouve&&texte)trouve=produits.find(p=>p.codeBarres===texte);if(trouve){selectionnerProduitVente(trouve.id);status.textContent='✅ '+trouve.nom;status.style.color='#10b981';showToast('✅ '+trouve.nom);arreter();}else{status.textContent='⚠️ '+translate('scanner_barcode_not_found');status.style.color='#f59e0b';showToast('⚠️ '+translate('scanner_barcode_not_found'));}});
@@ -2717,10 +2734,7 @@ function traiterScanVente(texte){
   if(trouve){selectionnerProduitVente(trouve.id);showToast('✅ '+trouve.nom);}
   else showToast('⚠️ Code non trouvé');
 }
-function traiterScanProduit(texte){
-  try{const data=JSON.parse(texte);if(data.type==='product'){document.getElementById('nomProduit').value=data.nom||'';if(data.codeBarres)document.getElementById('codeBarresProduit').value=data.codeBarres;showToast('✅ '+data.nom);return;}}catch(e){}
-  document.getElementById('codeBarresProduit').value=texte;verifierProduitExistant();showToast('📦 Code enregistré');
-}
+function traiterScanProduit(texte){try{const data=JSON.parse(texte);if(data.type==='product'){document.getElementById('nomProduit').value=data.nom||'';if(data.codeBarres)document.getElementById('codeBarresProduit').value=data.codeBarres;showToast('✅ '+data.nom);return;}}catch(e){}document.getElementById('codeBarresProduit').value=texte;verifierProduitExistant();const nomActuel=document.getElementById('nomProduit').value.trim();if(!nomActuel||nomActuel===texte){chercherNomProduit(texte).then(function(nom){if(nom){document.getElementById('nomProduit').value=nom;showToast('✅ '+nom);}else{document.getElementById('nomProduit').value=texte;showToast('⚠️ Saisissez le nom');}});}}
 function traiterScanStock(texte){
   const produits=getProduits();let trouve=null;
   try{const data=JSON.parse(texte);if(data.type==='product')trouve=produits.find(p=>p.codeBarres===data.codeBarres);}catch(e){}
@@ -2935,7 +2949,7 @@ setTimeout(function(){
     <h2 style="color:#2563eb;font-size:20px;margin-bottom:12px">Bienvenue sur Gestion Pro</h2>
     <p style="color:#64748b;font-size:14px;line-height:1.6;margin-bottom:20px">
       Pour utiliser l'application, veuillez lire et accepter notre 
-      <a href="https://docs.google.com/document/d/12YBp5hji7SACzowbGellWwZBX-Y-VLkj7Q2PNqz1I/view" target="_blank" style="color:#2563eb;font-weight:600">Politique de Confidentialité</a>.
+      <a href="https://dasprostudio-niger.github.io/gestion-pro-app-/privacy.html" target="_blank" style="color:#2563eb;font-weight:600">Politique de Confidentialité</a>.
     </p>
     <button onclick="accepterConfidentialite()" style="background:#2563eb;color:#fff;border:none;border-radius:12px;padding:14px 24px;font-size:16px;font-weight:600;width:100%;cursor:pointer;margin-bottom:10px">J'accepte</button>
     <button onclick="refuserConfidentialite()" style="background:transparent;color:#64748b;border:none;padding:10px;font-size:14px;cursor:pointer;width:100%">Je refuse</button>
